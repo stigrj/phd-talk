@@ -1,0 +1,41 @@
+
+\section{Front page}
+\section{Outlook}
+\section{Multiwavelets}
+\section{Decreasing order}
+\section{Parallelization}
+\subsection{Introduction}
+So why do we need parallel processing? There are basically two reasons for that: either to
+get more processing power, or to get more available memory (or perhaps both at once). 
+Computational scientists, and quantum chemists in particular, are always trying to push the 
+limits of how accurately a particular property can be computed or how big a system that can 
+be treated with a given computational method, and this means pushing the computational resources.
+
+Every computer available today will have at least a dual-core processor, and the machines at
+modern high performance computing centres will typically have 8, 12, 16 or 20 processors
+on each machine, so-called host, but even if these processors share the same memory, they
+will not automatically work together on the same problem, as at most one processor can 
+work on a given application at a time. While this is fine for the day to day work at the 
+office, as you usually have many different applications running at the same time, it is much 
+more problematic for computational scientists, as we need to get as much computational power 
+as possible for a single application program. This means that we have to make several 
+independent computers work in parallel in solving the same problem, and this is challenging 
+in many respects. 
+
+So what does parallelization mean? It means distributing work between the available processors.
+This needs to done in a balanced manner, so that each processor gets an approximately equal 
+amount of work to execute. It means syncronizing the different processors so that the arithmetic
+operations are performed in the correct order. If some of the processors does NOT share the same
+memory, the data needs to be distributed among the different hosts, and at some point we usually
+need to communicate some data between the hosts.
+
+
+Heisenbugs. If you're a quantum chemist you get the joke behind that name, but these are 
+particularly nasty bugs or errors in your code that tends to change character or even dissapear
+when you go looking for them.
+
+\section{Coulomb interaction}
+\section{Chemistry}
+\section{Real-space DFT}
+\section{Acknowledgments}
+
