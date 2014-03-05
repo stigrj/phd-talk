@@ -425,7 +425,69 @@ with Multiwavelets}
 \end{frame}
 
 \begin{frame}
+    \frametitle{The Schr\"{o}dinger equation}
+    \begin{equation}
+	\hat{H}\psi = E\psi
+    \end{equation}
+    \begin{equation}
+	\hat{H} =   -\sum_I \frac{\nabla^2}{2M_I} - \sum_i \frac{\nabla^2}{2}
+		    +\sum_{I>J} \frac{Z_IZ_J}{|\boldsymbol{R}_I-\boldsymbol{R}_J|} 
+		    +\sum_{I,i} \frac{Z_I}{|\boldsymbol{r}_i-\boldsymbol{R}_J|} 
+		    +\sum_{i>j} \frac{1}{|\boldsymbol{r}_i-\boldsymbol{r}_j|} 
+    \end{equation}
+    \begin{equation}
+	\psi = \psi(\boldsymbol{r}_1,\boldsymbol{r}_2,\dots,\boldsymbol{r}_N)
+    \end{equation}
+
+    $\beta$-carotene molecule ($C_{40}H_{56}$) contains 296 electrons!
+\end{frame}
+
+\begin{frame}
     \frametitle{Density Functional Theory}
+    Dramatically reduce the dimensionality 
+    \begin{equation}
+	\rho(\boldsymbol{r}_1) = N \int |\psi(\boldsymbol{r}_1, \boldsymbol{r}_2,\dots,
+	\boldsymbol{r}_N)|^2 d\boldsymbol{r}_2\cdots d\boldsymbol{r}_N
+    \end{equation}
+    and the energy is expressed in terms of the electron density 
+    \begin{equation}
+	E[\rho] = T[\rho] + V_{ne}[\rho] + V_{ee}[\rho]
+    \end{equation}
+    Within the Born-Oppenheimer approximation the nuclear potential is fixed
+    and the nuclear-electron term is known as the classical Coulomb interaction
+    \begin{equation}
+	V_{ne}[\rho] = \int \rho(\boldsymbol{r})v_{nuc}(\boldsymbol{r})d\boldsymbol{r}, 
+	\qquad \qquad v_{nuc}(\boldsymbol{r}) = \sum_I \frac{Z_I}{|\boldsymbol{r}-\boldsymbol{R}_I|}
+    \end{equation}
+    but the kinetic energy and electron-electron interaction are not known, but
+    the \emph{classical} interaction between the electrons is
+    \begin{equation}
+	J[\rho] = \int \rho(\boldsymbol{r})v_{el}(\boldsymbol{r})d\boldsymbol{r}, 
+	\qquad \qquad v_{el}(\boldsymbol{r}) = 
+	\int \frac{\rho(\boldsymbol{r}')}{|\boldsymbol{r}-\boldsymbol{r}'|} d\boldsymbol{r}'
+    \end{equation}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Kohn-Sham DFT}
+    The electron density is given by the one-electron orbitals
+    \begin{equation}
+	\rho(\boldsymbol{r}) = \sum_{i=1}^N |\phi_i(\boldsymbol{r})|^2
+    \end{equation}
+    where the (noninteracting) kinetic energy is known
+    \begin{equation}
+	T_s[\rho] = \sum_i -\frac{\nabla^2}{2}\phi_i(\boldsymbol{r})
+    \end{equation}
+    which lead to the Kohn-Sham equations
+    \begin{equation}
+	\left[-\frac{\nabla^2}{2} + v_{eff}(\boldsymbol{r})\right]\phi_i(\boldsymbol{r}) = 
+	\epsilon_i\phi_i(\boldsymbol{r})
+    \end{equation}
+    The effective potential has three constributions
+    \begin{equation}
+	v_{eff} = v_{nuc} + v_{el} + v_{xc}
+    \end{equation}
+    where all the non-classical effects are included in the exchange-correlation potential
 \end{frame}
 
 \begin{frame}
@@ -434,18 +496,31 @@ with Multiwavelets}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Integral formulation}
-    Canonical equations
-\end{frame}
-
-\begin{frame}
-    \frametitle{Algorithm}
-    Mention fixed lambda\\
-    Mention KAIN
-\end{frame}
-
-\begin{frame}
     \frametitle{One-electron systems}
+    \begin{align}
+	\left[-\frac{\nabla^2}{2} + v_{nuc}(\boldsymbol{r})\right]\psi(\boldsymbol{r}) &=
+	E\psi(\boldsymbol{r})\\
+	\left[-\nabla^2 - 2E\right]\psi(\boldsymbol{r}) &=
+	-2v_{nuc}(\boldsymbol{r})\psi(\boldsymbol{r})\\
+	\psi(\boldsymbol{r}) &=
+	-2\int H^\mu(\boldsymbol{r}-\boldsymbol{r}') v_{nuc}(\boldsymbol{r}')\psi(\boldsymbol{r}') 
+	d\boldsymbol{r}'
+    \end{align}
+    This equation is solved iteratively
+    \begin{equation}
+	\tilde{\psi}^{n+1} = \hat{H}^{\mu^n}\left[v_{nuc}\psi^n\right], \qquad \qquad
+	\psi^{n+1} = \frac{\tilde{\psi}^{n+1}}{\|\tilde{\psi}^{n+1}\|}
+    \end{equation}
+    and the energy is calculated from the wave function update
+    \begin{equation}
+	E^{n+1} = E^n + \frac{\left<\tilde{\psi}^{n+1}|v_{nuc}|\tilde{\psi}^{n+1} - \psi^n\right>}
+	    {\left<\tilde{\psi}^{n+1}|\tilde{\psi}^{n+1}\right>}
+    \end{equation}
+    The Helmholtz operator is constructed using $\mu^n = \sqrt{-2E^n}$.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Hydrogen atom}
     \begin{center}
 	\includegraphics[scale=0.6, clip, viewport = 50 550 540 730]{figures/convergence.pdf}
     \end{center}
@@ -459,6 +534,34 @@ with Multiwavelets}
     \only<4>{\includegraphics[viewport = 50 430 300 640, clip, scale=1.2]{figures/s1Orb_4.pdf}}
     \only<5>{\includegraphics[viewport = 50 430 300 640, clip, scale=1.2]{figures/s1Orb_5.pdf}}
     \only<6>{\includegraphics[viewport = 50 430 300 640, clip, scale=1.2]{figures/s1Orb_10.pdf}}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Many-electron systems}
+    The Kohn-Sham equations written in integral form
+    \begin{align}
+	\left[-\frac{\nabla^2}{2} + v_{eff}(\boldsymbol{r})\right]\phi_i(\boldsymbol{r}) &=
+	\epsilon_i\phi_i(\boldsymbol{r})\\
+	\phi_i(\boldsymbol{r}) &=
+	-2\hat{H}^\mu\left[v_{eff}\phi_i\right] 
+    \end{align}
+    These equations are again solved iteratively
+    \begin{equation}
+	\tilde{\phi}_i^{n+1} = \hat{H}^{\mu_i^n}\left[v_{eff}^n\phi_i^n\right]
+    \end{equation}
+    and the Kohn-Sham matrix is calculated and diagonalized in each iteration
+    \begin{equation}
+	F_{ii}^{n+1} = F^n + 
+	    \frac{\left<\tilde{\psi}^{n+1}|v_{nuc}|\tilde{\psi}^{n+1} - \psi^n\right>}
+	    {\left<\tilde{\psi}^{n+1}|\tilde{\psi}^{n+1}\right>}
+    \end{equation}
+    The Helmholtz operator is constructed using $\mu_i^n = \sqrt{-2F_{ii}^n}$.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Algorithm}
+    Mention fixed lambda\\
+    Mention KAIN
 \end{frame}
 
 \begin{frame}
@@ -477,9 +580,20 @@ with Multiwavelets}
 
 \begin{frame}
     \frametitle{Orbital localization}
-    Non-canonical equations\\
-    Orbital plots\\
-    Convergence table
+    Orbital plots
+\end{frame}
+
+\begin{frame}
+    \frametitle{Orbital localization}
+    We had the canonical Kohn-Sham equations
+    \begin{equation}
+	\phi_i(\boldsymbol{r}) = -2\hat{H}^\mu\left[v_{eff}\phi_i\right] 
+    \end{equation}
+    that generalizes in the case of localized (non-canonical) orbitals to
+    \begin{equation}
+	\phi_i(\boldsymbol{r}) = 
+	    -2\hat{H}^\mu\left[v_{eff}\phi_i-\sum_{j\neq i} F_{ij}\phi_j\right] 
+    \end{equation}
 \end{frame}
 
 \begin{frame}
@@ -511,6 +625,12 @@ $C_{10}H_{22}$	& 41	& 11    & 11    &  9    &  9    &  8    &  8    &  8    &  8
 \hline
 \end{tabular}
 \end{table}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Accurate calculations}
+    Table of Hartree-Fock energies\\
+    Table of Kohn-Sham energies
 \end{frame}
 
 \begin{frame}
