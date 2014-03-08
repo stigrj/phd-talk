@@ -1,0 +1,290 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/MacPorts 2013_3) (format=pdflatex 2013.11.4)  7 MAR 2014 20:10
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**matrix.tex
+(./matrix.tex
+LaTeX2e <2011/06/27>
+Babel <3.9f> and hyphenation patterns for 44 languages loaded.
+(/opt/local/share/texmf-texlive/tex/latex/base/report.cls
+Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
+(/opt/local/share/texmf-texlive/tex/latex/base/size10.clo
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/opt/local/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/opt/local/share/texmf-texlive/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/opt/local/share/texmf-texlive/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/opt/local/share/texmf-texlive/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/opt/local/share/texmf-texlive/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/opt/local/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+(/opt/local/share/texmf-texlive/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+(/opt/local/share/texmf-texlive/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count88
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+(./matrix.aux)
+\openout1 = `matrix.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+ (/opt/local/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count89
+\scratchdimen=\dimen105
+\scratchbox=\box26
+\nofMPsegments=\count90
+\nofMParguments=\count91
+\everyMPshowfont=\toks15
+\MPscratchCnt=\count92
+\MPscratchDim=\dimen106
+\MPnumerator=\count93
+\makeMPintoPDFobject=\count94
+\everyMPtoPDFconversion=\toks16
+) (/opt/local/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/opt/local/share/texmf-texlive/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/opt/local/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/opt/local/share/texmf-texlive/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/opt/local/share/texmf-texlive/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+
+(/opt/local/share/texmf-texlive/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+))
+(/opt/local/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+
+(/opt/local/share/texmf-texlive/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+
+(/opt/local/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/opt/local/share/texmf-texlive/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+<densematrix.pdf, id=1, 578.16pt x 433.62pt>
+File: densematrix.pdf Graphic file (type pdf)
+ <use densematrix.pdf>
+Package pdftex.def Info: densematrix.pdf used on input line 8.
+(pdftex.def)             Requested size: 27.10289pt x 26.29985pt.
+
+<../accuracy.pdf, id=3, 614.295pt x 794.97pt>
+File: ../accuracy.pdf Graphic file (type pdf)
+ <use ../accuracy.pdf>
+Package pdftex.def Info: ../accuracy.pdf used on input line 9.
+(pdftex.def)             Requested size: 27.10289pt x 26.29985pt.
+File: ../accuracy.pdf Graphic file (type pdf)
+
+<use ../accuracy.pdf>
+Package pdftex.def Info: ../accuracy.pdf used on input line 10.
+(pdftex.def)             Requested size: 27.10289pt x 26.29985pt.
+File: ../accuracy.pdf Graphic file (type pdf)
+ <use ../accuracy.pdf>
+Package pdftex.def Info: ../accuracy.pdf used on input line 11.
+(pdftex.def)             Requested size: 27.10289pt x 26.29985pt.
+File: ../accuracy.pdf Graphic file (type pdf)
+ <use ../accuracy.pdf>
+Package pdftex.def Info: ../accuracy.pdf used on input line 12.
+(pdftex.def)             Requested size: 27.10289pt x 26.29985pt.
+File: ../accuracy.pdf Graphic file (type pdf)
+
+<use ../accuracy.pdf>
+Package pdftex.def Info: ../accuracy.pdf used on input line 13.
+(pdftex.def)             Requested size: 27.10289pt x 26.29985pt.
+File: ../accuracy.pdf Graphic file (type pdf)
+ <use ../accuracy.pdf>
+Package pdftex.def Info: ../accuracy.pdf used on input line 14.
+(pdftex.def)             Requested size: 27.10289pt x 26.29985pt.
+File: ../accuracy.pdf Graphic file (type pdf)
+ <use ../accuracy.pdf>
+Package pdftex.def Info: ../accuracy.pdf used on input line 15.
+(pdftex.def)             Requested size: 27.10289pt x 26.29985pt.
+File: ../accuracy.pdf Graphic file (type pdf)
+
+<use ../accuracy.pdf>
+Package pdftex.def Info: ../accuracy.pdf used on input line 16.
+(pdftex.def)             Requested size: 27.10289pt x 26.29985pt.
+ <sparsematrix.pdf, id=12, 578.16pt x 433.62pt>
+File: sparsematrix.pdf Graphic file (type pdf)
+
+<use sparsematrix.pdf>
+Package pdftex.def Info: sparsematrix.pdf used on input line 17.
+(pdftex.def)             Requested size: 27.10289pt x 26.29985pt.
+File: ../accuracy.pdf Graphic file (type pdf)
+ <use ../accuracy.pdf>
+Package pdftex.def Info: ../accuracy.pdf used on input line 18.
+(pdftex.def)             Requested size: 27.10289pt x 26.29985pt.
+File: ../accuracy.pdf Graphic file (type pdf)
+ <use ../accuracy.pdf>
+Package pdftex.def Info: ../accuracy.pdf used on input line 19.
+(pdftex.def)             Requested size: 27.10289pt x 26.29985pt.
+File: ../accuracy.pdf Graphic file (type pdf)
+
+<use ../accuracy.pdf>
+Package pdftex.def Info: ../accuracy.pdf used on input line 20.
+(pdftex.def)             Requested size: 27.10289pt x 26.29985pt.
+File: ../accuracy.pdf Graphic file (type pdf)
+ <use ../accuracy.pdf>
+Package pdftex.def Info: ../accuracy.pdf used on input line 21.
+(pdftex.def)             Requested size: 27.10289pt x 26.29985pt.
+File: ../accuracy.pdf Graphic file (type pdf)
+ <use ../accuracy.pdf>
+Package pdftex.def Info: ../accuracy.pdf used on input line 22.
+(pdftex.def)             Requested size: 27.10289pt x 26.29985pt.
+File: sparsematrix.pdf Graphic file (type pdf)
+
+<use sparsematrix.pdf>
+Package pdftex.def Info: sparsematrix.pdf used on input line 23.
+(pdftex.def)             Requested size: 27.10289pt x 26.29985pt.
+File: sparsematrix.pdf Graphic file (type pdf)
+ <use sparsematrix.pdf>
+Package pdftex.def Info: sparsematrix.pdf used on input line 24.
+(pdftex.def)             Requested size: 27.10289pt x 26.29985pt.
+File: ../accuracy.pdf Graphic file (type pdf)
+ <use ../accuracy.pdf>
+Package pdftex.def Info: ../accuracy.pdf used on input line 25.
+(pdftex.def)             Requested size: 27.10289pt x 26.29985pt.
+File: ../accuracy.pdf Graphic file (type pdf)
+
+<use ../accuracy.pdf>
+Package pdftex.def Info: ../accuracy.pdf used on input line 26.
+(pdftex.def)             Requested size: 27.10289pt x 26.29985pt.
+File: ../accuracy.pdf Graphic file (type pdf)
+ <use ../accuracy.pdf>
+Package pdftex.def Info: ../accuracy.pdf used on input line 27.
+(pdftex.def)             Requested size: 27.10289pt x 26.29985pt.
+File: ../accuracy.pdf Graphic file (type pdf)
+ <use ../accuracy.pdf>
+Package pdftex.def Info: ../accuracy.pdf used on input line 28.
+(pdftex.def)             Requested size: 27.10289pt x 26.29985pt.
+File: ../accuracy.pdf Graphic file (type pdf)
+
+<use ../accuracy.pdf>
+Package pdftex.def Info: ../accuracy.pdf used on input line 29.
+(pdftex.def)             Requested size: 27.10289pt x 26.29985pt.
+File: ../accuracy.pdf Graphic file (type pdf)
+ <use ../accuracy.pdf>
+Package pdftex.def Info: ../accuracy.pdf used on input line 30.
+(pdftex.def)             Requested size: 54.20166pt x 52.59569pt.
+File: ../accuracy.pdf Graphic file (type pdf)
+ <use ../accuracy.pdf>
+Package pdftex.def Info: ../accuracy.pdf used on input line 31.
+(pdftex.def)             Requested size: 54.20166pt x 52.59569pt.
+File: sparsematrix.pdf Graphic file (type pdf)
+
+<use sparsematrix.pdf>
+Package pdftex.def Info: sparsematrix.pdf used on input line 32.
+(pdftex.def)             Requested size: 54.20166pt x 52.59569pt.
+File: ../accuracy.pdf Graphic file (type pdf)
+ <use ../accuracy.pdf>
+Package pdftex.def Info: ../accuracy.pdf used on input line 33.
+(pdftex.def)             Requested size: 27.10289pt x 26.29985pt.
+File: ../accuracy.pdf Graphic file (type pdf)
+ <use ../accuracy.pdf>
+Package pdftex.def Info: ../accuracy.pdf used on input line 34.
+(pdftex.def)             Requested size: 54.20166pt x 52.59569pt.
+File: sparsematrix.pdf Graphic file (type pdf)
+
+<use sparsematrix.pdf>
+Package pdftex.def Info: sparsematrix.pdf used on input line 35.
+(pdftex.def)             Requested size: 54.20166pt x 52.59569pt.
+File: sparsematrix.pdf Graphic file (type pdf)
+ <use sparsematrix.pdf>
+Package pdftex.def Info: sparsematrix.pdf used on input line 36.
+(pdftex.def)             Requested size: 54.20166pt x 52.59569pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 7--37
+
+ []
+
+[1
+
+{/opt/local/var/db/texmf/fonts/map/pdftex/updmap/pdftex.map} <./densematrix.pdf
+> <../accuracy.pdf> <./sparsematrix.pdf>] (./matrix.aux) ) 
+Here is how much of TeX's memory you used:
+ 1488 strings out of 494181
+ 21342 string characters out of 6156676
+ 77616 words of memory out of 5000000
+ 4790 multiletter control sequences out of 15000+600000
+ 3640 words of font info for 14 fonts, out of 8000000 for 9000
+ 470 hyphenation exceptions out of 8191
+ 37i,6n,23p,232b,127s stack positions out of 5000i,500n,10000p,200000b,80000s
+</opt/local/share/tex
+mf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+Output written on matrix.pdf (1 page, 1118497 bytes).
+PDF statistics:
+ 116 PDF objects out of 1000 (max. 8388607)
+ 56 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 190 words of extra memory for PDF output out of 10000 (max. 10000000)
+
