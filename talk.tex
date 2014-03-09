@@ -1,6 +1,6 @@
 \pagenumbering{arabic}
 %\documentclass[slides]{beamer}
-\documentclass[mathserif]{beamer}
+\documentclass[mathserif, 10pt]{beamer}
 \usepackage[framesassubsections]{beamerprosper}
 \setbeamercovered{transparent}
 %\documentclass[slides,hyperref={pdfpagelabels=false}]{beamer}
@@ -63,30 +63,41 @@ with Multiwavelets}
 }
 
 \begin{frame}
+    \frametitle{Summary}
+\end{frame}
+
+\begin{frame}
     \frametitle{Outlook}
     \begin{itemize}
 	\item   Paper I
 	\begin{itemize}
 	    \item   Multiwavelets
 	    \item   Function representations
-	    \item   Decreasing order basis
-	    \item   Results
+	    \item   Varying polynomial order
 	\end{itemize}
 	\item   Paper II
 	\begin{itemize}
 	    \item   Parallel implementation
 	    \item   Operator representation
 	    \item   Coulomb interaction
-	    \item   Results
 	\end{itemize}
 	\item   Paper III
 	\begin{itemize}
 	    \item   Density Functional Theory
 	    \item   Integral formulation
 	    \item   Iterative algorithm
-	    \item   Results
 	\end{itemize}
     \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \centering
+    \Large{Part I:}\\
+    \ \\
+    \ \\
+    \centering
+    \Large{Adaptive order polynomial algorithm in a multiwavelet 
+	representation scheme}
 \end{frame}
 
 \begin{frame}
@@ -118,6 +129,16 @@ with Multiwavelets}
 \end{frame}
 
 \begin{frame}
+    \centering
+    \Large{Part II:}\\
+    \ \\
+    \ \\
+    \centering
+    \Large{Linear scaling Coulomb interaction in the multiwavelet basis,
+	a parallel implementation}
+\end{frame}
+
+\begin{frame}
     \frametitle{Parallel programming}
     Why parallel processing?
     \begin{itemize}
@@ -128,18 +149,20 @@ with Multiwavelets}
     \ \\
     \ \\
     \ \\
+    \pause
     Parallelization means
     \begin{itemize}
-	\item	\textbf{distributing work} to processors
-	\item	\textbf{syncronization} of distributed work
-	\item	\textbf{distributing data} (if memory is distributed)
-	\item	\textbf{communication} of distributed data
+	\item	\textbf{distributing work} among available processors
+	\item	\textbf{syncronizing} distributed work
+	\item	\textbf{distributing data} among available memory
+	\item	\textbf{communicating} distributed data
     \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{Shared memory (OpenMP)}
-    \begin{minipage}[b]{0.45\linewidth}
+    \begin{columns}
+    \begin{column}[b]{0.45\linewidth}
 	Pros
 	\begin{itemize}
 	    \item Relatively simple implementation
@@ -147,6 +170,9 @@ with Multiwavelets}
 	    \item No communication
 	    \item Simple load balance
 	\end{itemize}
+	\ \\
+	\ \\
+	\pause
 	Cons
         \begin{itemize}
 	    \item Small to medium scale parallelization
@@ -154,43 +180,49 @@ with Multiwavelets}
 	    \item Race conditions
 	    \item Tedious debugging (Heisenbugs)
 	\end{itemize}
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.4\linewidth}
-	\includegraphics[viewport = 120 160 460 450, clip, scale=0.4]{figures/parallel_OMP.pdf}
+	\ \\
+	\ \\
+    \end{column}
+    \begin{column}[b]{0.4\linewidth}
+	\only<3>{\includegraphics[viewport = 120 160 460 450, clip, scale=0.4]{figures/parallel_OMP.pdf}}
 	\ \\
 	\ \\
 	\ \\
 	\ \\
-    \end{minipage}
+    \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
     \frametitle{Distributed memory (MPI)}
-    \begin{minipage}[b]{0.45\linewidth}
-	pros
+    \begin{columns}
+    \begin{column}[b]{0.45\linewidth}
+	Pros
 	\begin{itemize}
-	    \item large scale parallelization
-	    \item extensive memory
+	    \item Large scale parallelization
+	    \item Extensive memory
 	\end{itemize}
-	cons
+	\ \\
+	\ \\
+	\ \\
+	\ \\
+	\pause
+	Cons
 	\begin{itemize}
-	    \item complicated implementation
-	    \item user specified work/data decomposition 
-	    \item user specified communication
-	    \item difficult to load balance
-	    \item communication overhead
+	    \item Complicated implementation
+	    \item User specified work/data decomposition 
+	    \item User specified communication
+	    \item Difficult to load balance
+	    \item Communication overhead
 	\end{itemize}
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.4\linewidth}
-	\only<1>{\includegraphics[viewport = 120 160 460 450, clip, scale=0.4]{figures/parallel_mpi_1.pdf}
+    \end{column}
+    \begin{column}[b]{0.4\linewidth}
+	\only<3>{\includegraphics[viewport = 120 160 460 450, clip, scale=0.4]{figures/parallel_mpi_2.pdf}}
 	\ \\
-	}
-	\only<2>{\includegraphics[viewport = 120 160 460 450, clip, scale=0.4]{figures/parallel_mpi_2.pdf}
 	\ \\
-	}
-    \end{minipage}
+	\ \\
+    \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
@@ -212,7 +244,7 @@ with Multiwavelets}
 	Hilbert
 	\includegraphics[viewport = 105 590 375 680, scale=0.6, clip]{figures/hilbertCurve.pdf}
 	\ \\
-	3D
+	3D\\
 	\includegraphics[viewport = 105 325 375 435, scale=0.6, clip]{figures/hilbertCurve.pdf}
     \end{minipage}
     \hfill
@@ -223,51 +255,67 @@ with Multiwavelets}
 
 \begin{frame}
     \frametitle{Operator representation}
-    The multiwavelet basis is well suited for integral operators
+    \begin{columns}
+    \begin{column}[b]{0.5\linewidth}
+    \only<1,2>{\ \\ \ \\ \ \\}
+    \centering
+    Integral convolution operators
     \begin{equation}
 	\nonumber
-	g(\boldsymbol{r}) = \int K(\boldsymbol{r} - \boldsymbol{r'}) 
+	g(\boldsymbol{r}) = \left[T f\right](\boldsymbol{r}) = \int K(\boldsymbol{r} - \boldsymbol{r'}) 
 	    f(\boldsymbol{r'}) d\boldsymbol{r'}
     \end{equation}
     \ \\
-    We have specifically implemented three such operators
     \ \\
+    \ \\
+    \pause
+    Operator in Non-Standard form
+    \begin{align}
+	\nonumber
+	T^N &= T^{N-1} + C^{N-1} + B^{N-1} + A^{N-1}\\
+	\nonumber
+	    &= T^0 + \sum_{n=0}^{N-1} \left[C^n + B^n + A^n\right]
+    \end{align}
+    \end{column}
+    \begin{column}[b]{0.5\linewidth}
+    \begin{center}
+    \only<3>{\includegraphics[scale=0.6, clip, viewport = 240 280 450 480]{figures/matrix/matrix_1.pdf}}
+    \only<4>{\includegraphics[scale=0.6, clip, viewport = 240 280 450 480]{figures/matrix/matrix_2.pdf}}
+    \only<5>{\includegraphics[scale=0.6, clip, viewport = 240 280 450 480]{figures/matrix/matrix_3.pdf}}
+    \only<6>{\includegraphics[scale=0.6, clip, viewport = 240 280 450 480]{figures/matrix/matrix_4.pdf}}
+    \only<7>{\includegraphics[scale=0.6, clip, viewport = 240 280 450 480]{figures/matrix/matrix_5.pdf}}
+    \only<8,9>{\includegraphics[scale=0.6, clip, viewport = 240 280 450 480]{figures/matrix/matrix_6.pdf}}
+    \end{center}
+    \end{column}
+    \end{columns}
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \pause
+    \pause
+    \pause
+    \pause
+    \pause
+    \pause
+    \pause
     \begin{columns}
     \begin{column}{.48\textwidth}
-    \begin{itemize}
-	\item Poisson kernel (electrostatics)
-	    \ \\
-	    \ \\
-	    \ \\
-	\item Bound-State Helmholtz (BSH) kernel (DFT equations)
-	    \ \\
-	    \ \\
-	    \ \\
-	\item Derivative kernel
-    \end{itemize}
-    \end{column}
-    \begin{column}{.48\textwidth}
-    \ \\
+    \centering
+    Poisson kernel
     \begin{equation}
 	\nonumber
-	\scriptsize
 	P(\boldsymbol{r}-\boldsymbol{r}') = 
 	    \frac{1}{4\pi}\ \frac{1}{|\boldsymbol{r}-\boldsymbol{r}'|}
     \end{equation}
-    \ \\
-    \ \\
+    \end{column}
+    \begin{column}{.48\textwidth}
+    \centering
+    Helmholtz kernel
     \begin{equation}
 	\nonumber
-	\scriptsize
 	H^{\mu}(\boldsymbol{r}-\boldsymbol{r}') = \frac{1}{4\pi}\ 
 	    \frac{e^{-\mu |\boldsymbol{r}-\boldsymbol{r}'|}}{|\boldsymbol{r}-\boldsymbol{r}'|}
-    \end{equation}
-    \ \\
-    \ \\
-    \begin{equation}
-	\nonumber
-	\scriptsize
-	D^x(x-x') = \frac{d}{dx} \delta(x - x')
     \end{equation}
     \end{column}
     \end{columns}    
@@ -275,20 +323,37 @@ with Multiwavelets}
 
 \begin{frame}
     \frametitle{Coulomb interaction}
-    Coulomb potential for point charge in position $\boldsymbol{r}'$
+    \centering
+    \begin{columns}
+    \begin{column}{.10\textwidth}
+    \ \\
+    \end{column}
+    \begin{column}{.40\textwidth}
+    \centering
+    Point charge
     \begin{equation}
     	\nonumber
     	V(\boldsymbol{r}) = \frac{q}{4\pi\epsilon_0}
-    	\frac{1}{|\boldsymbol{r}-\boldsymbol{r'}|}
+    	\frac{1}{|\boldsymbol{r}-\boldsymbol{r}'|}
     \end{equation}
-    \ \\
-    Poisson's equation for arbitrary charge densities (in atomic units)
+    \end{column}
+    \begin{column}{.40\textwidth}
+    \centering
+    Charge density
     \begin{equation}
 	\nonumber
     	\nabla^2 V(\boldsymbol{r}) = -\rho(\boldsymbol{r})
     \end{equation}
+    \end{column}
+    \begin{column}{.10\textwidth}
     \ \\
-    can be solved directly through the integral formulation using the Poisson kernel
+    \end{column}
+    \end{columns}
+    \ \\
+    \ \\
+    \ \\
+    \pause
+    Solved directly using the Coulomb operator
     \begin{equation}
 	\nonumber
 	V(\boldsymbol{r}) = 
@@ -296,20 +361,30 @@ with Multiwavelets}
 	\int\frac{\rho(\boldsymbol{r'})}{4\pi|\boldsymbol{r} - \boldsymbol{r'}|} d\boldsymbol{r'} 
     \end{equation}
     \ \\
+    \ \\
+    \ \\
     \pause
     Numerical problems
+    \begin{columns}
+    \begin{column}{.28\textwidth}
+    \ \\
+    \end{column}
+    \begin{column}{.72\textwidth}
     \begin{itemize}
-	\item Not separable in Cartesian coordinates
+	\item Not Cartesian separable
 	\item Singularity at short-range
 	\item Slow decay at long-range
     \end{itemize}
+    \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
     \frametitle{Separation of variables using Gaussians}
     \begin{columns}
     \begin{column}{.40\textwidth}
-    \ \\
+    \centering
+    Gaussian expansion
     \begin{equation}
 	\nonumber
 	\frac{1}{\boldsymbol{r}} \approx \sum_{i=1}^M a_i e^{-\alpha_i \boldsymbol{r}^2} 
@@ -319,6 +394,14 @@ with Multiwavelets}
     \ \\
     \ \\
     \ \\
+    \pause
+    \pause
+    \pause
+    \pause
+    \pause
+    \pause
+    \pause
+    Solves problems
     \begin{itemize}
 	\item	Separates coordinates
 	\item	Removes singularity
@@ -332,80 +415,49 @@ with Multiwavelets}
 	\only<4>{\includegraphics[scale=0.5, clip, viewport = 110 450 490 800]{figures/kernel_4.pdf}}
 	\only<5>{\includegraphics[scale=0.5, clip, viewport = 110 450 490 800]{figures/kernel_5.pdf}}
 	\only<6>{\includegraphics[scale=0.5, clip, viewport = 110 450 490 800]{figures/kernel_6.pdf}}
-	\only<7>{\includegraphics[scale=0.5, clip, viewport = 110 450 490 800]{figures/kernel_7.pdf}}
+	\only<7,8>{\includegraphics[scale=0.5, clip, viewport = 110 450 490 800]{figures/kernel_7.pdf}}
     \end{column}
     \end{columns}    
-\end{frame}
-
-\begin{frame}
-    \frametitle{Vanishing moments}
-    A function $\psi(x)$ is said to have M vanishing moments if
-    \begin{equation}
-	\nonumber
-        \mu_m = \int_0^1 x^m\psi(x) dx = 0 \ \ \ \ \ \ \ \ \ \ \ m = 0,1,\dots,M-1 
-    \end{equation}
-    \ \\
-    \ \\
-    \begin{center}
-	\includegraphics[scale=0.4, clip, viewport = 0 50 700 350]{figures/multipoles.pdf}
-    \end{center}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Operators in Non-Standard form}
-    \tiny
-    \only<1>{
-    \begin{equation}
-	\nonumber
-	T^N \textcolor{white}{= T^{N-1} + \Bigg[C^{N-1}+B^{N-1}+A^{N-1}\Bigg]}
-    \end{equation}}
-    \only<2,3>{
-    \begin{equation}
-	\nonumber
-	T^N = T^{N-1} + \Bigg[C^{N-1}+B^{N-1}+A^{N-1}\Bigg]
-    \end{equation}}
-    \only<4,5>{
-    \begin{equation}
-	\nonumber
-	T^N = T^{N-2} + \Bigg[C^{N-2}+B^{N-2}+A^{N-2}\Bigg] + \Bigg[C^{N-1}+B^{N-1}+A^{N-1}\Bigg]
-    \end{equation}}
-    \only<6>{
-    \begin{equation}
-	\nonumber
-	T^N = T^0 + \sum_{n=0}^{N-1} \Bigg[C^n+B^n+A^n\Bigg]
-    \end{equation}}
-    \begin{center}
-    \only<1>{\includegraphics[scale=0.8, clip, viewport = 240 280 450 480]{figures/matrix/matrix_1.pdf}}
-    \only<2>{\includegraphics[scale=0.8, clip, viewport = 240 280 450 480]{figures/matrix/matrix_2.pdf}}
-    \only<3>{\includegraphics[scale=0.8, clip, viewport = 240 280 450 480]{figures/matrix/matrix_3.pdf}}
-    \only<4>{\includegraphics[scale=0.8, clip, viewport = 240 280 450 480]{figures/matrix/matrix_4.pdf}}
-    \only<5>{\includegraphics[scale=0.8, clip, viewport = 240 280 450 480]{figures/matrix/matrix_5.pdf}}
-    \only<6>{\includegraphics[scale=0.8, clip, viewport = 240 280 450 480]{figures/matrix/matrix_6.pdf}}
-    \end{center}
 \end{frame}
 
 \begin{frame}
     \frametitle{Linear scaling Coulomb interaction}
     \begin{columns}
-    \begin{column}{.40\textwidth}
-    Alkane chains
-    \begin{equation}
-	\nonumber
-	C_{n}H_{2n+2}, \qquad n=2,\dots,70
-    \end{equation}
+    \begin{column}{.10\textwidth}
+    \ \\
     \end{column}
-    \begin{column}{.60\textwidth}
+    \begin{column}{.40\textwidth}
+	\centering
+	\ \\
+	\ \\
+	\ \\
+	\ \\
+	Alkane chains
+	\begin{equation}
+	    \nonumber
+	    C_{n}H_{2n+2}, \qquad n=2,\dots,70
+	\end{equation}
+	\ \\
+	\ \\
+	\ \\
+	Fitted curve
+	\begin{equation}
+	    \nonumber
+	    t(n) = 12.5 + 2.34n^{0.754} 
+	\end{equation}
+    \end{column}
+    \begin{column}{.50\textwidth}
+	\centering
 	\begin{figure}
 	    \includegraphics[scale=0.3, clip, viewport = 80 560 600 720]{figures/alkane.pdf}
 	\end{figure}
+	Fitted curve
+	\begin{equation}
+	    \nonumber
+	    t(n) = -6.0 + 1.33n^{0.991}
+	\end{equation}
     \end{column}
     \end{columns}    
-    \ \\
-    Best fit curves
-    \begin{equation}
-	\nonumber
-	T(N) = 12.5 + 2.34N^{0.754} \qquad \qquad \qquad T(N) = -6.0 + 1.33N^{0.991}
-    \end{equation}
     \ \\
     \begin{center}
 	\includegraphics[scale=0.6, clip, viewport = 50 550 540 730]{figures/linearScaling.pdf}
@@ -415,7 +467,11 @@ with Multiwavelets}
 \begin{frame}
     \frametitle{Parallel performance OpenMP}
     \begin{columns}
-    \begin{column}{.50\textwidth}
+    \begin{column}{.10\textwidth}
+    \ \\
+    \end{column}
+    \begin{column}{.40\textwidth}
+    \center
     Diamond fragments $n=1,\dots,9$
     \begin{equation}
 	\nonumber
@@ -423,10 +479,11 @@ with Multiwavelets}
     \end{equation}
     \ \\
     \ \\
-    Best fit curve
+    \ \\
+    Fitted curve
     \begin{equation}
 	\nonumber
-	T(N) = 11.6 + 1.84N^{0.805} \qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad
+	t(n) = 11.6 + 1.84n^{0.805}
     \end{equation}
     \end{column}
     \begin{column}{.50\textwidth}
@@ -435,7 +492,6 @@ with Multiwavelets}
 	\end{figure}
     \end{column}
     \end{columns}    
-    \ \\
     \begin{center}
 	\includegraphics[scale=0.6, clip, viewport = 50 550 540 730]{figures/ompScaling.pdf}
     \end{center}
@@ -484,6 +540,15 @@ with Multiwavelets}
 \end{frame}
 
 \begin{frame}
+    \centering
+    \Large{Part III:}\\
+    \ \\
+    \ \\
+    \centering
+    \Large{Real-space Density Functional Theory with Localized Orbitals and Multiwavelets}
+\end{frame}
+
+\begin{frame}
     \frametitle{The molecular Schr\"{o}dinger equation}
     \ \\
     \begin{equation}
@@ -501,6 +566,7 @@ with Multiwavelets}
     \ \\
     \ \\
     \ \\
+    \centering
     For an $N$-particle problem, the wave function is $3N$-dimensional
     \begin{equation}
 	\nonumber
@@ -510,6 +576,7 @@ with Multiwavelets}
     \ \\
     \ \\
     \pause
+    \centering
     $\beta$-Carotene ($C_{40}H_{56}$) has 296 electrons and an 888-dimensional wave function!
     \only<1>{
     \begin{center}
@@ -525,110 +592,176 @@ with Multiwavelets}
 
 \begin{frame}
     \frametitle{Density Functional Theory}
-    Dramatically reduce the dimensionality 
+    \centering
+    Dramatically reduce the dimensionality
     \begin{equation}
+	\nonumber
 	\rho(\boldsymbol{r}_1) = N \int |\psi(\boldsymbol{r}_1, \boldsymbol{r}_2,\dots,
 	\boldsymbol{r}_N)|^2 d\boldsymbol{r}_2\cdots d\boldsymbol{r}_N
     \end{equation}
-    and the energy is expressed in terms of the electron density 
+    \ \\
+    \ \\
+    \ \\
+    \pause
+    Energy expressed as functional of the density
     \begin{equation}
-	E[\rho] = T[\rho] + V_{ne}[\rho] + V_{ee}[\rho]
+	\nonumber
+	E[\rho] = T_s[\rho] + V_{ne}[\rho] + J[\rho] + E_{xc}[\rho]
     \end{equation}
-    Within the Born-Oppenheimer approximation the nuclear potential is fixed
-    and the nuclear-electron term is known as the classical Coulomb interaction
-    \begin{equation}
-	V_{ne}[\rho] = \int \rho(\boldsymbol{r})v_{nuc}(\boldsymbol{r})d\boldsymbol{r}, 
-	\qquad \qquad v_{nuc}(\boldsymbol{r})=-\sum_I\frac{Z_I}{|\boldsymbol{r}-\boldsymbol{R}_I|}
-    \end{equation}
-    but the kinetic energy and electron-electron interaction are not known, but
-    the \emph{classical} interaction between the electrons is
-    \begin{equation}
-	V_{ee}[\rho] \approx J[\rho] = \int \rho(\boldsymbol{r})v_{el}(\boldsymbol{r})d\boldsymbol{r}, 
-	\qquad \qquad v_{el}(\boldsymbol{r}) = 
-	\int \frac{\rho(\boldsymbol{r}')}{|\boldsymbol{r}-\boldsymbol{r}'|} d\boldsymbol{r}'
-    \end{equation}
+    \ \\
+    \ \\
+    \ \\
+    \begin{columns}
+    \begin{column}{.50\textwidth}
+    \centering
+    \pause
+    Energy expressions
+    \begin{align}
+	\nonumber
+	V_{ne}[\rho]	&= \int \rho(\boldsymbol{r})v_{nuc}(\boldsymbol{r})d\boldsymbol{r}\\
+	\nonumber
+			&\\
+	\nonumber
+	J[\rho] &= \frac{1}{2} \int \rho(\boldsymbol{r})v_{el}(\boldsymbol{r})d\boldsymbol{r}\\
+	\nonumber
+			&\\
+	\nonumber
+	E_{xc}[\rho]	&= \int F_{xc}(\rho) d\boldsymbol{r}
+    \end{align}
+    \end{column}
+    \begin{column}{.50\textwidth}
+    \centering
+    \pause
+    Potentials
+    \begin{align}
+	\nonumber
+	v_{nuc}(\boldsymbol{r}) &= -\sum_I\frac{Z_I}{|\boldsymbol{r}-\boldsymbol{R}_I|}\\
+	\nonumber
+			&\\
+	\nonumber
+	v_{el}(\boldsymbol{r}) &= 
+	    \int \frac{\rho(\boldsymbol{r}')}{4\pi|\boldsymbol{r}-\boldsymbol{r}'|} d\boldsymbol{r}'\\
+	\nonumber
+			&\\
+	\nonumber
+	v_{xc}(\boldsymbol{r}) &= \frac{\delta E_{xc}[\rho]}{\delta\rho}
+    \end{align}
+    \end{column}
+    \end{columns}    
 \end{frame}
 
 \begin{frame}
-    \frametitle{Kohn-Sham DFT}
-    The electron density is given by the one-electron orbitals
+    \frametitle{Density Functional Theory}
+    \centering
+    Express density through one-electron orbitals
     \begin{equation}
-	\rho(\boldsymbol{r}) = \sum_{i=1}^N |\phi_i(\boldsymbol{r})|^2
+	\nonumber
+	\rho(\boldsymbol{r}) = \sum_i |\phi_i(\boldsymbol{r})|^2
     \end{equation}
-    for which the (non-interacting) kinetic energy is known
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \pause
+    \begin{columns}
+    \begin{column}{.50\textwidth}
+    \centering
+    Kinetic energy
     \begin{equation}
+	\nonumber
 	T_s[\rho] = -\sum_i \frac{1}{2}\nabla^2\phi_i(\boldsymbol{r})
     \end{equation}
-    which lead to the Kohn-Sham equations
+    \end{column}
+    \begin{column}{.50\textwidth}
+    \centering
+    Effective potential
     \begin{equation}
+	\nonumber
+	v_{eff}(\boldsymbol{r}) = v_{nuc}(\boldsymbol{r}) + v_{el}(\boldsymbol{r}) + v_{xc}(\boldsymbol{r})
+    \end{equation}
+    \end{column}
+    \end{columns}
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \pause
+    \centering
+    The Kohn-Sham equations
+    \begin{equation}
+	\nonumber
 	\left[-\frac{1}{2}\nabla^2 + v_{eff}(\boldsymbol{r})\right]\phi_i(\boldsymbol{r}) = 
 	\epsilon_i\phi_i(\boldsymbol{r})
     \end{equation}
-    The effective potential has three constributions
-    \begin{equation}
-	v_{eff} = v_{nuc} + v_{el} + v_{xc}
-    \end{equation}
-    where all the non-classical effects are included in the exchange-correlation potential,
-    which is approximated (usually by fitting empirical parameters).
 \end{frame}
 
 \begin{frame}
     \frametitle{Computational chemistry}
     \begin{center}
-    \only<1>{\includegraphics[scale=0.5, clip, viewport = 0 300 550 800]{figures/basis_set_1.pdf}}
-    \only<2>{\includegraphics[scale=0.5, clip, viewport = 0 300 550 800]{figures/basis_set_2.pdf}}
+    \only<1>{\includegraphics[scale=0.5, clip, viewport = 50 300 550 800]{figures/basis_set_1.pdf}}
+    \only<2>{\includegraphics[scale=0.5, clip, viewport = 50 300 550 800]{figures/basis_set_2.pdf}}
     \only<3>{\includegraphics[scale=0.5, clip, viewport = 0 300 550 800]{figures/chemical_accuracy.pdf}}
     \end{center}
 \end{frame}
 
 \begin{frame}
     \frametitle{Integral formulation}
-    The Kohn-Sham equations are rewritten
-    \begin{align}
-	\nonumber
-	\left[-\frac{1}{2}\nabla^2 + v_{eff}(\boldsymbol{r})\right]
-	\phi_i(\boldsymbol{r}) =&\ \epsilon_i \phi(\boldsymbol{r})\\
-	\nonumber
-	\ & \ \\
-	\nonumber
-	\left[-\nabla^2 - 2\epsilon_i\right]\phi_i(\boldsymbol{r}) =&\ 
-	    -2\ v_{eff}(\boldsymbol{r})\phi_i(\boldsymbol{r})\\
-	\nonumber
-	\phi_i(\boldsymbol{r}) =&\ -2\int H^{\mu}(\boldsymbol{r}-\boldsymbol{r}')\
-	    \left[v_{eff}(\boldsymbol{r}') \phi_i(\boldsymbol{r}')\right] d\boldsymbol{r}'
-    \end{align}
-    \ \\
-    \ \\
-    using the BSH Green's kernel with $\mu = \sqrt{-2\epsilon_i}$.\\
-    \ \\
-    \ \\
-    Solved self-consistently by iterative techniques\\
+    \centering
+    The Kohn-Sham equations
     \begin{equation}
 	\nonumber
-	\phi_i^{n+1} =\ -2\hat{H}^n\left[v_{eff}^n\phi_i^n\right]
+	\left[-\frac{1}{2}\nabla^2 + v_{eff}(\boldsymbol{r})\right]
+	\phi_i(\boldsymbol{r}) =\ \epsilon_i \phi(\boldsymbol{r})
     \end{equation}
     \ \\
     \ \\
-    \tiny \it{M. H. Kalos; "Monte Carlo calculations of the ground state of three- and 
-	    four-body nuclei", Physical Review (1962)}
+    \ \\
+    \ \\
+    \pause
+    can be expressed in integral form
+    \begin{equation}
+	\nonumber
+	\phi_i(\boldsymbol{r}) =\ -2\int H^{\mu}(\boldsymbol{r}-\boldsymbol{r}')\
+	    \Big[v_{eff}(\boldsymbol{r}') \phi_i(\boldsymbol{r}')\Big] d\boldsymbol{r}'
+    \end{equation}
+    \ \\
+    \ \\
+    \ \\
+    \ \\
+    \pause
+    and solved iteratively
+    \begin{equation}
+	\nonumber
+	\phi_i^{n+1} =\ -2\hat{H}\left[v_{eff}^n\phi_i^n\right]
+    \end{equation}
 \end{frame}
 
 \begin{frame}
     \frametitle{Hydrogen atom}
-    \begin{columns}
-    \begin{column}{.50\textwidth}
     \centering
-    The equation is solved iteratively
-    \begin{align}
+    Power iteration
+    \begin{equation}
 	\nonumber
-	\phi^{n+1} &= -2\hat{H}^n\left[v_{nuc}\phi^n\right]\\
+	\phi^{n+1} = -2\hat{H}\left[v_{nuc}\phi^n\right]
+    \end{equation}
+    \ \\
+    \ \\
+    \ \\
+    \begin{columns}
+    \begin{column}{.10\textwidth}
+    \ \\
+    \end{column}
+    \begin{column}{.40\textwidth}
+    \centering
+    Orbital update
+    \begin{equation}
 	\nonumber
-	\Delta\phi^n &= \phi^{n+1} - \phi^n
-    \end{align}
+	\Delta\phi^n = \phi^{n+1} - \phi^n
+    \end{equation}
     \end{column}
     \begin{column}{.50\textwidth}
     \centering
-    The energy update is calculated from the orbital update
+    Energy update
     \begin{equation}
 	\nonumber
 	\Delta \epsilon^n = \left<\phi^{n+1}|v_{nuc}|\Delta\phi^n\right>
@@ -640,59 +773,142 @@ with Multiwavelets}
     \end{center}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Hydrogen atom}
-    \only<1>{\includegraphics[viewport = 50 430 300 640, clip, scale=1.2]{figures/s1Orb_1.pdf}}
-    \only<2>{\includegraphics[viewport = 50 430 300 640, clip, scale=1.2]{figures/s1Orb_2.pdf}}
-    \only<3>{\includegraphics[viewport = 50 430 300 640, clip, scale=1.2]{figures/s1Orb_3.pdf}}
-    \only<4>{\includegraphics[viewport = 50 430 300 640, clip, scale=1.2]{figures/s1Orb_4.pdf}}
-    \only<5>{\includegraphics[viewport = 50 430 300 640, clip, scale=1.2]{figures/s1Orb_5.pdf}}
-    \only<6>{\includegraphics[viewport = 50 430 300 640, clip, scale=1.2]{figures/s1Orb_10.pdf}}
-\end{frame}
+%\begin{frame}
+%    \frametitle{Hydrogen atom}
+%    \only<1>{\includegraphics[viewport = 50 430 300 640, clip, scale=1.2]{figures/s1Orb_1.pdf}}
+%    \only<2>{\includegraphics[viewport = 50 430 300 640, clip, scale=1.2]{figures/s1Orb_2.pdf}}
+%    \only<3>{\includegraphics[viewport = 50 430 300 640, clip, scale=1.2]{figures/s1Orb_3.pdf}}
+%    \only<4>{\includegraphics[viewport = 50 430 300 640, clip, scale=1.2]{figures/s1Orb_4.pdf}}
+%    \only<5>{\includegraphics[viewport = 50 430 300 640, clip, scale=1.2]{figures/s1Orb_5.pdf}}
+%    \only<6>{\includegraphics[viewport = 50 430 300 640, clip, scale=1.2]{figures/s1Orb_10.pdf}}
+%\end{frame}
 
 \begin{frame}
     \frametitle{Many-electron systems}
-    \begin{minipage}[b]{\linewidth}
-    Compute density and potentials
+    \begin{columns}
+    \begin{column}[b]{0.1\textwidth}
+    \ \\
+    \end{column}
+    \begin{column}[b]{0.4\textwidth}
+    \centering
+    Density
     \begin{equation}
-	\rho^n(\boldsymbol{r}) = \sum_i^N |\phi_i^n(\boldsymbol{r})|^2, \qquad \qquad 
+	\nonumber
+	\rho^n(\boldsymbol{r}) = \sum_i |\phi_i^n(\boldsymbol{r})|^2
+    \end{equation}
+    \end{column}
+    \begin{column}[b]{0.4\textwidth}
+    \centering
+    Potentials
+    \begin{equation}   
+	\nonumber
 	\rho^n(\boldsymbol{r}) \rightarrow v_{eff}^n(\boldsymbol{r})
     \end{equation}
-    Iterate the Kohn-Sham equations for each orbital
-    \begin{equation}
-	\phi_i^{n+1} = -2\hat{H}\left[v_{eff}^n\phi_i^n\right]
-    \end{equation}
-    \end{minipage}
+    \end{column}
+    \begin{column}[b]{0.1\textwidth}
+    \ \\
+    \end{column}
+    \end{columns}
+    \ \\
     \ \\
     \pause
+    \begin{columns}
+    \begin{column}[b]{0.1\textwidth}
     \ \\
-    \begin{minipage}[b]{\linewidth}
-    \only<1,2>{
-    Complicating issues
-    \begin{itemize}
-	\item	Straightforward iteration will bring all orbitals to the
-		lowest energy eigenfunction
-	\item	Orthonormality must be imposed
-	\item	Achieved by diagonalizing the Kohn-Sham matrix 
-	\begin{equation}
-	    \nonumber
-	    F_{ij} = \left<\phi_i|\hat{T} + v_{eff}|\phi_j\right>
-	\end{equation}
-    \end{itemize}
-    }
-    \only<3>{
-    Compute Kohn-Sham matrix update
+    \end{column}
+    \begin{column}[b]{0.4\textwidth}
+    \centering
+    Power iteration
     \begin{equation}
+	\nonumber
+	\phi_i^{n+1} = -2\hat{H}\left[v_{eff}^n\phi_i^n\right]
+    \end{equation}
+    \end{column}
+    \begin{column}[b]{0.4\textwidth}
+    \centering
+    Calculate updates
+    \begin{equation}
+	\nonumber
+	\Delta\phi^n = \phi^{n+1} - \phi^n
+    \end{equation}
+    \end{column}
+    \begin{column}[b]{0.1\textwidth}
+    \ \\
+    \end{column}
+    \end{columns}
+    \ \\
+    \ \\
+    \pause
+    \only<1,2,3>{
+    \centering
+    \ \\
+    Complicating issues
+    \ \\
+    \begin{columns}
+    \begin{column}[b]{0.25\textwidth}
+    \ \\
+    \end{column}
+    \begin{column}[b]{0.75\textwidth}
+    \begin{itemize}
+	\item	Straightforward iteration will\\
+		bring all orbitals to the lowest\\
+		energy eigenfunction
+	\item	Orthonormality must be imposed
+	\item	Achieved by diagonalizing\\
+		the Fock matrix 
+    \end{itemize}
+    \end{column}
+    \end{columns}
+    \begin{equation}
+        \nonumber
+        F_{ij} = \left<\phi_i|\hat{T} + v_{eff}|\phi_j\right>
+    \end{equation}
+    }
+    \only<4,5,6>{
+    \centering
+    Compute Fock matrix update
+    \begin{equation}
+	\nonumber
 	\Delta F_{ij}^{n+1} = \left<\phi_i^{n+1}|v_{eff}^n |\Delta\phi_j^n\right>
 			    + \left<\phi_i^{n+1}|\Delta v_{eff}^n|\phi_j^n\right>
     \end{equation}
-    Diagonalize Kohn-Sham matrix\\
     \ \\
-    Compute iterative subspace updates (KAIN)\\
     \ \\
-    Orthonormalize
+    \ \\
+    \pause
+    \pause
+    \begin{columns}
+    \begin{column}[b]{0.1\textwidth}
+    \ \\
+    \end{column}
+    \begin{column}[b]{0.4\textwidth}
+    \centering
+    Diagonalize matrix
+    \begin{equation}
+	\nonumber
+	\Lambda = M^{-1}FM
+    \end{equation}
+    \end{column}
+    \begin{column}[b]{0.4\textwidth}
+    \centering
+    Rotate orbitals
+    \begin{equation}
+	\nonumber
+	\phi_i = \sum_jM^{-1}_{ij}\phi_j
+    \end{equation}
+    \end{column}
+    \begin{column}[b]{0.1\textwidth}
+    \ \\
+    \end{column}
+    \end{columns}
+    \ \\
+    \ \\
+    \pause
+    Compute iterative subspace acceleration (KAIN or DIIS)\\
+    \ \\
+    Orthonormalize\\
+    \ \\
     }
-    \end{minipage}
 \end{frame}
 
 \begin{frame}
@@ -725,6 +941,8 @@ with Multiwavelets}
 
 \begin{frame}
     \frametitle{Many-electron systems}
+    \centering
+    Overall accuracy kept at $\epsilon = 10^{-6}$
     \begin{center}
 	\includegraphics[scale=0.6, clip, viewport = 50 550 550 740]{figures/accuracy.pdf}
     \end{center}
@@ -732,11 +950,13 @@ with Multiwavelets}
 
 \begin{frame}
     \frametitle{Orbital localization}
+    \centering
     Total energy invariant under unitary transformations among occupied orbitals
     \begin{equation}
-	\varphi_i(\boldsymbol{r}) = \sum_j U_{ji}^\ast \phi_i(\boldsymbol{r}), \qquad \qquad U^\ast U = UU^\ast = I
+	\nonumber
+	\phi_i(\boldsymbol{r}) = \sum_j U_{ji}^\ast \phi_i(\boldsymbol{r}), \qquad \qquad U^\ast U = UU^\ast = I
     \end{equation}
-    Foster-Boys algorithm finds a matrix $U$ that leads to localized orbitals\\
+    Possible to find matrix $U$ that leads to localized orbitals\\
     \begin{columns}
     \begin{column}[b]{0.48\linewidth}
     \begin{center}
@@ -756,63 +976,15 @@ with Multiwavelets}
     \end{center}
     \end{column}
     \end{columns}
-    \ \\
-    \tiny \it{J.M.Foster and S.F.Boys; "Canonical Configurational Interaction Procedure" 
-	    , Reviews of Modern Physics (1960)}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Orbital localization}
-    \begin{minipage}[b]{\linewidth}
-    \only<1>{
-    Compute density and potentials
-    \begin{equation}
-	\rho^n(\boldsymbol{r}) = \sum_i^N |\phi_i^n(\boldsymbol{r})|^2, \qquad \qquad 
-	\rho^n(\boldsymbol{r}) \rightarrow v_{eff}^n(\boldsymbol{r})
-    \end{equation}
-    Iterate the Kohn-Sham equations for each orbital\\
-    \ \\
-    \begin{equation}
-	\phi_i^{n+1} = -2\hat{H}\Big[v_{eff}^n\phi_i^n\Big]
-    \end{equation}
-    \ \\
-    }
-    \only<2>{
-    Compute density and potentials
-    \begin{equation}
-	\rho^n(\boldsymbol{r}) = \sum_i^N |\phi_i^n(\boldsymbol{r})|^2, \qquad \qquad 
-	\rho^n(\boldsymbol{r}) \rightarrow v_{eff}^n(\boldsymbol{r})
-    \end{equation}
-    Iterate the Kohn-Sham equations for each orbital
-    \begin{equation}
-	\phi_i^{n+1} = -2\hat{H}\Bigg[v_{eff}^n\phi_i^n - \textcolor{red}{\sum_{j\neq i} F_{ij}\phi_j}\Bigg]
-    \end{equation}
-    \ \\
-    }
-    \end{minipage}
-    \begin{minipage}[b]{\linewidth}
-    Compute Kohn-Sham matrix update
-    \begin{equation}
-	\Delta F_{ij}^{n+1} = \left<\phi_i^{n+1}|v_{eff}^n |\Delta\phi_j^n\right>
-			    + \left<\phi_i^{n+1}|\Delta v_{eff}^n|\phi_j^n\right>
-    \end{equation}
-    \ \\
-    Diagonalize Kohn-Sham matrix\only<2>{\textcolor{red}{\ or localize orbitals}}\\
-    \ \\
-    Compute iterative subspace updates (KAIN)\\
-    \ \\
-    Orthonormalize
-    \end{minipage}
 \end{frame}
 
 \begin{frame}
 \frametitle{Orbital localization}
+    \centering
+    Number of iterations required to converge the orbitals to $\epsilon_r \leq 10^{-4}$
 \begin{table}
 \tiny
 \centering
-\caption{\scriptsize{Number of iterations required to bring the orbital residual to 
-	$\epsilon_r\leq10^{-4}$ for different lengths of KAIN history ($m=0$ corresponding
-	to regular power iteration) using canonical and localized orbitals.}}
 \begin{tabular}{lcrrrrrrrr}
 \hline
 \hline
@@ -833,6 +1005,7 @@ $C_{ 4}H_{10}$	& 17	& 13    & 12    &  9    &  9    &  9    &  9    &  9    &  9
 $C_{ 6}H_{14}$	& 25	& 14    & 11    &  9    & 10    &  9    &  9    &  9    &  9    \\
 $C_{ 8}H_{18}$	& 33	& 11    & 10    &  8    &  9    &  8    &  8    &  8    &  8    \\
 $C_{10}H_{22}$	& 41	& 11    & 11    &  9    &  9    &  8    &  8    &  8    &  8    \\
+              	&   	&       &       &       &       &       &       &       &       \\
 \hline
 \hline
 \end{tabular}
@@ -841,7 +1014,8 @@ $C_{10}H_{22}$	& 41	& 11    & 11    &  9    &  9    &  8    &  8    &  8    &  8
 
 \begin{frame}
     \frametitle{Accurate calculations}
-    LDA energies in atomic units (hartree)
+    \centering
+    LDA energies in atomic units (Hartree)
     \begin{table}
 	\tiny
 	\centering
@@ -874,8 +1048,38 @@ $C_{10}H_{22}$	& 41	& 11    & 11    &  9    &  9    &  8    &  8    &  8    &  8
     \end{table}
     \tiny
     \it{NIST: National Institute of Standards and Technology (Basis set limit)}\\
-    \ \\
-    \it{Gaussian basis calculations using Dalton}\\
+\end{frame}
+
+\begin{frame}
+    \frametitle{Accurate calculations}
+    \centering
+    Hartree-Fock energies in atomic units (Hartree)
+\begin{table}
+\tiny
+\begin{tabular}{cllll}
+\hline   
+\hline
+&\multicolumn{4}{c}{Total energies (Hartree)}\\
+&\multicolumn{1}{c}{H$_2$O}
+&\multicolumn{1}{c}{H$_2$O$_2$}
+&\multicolumn{1}{c}{CO}
+&\multicolumn{1}{c}{CO$_2$}\\
+\hline 
+            		    &               &               &               &               \\
+MRChem $\epsilon=10^{-5}$   & -76.067611455 & -150.85253297 & -112.79087294 & -187.72538886 \\
+MRChem $\epsilon=10^{-6}$   & -76.067556696 & -150.85249254 & -112.79069389 & -187.72541991 \\
+MRChem $\epsilon=10^{-7}$   & -76.067535613 & -150.85246986 & -112.79081263 & -187.72538522 \\
+MRChem $\epsilon=10^{-8}$   & -76.067535431 & -150.85247037 & -112.79081269 & -187.72538560 \\
+            		    &               &               &               &               \\
+Est. HF limit		    & -76.0675      & -150.8525     & -112.7908     & -187.7254     \\
+            		    &               &               &               &               \\
+aug-cc-pCV5Z		    & -76.067379371 & -150.85218780 & -112.79063514 & -187.72508317 \\
+aug-cc-pCVQZ		    & -76.066140457 & -150.84985235 & -112.78919290 & -187.72260431 \\
+            		    &               &               &               &               \\
+\hline   
+\hline   
+\end{tabular}
+\end{table}
 \end{frame}
 
 \begin{frame}

@@ -1,10 +1,16 @@
+\documentclass [a4paper]{report}
+\begin{document}
 
-\section{Front page}
-\section{Outlook}
-\section{Multiwavelets}
-\section{Decreasing order}
-\section{Parallelization}
-\subsection{Introduction}
+
+\section*{Front page}
+\section*{Outlook}
+\section*{Multiwavelets}
+\section*{Decreasing order}
+
+
+\section*{Parallelization}
+
+\subsection*{Introduction}
 So why do we need parallel processing? There are basically two reasons for that: either to
 get more processing power, or to get more available memory (or perhaps both at once). 
 Computational scientists, and quantum chemists in particular, are always trying to push the 
@@ -12,7 +18,7 @@ limits of how accurately a particular property can be computed or how big a syst
 be treated with a given computational method, and this means pushing the computational resources.
 
 Every computer available today will have at least a dual-core processor, and the machines at
-modern high performance computing centres will typically have 8, 12, 16 or 20 processors
+modern high performance computing centres will typically have 8 - 20 processors
 on each machine, so-called host, but even if these processors share the same memory, they
 will not automatically work together on the same problem, as at most one processor can 
 work on a given application at a time. While this is fine for the day to day work at the 
@@ -29,13 +35,176 @@ operations are performed in the correct order. If some of the processors does NO
 memory, the data needs to be distributed among the different hosts, and at some point we usually
 need to communicate some data between the hosts.
 
+\subsection*{OpenMP}
+We have used in our implemetation two different strategies, where we use OpenMP for shared 
+memory parallelization and Message-Passing Interface (MPI) for distibuted memory, and we will
+look at some of the differences. It is relatively simple to do shared memory paralleization,
+at least for codes that does not have a very complex data structures and algorithms. What you do
+is to locate a place in your code that is computationally demanding, which usually involves
+some kind of loop, and then distribute the work within this particular loop. And then you move
+on to the next demanding loop, and so on. OpenMP can be a 
+quick way to good performance, and will allow you to utilize the full computational power in
+your laptop/desktop computer. It requires no communication as all processors have access to the 
+same data, and the load balancing is quite straightforward.
 
-Heisenbugs. If you're a quantum chemist you get the joke behind that name, but these are 
-particularly nasty bugs or errors in your code that tends to change character or even dissapear
+However, you will not be able to utilize the full power of the modern high performance
+computing facilities, which consist of thousands of independent machienes, and what I said
+about simple implementation is always valid, as many processors trying to access or write to
+the same memory can cause severe, but usually invisible problems or errors, and debugging
+there can be very difficult, as you can get these so-called Heisenbugs. If you're a quantum 
+chemist you get the joke behind that name, but these are 
+particularly nasty bugs or errors in your code that tends to change character or even disapear
 when you go looking for them.
 
-\section{Coulomb interaction}
-\section{Chemistry}
-\section{Real-space DFT}
-\section{Acknowledgments}
+The full program is run only by one processor, and only at particular computationally 
+intensive parts do the other processors come in and do their share of the work.
 
+\subsection*{MPI}
+On the other hand we have distributed memory parallelization using MPI. In this way we can
+in  principle take full advantage of the computational resources, but it requires much more
+from the programmer in order to obtain good performance. It generally leads to more complicated 
+implementation, and usually the underlying algorithms need to be changed. Both the work 
+distribution and the communication is controlled explicitly by the programmer. And of course
+we get an additional communication overhead that reduces the parallel efficiency.
+
+In MPI all processors run the full program, and all of them perform the same computations
+in the sequential parts of the code, but when we hit the parallel part they will each do
+their own part of the computations and then everything is added up in the end and the program
+continues sequentially.
+
+\subsection*{Parallel efficiency}
+Lets take a look at how to achieve good performance, or good parallel efficiency. We have
+something called Amdahls law of ... which gives the maximum possible speedup based on
+how large part of the computational work that has acually been parallelized in your code.
+So if you think you have done a good job and parallelized 95\% of the total work load, we 
+see from the graph that we will never obtain a speedup of more than a factor of 20, no matter 
+how many processors that you throw on the problem.
+
+This is what makes parallel programming hard; you have to parallelize entire code, otherwise
+the parts that are left for sequential execution will eventually cath up and become the 
+bottleneck. This graph shows only up to a hundred processors, but imagine going to tens of 
+thousands. We are not htere yet, unfortunately.
+
+But say then that we have parallelized a given amount of the work load, the actual parallel
+efficiency will always be lower, because on top of this we get syncronization overhead,
+which comes from an uneven load balance among the processors. If some processors have 
+significantly more work to do than others, the ones that are finished will have to sit
+idle and wait for the rest to complete their computations before they can all move on.
+They say that any team is only as strong as its weakest player, and this certainly applies 
+for parallel computations.
+
+Then we have, for MPI implementations, an extra communication overhead, because at some point
+some of the processors will have to talk to each other during the computation, to transfer
+data and collect the results. This point requires a lot of work from the programmer in order
+to develop clever algorithms and data distributions that minimize the need for communication. 
+The total amount of communication cannot increase significantly when the number of processors
+is increased, otherwise this will eventually become a bottleneck.
+
+So to sum up, there are a lot of things to consider when writing parallel computer codes, as
+basically anything can eventually become a bottleneck if you do not consider it carefully.
+
+\subsection*{Data distribution}
+Then one note on the data distribution for the MPI implementation. As I said, we must be 
+careful in order to minimize the communication overhead. We have here the full grid used
+in the treatment of a given molecule, in this case beta-carotene, and we need to distribute
+the grid cells among the mpi hosts, and we try do this by using strictly localized domains. 
+By traversing through the cells using a so-called Hilbert path, we get a long list of cells
+that can be just devided in equal chucks and distributed among the hosts. The way the path 
+is constructed guarantees that the cells for each given host is strictly connected and 
+localized in space. By using the natural ordering we get the Lebesgue path that is jumping 
+all over the place and leads to disconnected domains. The idea behind this construction is
+that the communication is expected be be restricted to involve only near neighbors, and
+using localized domains the total amount of communication is expected to be reduced when
+the number of domains become large.
+
+In our implemetation we use a hybrid MPI/OpenMP strategy, where the full space is partitioned
+between a given number of MPI hosts, and then the available processors (typically 16) on each 
+host are connected by OpenMP and is working together on the same physical space.
+
+\section*{Coulomb interaction}
+
+\subsection*{Operator representation}
+Lets move on to operators. The multiwavelet basis is particularly well suited for the application
+of integral convolution operators in this form. Just as for functions the operator can be 
+decomposed into scaling and wavelet contributions, but operators are two-dimensional objects
+and we get four wavelet contributions in each decomposition, called A, B and C. So we get a
+multiresolution representation of the operator containing one coarse grained scaling part,
+plus a number of wavelet corrections. I will specifically consider two such operators,
+the Coulomb operator for calculation of electrostatic potentials using the Poisson kernel,
+and the bound-state Helmholtz kernel which appears in the Kohn-Sham equations of Density
+Functional Theory that I will come back to later. 
+
+\subsection*{Coulomb operator}
+But first we consiter the Coulomb operator and this one over R kernel. From elementary physics
+we know the electrostatic interaction for point charges through the Coulomb potential, which
+goes as one over R with distance. For more general charge densities the potential is given by
+the Poisson equation, which can be inverted and solved directly using the integral operator
+with the Poisson kernel. We can think of this integration simply as summing up the contribution
+from all point charges that make up the charge density.
+
+There are some numerical difficulties in the solution of this equation connected to the one 
+over R kernel. It is not separable in the Cartesian coordinates, which means that we cannot
+treat each dimension independently. It has a short-range singularity and a very slow decay
+at long-range. This means that we cannot ignore long-range contributions leading to quadratic
+scaling with respect to the size of the system. This means that doubling the system size will
+require a four-fold increase in computation time. We are particularly interrested in finding
+linear-scaling algorithms where the computation time is proportional to the system size.
+
+\subsection*{Separation using Gaussians}
+A very powerful approach in attacking these issues was proposed by Gregory Beylkin back in 
+the 90s, where the one over R kernel is approximated by a sum of Gaussian functions. Starting 
+from a very flat Gaussian and adding more and more narrow components we can approximate the 
+exact one over R function, and by carefully choosing the parameters of this expansion we can
+get arbitrarily close to the exact function.
+
+What is achieved by this construction is that the coordinates of each component are separated
+and the singularity has been removed. On the other hand we have now M different operators
+to apply, which typically means 50-60 components, and the total interaction is still long-ranged,
+but the length scales of the problem have been separated. The narrow Gaussians represents the 
+short-range interaction while the flat ones represents the long-range, so the different components
+will operate on very different length scales. Combining this with the multiwavelet basis, which
+also separates the length scales in the function representations, we get an operator application
+that is local on each length scale separately, and summing up this short-range interaction over
+all length scales we recover the physically long-range interaction.
+
+\subsection*{Non-Standard operator}
+Specifically, if we look at the matrix representation of the operator we get a dense, long-range
+matrix in the scaling basis at the finest resolution, but decomposing this into the four wavelet
+contributions at the coarser scale will give sparse, short-range interaction in the wavelet part
+du to the vanishing moments of the wavelet basis. We are still left with a dense T part, but we 
+can extract this and do another decomposition into sparse wavelet terms. This can of course be
+continued recursively until we reach the coarsest scale. We see that we have now explicitly 
+separated the length scales of the problem, and the operator is sparse at each lenght scale 
+separately. This is known as the non-standard representation of operators.
+
+\subsection*{Linear scaling Coulomb}
+By this construction we should be able to obtain numerical algorithms that scale linearly with 
+system size, and we tested this by calculating the electronic potential for long-chain alkane
+molecules with up to 200 atoms. We see that the scaling is in fact sublinear, with an exponent 
+of 0.75 if we keep a consistent relative accuracy in the calculations. The reason for this is
+that the as the size of the system grows, the energy increases, and the numerical grid does
+not require the same local resolution to give consistent relative precision. If we on the other
+hand keep this local high resolution as the size increases we get an absolute accuracy in the
+results, and in this case we see that hte scaling is perfectly linear.
+
+\subsection*{Parallel performance}
+Of course, this was a linear molecule, but we observe the same for three-dimensional systems,
+like these diamond fragments, where the exponent is 0.8 for relative accuracy calculations.
+If we looka at the parallel performance of the code, we see that using up to 16 shared memory
+processors using OpenMP, the computation time is reduced significantly, and the parallel
+efficiency is very good in this case, at about 90\% for 16 processors for the biggest system.
+
+These are computation time in seconds for the same diamond systems using both OpenMP and MPI, 
+where the first part is pure OpenMP and is the same as the previous plots. Using pure MPI
+reduces the efficiency somewhat relative to the OpenMP case, which is ecpected, as we have 
+additional communication overhead. But by using a hybrid strategy we can get the computation
+time down to a few seconds, in this case using 512 processors in total compared to more than 
+300 seconds in the sequential computation. However, the parallel efficiency in this case is
+only about 20\%, so this system is actually still to small to fully utilize the resources.
+
+
+\section*{Chemistry}
+\section*{Real-space DFT}
+\section*{Acknowledgments}
+
+\end{document}
