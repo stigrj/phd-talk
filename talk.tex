@@ -102,15 +102,28 @@ with Multiwavelets}
 
 \begin{frame}
     \frametitle{Multiwavelets}
-    \begin{itemize}
-    	\item Real space divided into cubic cells
-	\item Low-order polynomial basis in each cell
-	\item Adaptive resolution of cells
-    \end{itemize}
-    \begin{center} 
-	\includegraphics[scale=0.25]{figures/unifgrid.pdf}
-	\includegraphics[scale=0.1495]{figures/adapgrid.pdf}
-    \end{center}
+    \begin{columns}
+    \begin{column}[b]{0.4\linewidth}
+	\begin{itemize}
+	   \item Space divided in cubic cells
+	    \item Low-order polynomial basis
+	    \item Adaptive resolution
+	    \item Guaranteed precision
+	\end{itemize}
+	\ \\
+	\ \\
+	\ \\
+	\centering
+	\includegraphics[scale=0.3, clip, viewport = 100 400 500 800]{figures/adaptivity.pdf}
+    \end{column}
+    \begin{column}[b]{0.6\linewidth}
+	\centering
+	\includegraphics[scale=0.3, clip, viewport = 100 400 500 800]{figures/scaling.pdf}\\
+	\includegraphics[scale=0.2]{figures/unifgrid.pdf}
+        \includegraphics[scale=0.1192]{figures/adapgrid.pdf}\\
+	\ \\
+    \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
@@ -138,120 +151,6 @@ with Multiwavelets}
 	a parallel implementation}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Parallel programming}
-    Why parallel processing?
-    \begin{itemize}
-	\item	To get more processing power
-	\item	To get more available memory
-	\item	Future $\rightarrow$ \emph{more} processors rather than faster
-    \end{itemize}
-    \ \\
-    \ \\
-    \ \\
-    \pause
-    Parallelization means
-    \begin{itemize}
-	\item	\textbf{distributing work} among available processors
-	\item	\textbf{syncronizing} distributed work
-	\item	\textbf{distributing data} among available memory
-	\item	\textbf{communicating} distributed data
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Shared memory (OpenMP)}
-    \begin{columns}
-    \begin{column}[b]{0.45\linewidth}
-	Pros
-	\begin{itemize}
-	    \item Relatively simple implementation
-	    \item Quick way to good performance
-	    \item No communication
-	    \item Simple load balance
-	\end{itemize}
-	\ \\
-	\ \\
-	\pause
-	Cons
-        \begin{itemize}
-	    \item Small to medium scale parallelization
-	    \item Limited memory
-	    \item Race conditions
-	    \item Tedious debugging (Heisenbugs)
-	\end{itemize}
-	\ \\
-	\ \\
-    \end{column}
-    \begin{column}[b]{0.4\linewidth}
-	\only<3>{\includegraphics[viewport = 120 160 460 450, clip, scale=0.4]{figures/parallel_OMP.pdf}}
-	\ \\
-	\ \\
-	\ \\
-	\ \\
-    \end{column}
-    \end{columns}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Distributed memory (MPI)}
-    \begin{columns}
-    \begin{column}[b]{0.45\linewidth}
-	Pros
-	\begin{itemize}
-	    \item Large scale parallelization
-	    \item Extensive memory
-	\end{itemize}
-	\ \\
-	\ \\
-	\ \\
-	\ \\
-	\pause
-	Cons
-	\begin{itemize}
-	    \item Complicated implementation
-	    \item User specified work/data decomposition 
-	    \item User specified communication
-	    \item Difficult to load balance
-	    \item Communication overhead
-	\end{itemize}
-    \end{column}
-    \begin{column}[b]{0.4\linewidth}
-	\only<3>{\includegraphics[viewport = 120 160 460 450, clip, scale=0.4]{figures/parallel_mpi_2.pdf}}
-	\ \\
-	\ \\
-	\ \\
-    \end{column}
-    \end{columns}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Parallel efficiency}
-    \begin{center}
-    \only<1>{\includegraphics[clip, viewport = 50 250 550 800, scale=0.5]{figures/amdahl.pdf}}
-    \only<2>{\includegraphics[clip, viewport = 50 250 550 800, scale=0.5]{figures/parallel_efficiency_1.pdf}}
-    \only<3>{\includegraphics[clip, viewport = 50 250 550 800, scale=0.5]{figures/parallel_efficiency_2.pdf}}
-    \only<4>{\includegraphics[clip, viewport = 50 250 550 800, scale=0.5]{figures/parallel_efficiency_3.pdf}}
-    \end{center}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Data distribution}
-    \begin{minipage}[b]{0.40\linewidth}
-	Lebesgue
-	\includegraphics[viewport = 105 705 375 795, scale=0.6, clip]{figures/hilbertCurve.pdf}
-	\ \\
-	Hilbert
-	\includegraphics[viewport = 105 590 375 680, scale=0.6, clip]{figures/hilbertCurve.pdf}
-	\ \\
-	3D\\
-	\includegraphics[viewport = 105 325 375 435, scale=0.6, clip]{figures/hilbertCurve.pdf}
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.4\linewidth}
-	\includegraphics[angle=90, scale=0.2]{figures/caroteneGrid.pdf}
-    \end{minipage}
-\end{frame}
 
 \begin{frame}
     \frametitle{Operator representation}
@@ -462,6 +361,121 @@ with Multiwavelets}
     \begin{center}
 	\includegraphics[scale=0.6, clip, viewport = 50 550 540 730]{figures/linearScaling.pdf}
     \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Parallel programming}
+    Why parallel processing?
+    \begin{itemize}
+	\item	To get more processing power
+	\item	To get more available memory
+	\item	Future $\rightarrow$ \emph{more} processors rather than faster
+    \end{itemize}
+    \ \\
+    \ \\
+    \ \\
+    \pause
+    Parallelization means
+    \begin{itemize}
+	\item	\textbf{distributing work} among available processors
+	\item	\textbf{syncronizing} distributed work
+	\item	\textbf{distributing data} among available memory
+	\item	\textbf{communicating} distributed data
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Shared memory (OpenMP)}
+    \begin{columns}
+    \begin{column}[b]{0.45\linewidth}
+	Pros
+	\begin{itemize}
+	    \item Relatively simple implementation
+	    \item Quick way to good performance
+	    \item No communication
+	    \item Simple load balance
+	\end{itemize}
+	\ \\
+	\ \\
+	\pause
+	Cons
+        \begin{itemize}
+	    \item Small to medium scale parallelization
+	    \item Limited memory
+	    \item Race conditions
+	    \item Tedious debugging (Heisenbugs)
+	\end{itemize}
+	\ \\
+	\ \\
+    \end{column}
+    \begin{column}[b]{0.4\linewidth}
+	\only<3>{\includegraphics[viewport = 120 160 460 450, clip, scale=0.4]{figures/parallel_OMP.pdf}}
+	\ \\
+	\ \\
+	\ \\
+	\ \\
+    \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Distributed memory (MPI)}
+    \begin{columns}
+    \begin{column}[b]{0.45\linewidth}
+	Pros
+	\begin{itemize}
+	    \item Large scale parallelization
+	    \item Extensive memory
+	\end{itemize}
+	\ \\
+	\ \\
+	\ \\
+	\ \\
+	\pause
+	Cons
+	\begin{itemize}
+	    \item Complicated implementation
+	    \item User specified work/data decomposition 
+	    \item User specified communication
+	    \item Difficult to load balance
+	    \item Communication overhead
+	\end{itemize}
+    \end{column}
+    \begin{column}[b]{0.4\linewidth}
+	\only<3>{\includegraphics[viewport = 120 160 460 450, clip, scale=0.4]{figures/parallel_mpi_2.pdf}}
+	\ \\
+	\ \\
+	\ \\
+    \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Parallel efficiency}
+    \begin{center}
+    \only<1>{\includegraphics[clip, viewport = 50 250 550 800, scale=0.5]{figures/amdahl.pdf}}
+    \only<2>{\includegraphics[clip, viewport = 50 250 550 800, scale=0.5]{figures/parallel_efficiency_1.pdf}}
+    \only<3>{\includegraphics[clip, viewport = 50 250 550 800, scale=0.5]{figures/parallel_efficiency_2.pdf}}
+    \only<4>{\includegraphics[clip, viewport = 50 250 550 800, scale=0.5]{figures/parallel_efficiency_3.pdf}}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Data distribution}
+    \begin{minipage}[b]{0.40\linewidth}
+	Lebesgue
+	\includegraphics[viewport = 105 705 375 795, scale=0.6, clip]{figures/hilbertCurve.pdf}
+	\ \\
+	Hilbert
+	\includegraphics[viewport = 105 590 375 680, scale=0.6, clip]{figures/hilbertCurve.pdf}
+	\ \\
+	3D\\
+	\includegraphics[viewport = 105 325 375 435, scale=0.6, clip]{figures/hilbertCurve.pdf}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.4\linewidth}
+	\includegraphics[angle=90, scale=0.2]{figures/caroteneGrid.pdf}
+    \end{minipage}
 \end{frame}
 
 \begin{frame}
