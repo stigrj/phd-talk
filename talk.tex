@@ -8,6 +8,9 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{textcomp}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{color}
 \usepackage{verbatim}
 \usepackage{amsbsy}
 \usepackage{multirow}
@@ -50,6 +53,14 @@ Linear scaling Coulomb interaction with Multiwavelets}
 \newcommand{\du}{\textrm{d}}
 
 \newcommand{\mydef}{\stackrel{\text{def}}{\hbox{=}}} 
+\newcommand{\Node}{\texttt{Node\ }}
+\newcommand{\node}{\texttt{node\ }}
+\newcommand{\nodes}{\texttt{nodes\ }}
+\newcommand{\Tree}{\texttt{Tree\ }}
+\newcommand{\tree}{\texttt{tree\ }}
+\newcommand{\trees}{\texttt{trees\ }}
+
+\newcommand{\red}[1]{\textcolor{red}{#1}}
 
 \begin{document}
 
@@ -67,26 +78,32 @@ Linear scaling Coulomb interaction with Multiwavelets}
     \begin{itemize}
 	\item	written in C++
 	\item	parallelized using OpenMP, MPI and hybrid
-	\item	based on multiresolution analysis and the multiwavelet basis
+	\item	based on \textbf{multiresolution analysis} and the \textbf{multiwavelet basis}
     \end{itemize}
     \ \\
     \ \\
-    \ \\
+    \pause
     Features of \textbf{MultiResolution Computation Program Package (MRCPP)}
     \begin{itemize}
 	\item	Multiresolution representations of functions and operators
-	\item	Arithmetic operations (addition, multiplication)
-	\item	Numerical integrals and inner products
 	\item	On-the-fly adaptive multiresolution grids
+	\item	Arithmetic operations and numerical integrals
 	\item	\textbf{Linear scaling} application of operators
 	\item	\textbf{Guaranteed accuracy}
     \end{itemize}
     \ \\
     \ \\
+    \pause
+    Features of \textbf{MultiResolution Grid (MRGrid)}
+    \begin{itemize}
+	\item	Numerical grid generator for conventional QM programs
+	\item	Provide accurate and reliable numerical grids for diffuse properties
+    \end{itemize}
     \ \\
+    \ \\
+    \pause
     Features of \textbf{MultiResolution Chemistry (MRChem)}
     \begin{itemize}
-	\item	Based on multiresolution functions and operators through MRCPP
 	\item	Numerical solution for the electronic structure of molecules
 	\item	SCF level of theory (Hartree-Fock and DFT)
 	\item	Spin-restricted and spin-unrestricted calculations
@@ -328,7 +345,7 @@ Linear scaling Coulomb interaction with Multiwavelets}
     \pause
     \pause
     \begin{columns}
-    \begin{column}{.48\textwidth}
+    \begin{column}{.30\textwidth}
     \centering
     \textbf{Poisson kernel}
     \begin{equation}
@@ -337,7 +354,7 @@ Linear scaling Coulomb interaction with Multiwavelets}
 	    \frac{1}{4\pi}\ \frac{1}{|\boldsymbol{r}-\boldsymbol{r}'|}
     \end{equation}
     \end{column}
-    \begin{column}{.48\textwidth}
+    \begin{column}{.30\textwidth}
     \centering
     \textbf{Helmholtz kernel}
     \begin{equation}
@@ -346,34 +363,15 @@ Linear scaling Coulomb interaction with Multiwavelets}
 	    \frac{e^{-\mu |\boldsymbol{r}-\boldsymbol{r}'|}}{|\boldsymbol{r}-\boldsymbol{r}'|}
     \end{equation}
     \end{column}
-    \end{columns}    
-\end{frame}
-
-\begin{frame}
-    \frametitle{Vanishing moments}
+    \begin{column}{.30\textwidth}
     \centering
-    \textbf{A function $f$ has $M$ vanishing moments if}
+    \textbf{Derivative kernel}
     \begin{equation}
 	\nonumber
-	\mu_m = \int_0^1 x^m f(x) dx = 0,\qquad m = 0, 1, \dots, M - 1
+	D(x-x') = \frac{d}{dx}\delta(x-x')
     \end{equation}
-    \ \\
-    \ \\
-    \ \\
-    \begin{columns}
-    \begin{column}{.15\textwidth}
-	\ \\
     \end{column}
-    \begin{column}{.85\textwidth}
-    \begin{itemize}
-        \item   Scaling basis has no vanishing moments $\longrightarrow$ \textbf{long ranged} interaction
-        \item   Wavelet basis has $k$ vanishing moments $\longrightarrow$ \textbf{short ranged} interaction
-    \end{itemize}
-    \end{column}
-    \end{columns}
-    \ \\
-    \ \\
-    \includegraphics[scale=0.3, clip, viewport = 0 50 680 350]{figures/multipoles.pdf}
+    \end{columns}    
 \end{frame}
 
 \begin{frame}
@@ -482,6 +480,73 @@ Linear scaling Coulomb interaction with Multiwavelets}
     \only<1,2,3,4,5,6,7>{\ \\ \ \\}
     \only<8>{\normalsize{Combined with the sparse wavelet representation of operators we get\\
 	\textbf{linear scaling algorithms}}}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Vanishing moments}
+    \centering
+    \textbf{A function $f$ has $M$ vanishing moments if}
+    \begin{equation}
+	\nonumber
+	\mu_m = \int_0^1 x^m f(x) dx = 0,\qquad m = 0, 1, \dots, M - 1
+    \end{equation}
+    \ \\
+    \ \\
+    \ \\
+    \begin{columns}
+    \begin{column}{.15\textwidth}
+	\ \\
+    \end{column}
+    \begin{column}{.85\textwidth}
+    \begin{itemize}
+        \item   Scaling basis has no vanishing moments $\longrightarrow$ \textbf{long ranged} interaction
+        \item   Wavelet basis has $k$ vanishing moments $\longrightarrow$ \textbf{short ranged} interaction
+    \end{itemize}
+    \end{column}
+    \end{columns}
+    \ \\
+    \ \\
+    \includegraphics[scale=0.3, clip, viewport = 0 50 680 350]{figures/multipoles.pdf}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Algorithm}
+    \begin{algorithmic}[1]
+	\STATE create \tree skeleton of empty \nodes for the output function
+	\STATE create list of \emph{all} output \nodes
+	\WHILE{number of output \nodes in the current list $N>0$}
+	    \FOR{each output \node in the current list}
+		\STATE fetch \emph{all} input \nodes within bandwidth of the \emph{full} operator
+		\STATE compute scaling and wavelet coefficients of output \node
+	    \ENDFOR
+	    \FOR{each \node of the output function}
+		\STATE remove \node from current list
+		\IF{\node needs to be refined}
+		    \STATE allocate children \nodes
+		    \STATE add children \nodes to the current list
+		\ENDIF
+	    \ENDFOR
+	\ENDWHILE
+    \end{algorithmic}
+    \ \\
+    \ \\
+    \ \\
+    \pause
+    \begin{algorithmic}[1]
+	\FOR{each separated component ($\kappa = 1,\dots,M$) of the operator}
+	    \FOR{each s/w component of output function}
+		\FOR{each s/w component of input function}
+		    \STATE fetch appropriate operator component (e.g. $T\times A\times A$)
+		    \STATE construct bandwidth
+		    \STATE fetch input and operator \nodes within bandwidth
+		    \STATE prune list of input \nodes based on Cauchy-Schwartz screening
+		    \FOR{each contributing input \node}
+			\STATE apply operator
+		    \ENDFOR
+		\ENDFOR
+	    \ENDFOR
+	\ENDFOR		
+    \end{algorithmic}
 \end{frame}
 
 \begin{frame}
@@ -670,6 +735,32 @@ Linear scaling Coulomb interaction with Multiwavelets}
 	\includegraphics[scale=0.5, viewport = 150 350 500 435, clip]{figures/hilbert.pdf}
     \end{column}
     \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Parallel algorithm}
+    \begin{algorithmic}[1]
+	\STATE \red{MPI:} assume input \tree distributed among hosts through Hilbert path
+	\STATE create \tree skeleton of empty \nodes for the output function
+	\STATE \red{MPI:} distribute output \nodes among hosts through Hilbert path
+	\STATE create list of \emph{all} output \nodes
+	\WHILE{number of output \nodes in the current list $N>0$}
+	    \STATE \red{OpenMP:} divide the list of output \nodes among available processors
+	    \FOR{each output \node in the current list}
+		\STATE fetch \red{\emph{local}} input \nodes within bandwidth of the \emph{full} operator
+		\STATE compute scaling and wavelet coefficients of output \node
+	    \ENDFOR
+	    \STATE \red{MPI:} communicate the \nodes of the output function to the appropriate host
+	    \FOR{each \red{\emph{local}} \node of the output function}
+		\STATE remove \node from current list
+		\IF{\node needs to be refined}
+		    \STATE allocate children \nodes (\red{inherits MPI ownership from parent})
+		    \STATE add children \nodes to the current list
+		\ENDIF
+	    \ENDFOR
+	    \STATE \red{MPI:} collect list of \emph{all} output \nodes for the next iteration
+	\ENDWHILE
+    \end{algorithmic}
 \end{frame}
 
 \begin{frame}
@@ -1360,35 +1451,29 @@ Linear scaling Coulomb interaction with Multiwavelets}
     \begin{itemize}
 	\item	written in C++
 	\item	parallelized using OpenMP, MPI and hybrid
-	\item	based on multiresolution analysis and the multiwavelet basis
+	\item	based on \textbf{multiresolution analysis} and the \textbf{multiwavelet basis}
     \end{itemize}
-    \ \\
     \ \\
     \ \\
     Features of \textbf{MultiResolution Computation Program Package (MRCPP)}
     \begin{itemize}
 	\item	Multiresolution representations of functions and operators
-	\item	Arithmetic operations (addition, multiplication)
-	\item	Numerical integrals and inner products
 	\item	On-the-fly adaptive multiresolution grids
+	\item	Arithmetic operations and numerical integrals
 	\item	\textbf{Linear scaling} application of operators
 	\item	\textbf{Guaranteed accuracy}
     \end{itemize}
-    %\ \\
-    %\ \\
-    %Features of \textbf{MultiResolution Grid (MRGrid)}
-    %\begin{itemize}
-	%\item	Based on multiresolution analysis through MRCPP
-	%\item	Numerical grid generator for conventional QM programs
-	%\item	On-the-fly adaptive multiresolution grids
-	%\item	Hope to povide accurate and reliable numerical grids for diffuse properties
-    %\end{itemize}
     \ \\
+    \ \\
+    Features of \textbf{MultiResolution Grid (MRGrid)}
+    \begin{itemize}
+	\item	Numerical grid generator for conventional QM programs
+	\item	Provide accurate and reliable numerical grids for diffuse properties
+    \end{itemize}
     \ \\
     \ \\
     Features of \textbf{MultiResolution Chemistry (MRChem)}
     \begin{itemize}
-	\item	Based on multiresolution functions and operators through MRCPP
 	\item	Numerical solution for the electronic structure of molecules
 	\item	SCF level of theory (Hartree-Fock and DFT)
 	\item	Spin-restricted and spin-unrestricted calculations
