@@ -437,7 +437,8 @@ Linear scaling Coulomb interaction with Multiwavelets}
 		P(\boldsymbol{r}) = \frac{1}{4\pi\boldsymbol{r}} \approx \sum_{i=1}^M a_i e^{-\alpha_i \boldsymbol{r}^2} 
 	    \end{equation}
 	\item Any accuracy can in principle be obtained
-	\item Full operator is decomposed into $M$ terms
+	\item Full operator is decomposed into $M$ components
+	\item Each separated component is further decomposed using MRA
 	\item Each operator term is applied separately
     \end{itemize}
     \ \\
@@ -482,32 +483,32 @@ Linear scaling Coulomb interaction with Multiwavelets}
 	\textbf{linear scaling algorithms}}}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Vanishing moments}
-    \centering
-    \textbf{A function $f$ has $M$ vanishing moments if}
-    \begin{equation}
-	\nonumber
-	\mu_m = \int_0^1 x^m f(x) dx = 0,\qquad m = 0, 1, \dots, M - 1
-    \end{equation}
-    \ \\
-    \ \\
-    \ \\
-    \begin{columns}
-    \begin{column}{.15\textwidth}
-	\ \\
-    \end{column}
-    \begin{column}{.85\textwidth}
-    \begin{itemize}
-        \item   Scaling basis has no vanishing moments $\longrightarrow$ \textbf{long ranged} interaction
-        \item   Wavelet basis has $k$ vanishing moments $\longrightarrow$ \textbf{short ranged} interaction
-    \end{itemize}
-    \end{column}
-    \end{columns}
-    \ \\
-    \ \\
-    \includegraphics[scale=0.3, clip, viewport = 0 50 680 350]{figures/multipoles.pdf}
-\end{frame}
+%\begin{frame}
+    %\frametitle{Vanishing moments}
+    %\centering
+    %\textbf{A function $f$ has $M$ vanishing moments if}
+    %\begin{equation}
+	%\nonumber
+	%\mu_m = \int_0^1 x^m f(x) dx = 0,\qquad m = 0, 1, \dots, M - 1
+    %\end{equation}
+    %\ \\
+    %\ \\
+    %\ \\
+    %\begin{columns}
+    %\begin{column}{.15\textwidth}
+	%\ \\
+    %\end{column}
+    %\begin{column}{.85\textwidth}
+    %\begin{itemize}
+        %\item   Scaling basis has no vanishing moments $\longrightarrow$ \textbf{long ranged} interaction
+        %\item   Wavelet basis has $k$ vanishing moments $\longrightarrow$ \textbf{short ranged} interaction
+    %\end{itemize}
+    %\end{column}
+    %\end{columns}
+    %\ \\
+    %\ \\
+    %\includegraphics[scale=0.3, clip, viewport = 0 50 680 350]{figures/multipoles.pdf}
+%\end{frame}
 
 \begin{frame}
     \frametitle{Algorithm}
