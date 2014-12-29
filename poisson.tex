@@ -195,74 +195,74 @@
 	\textbf{linear scaling algorithms}}}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Vanishing moments}
-    \centering
-    \textbf{A function $f$ has $M$ vanishing moments if}
-    \begin{equation}
-        \nonumber
-        \mu_m = \int_0^1 x^m f(x) dx = 0,\qquad m = 0, 1, \dots, M - 1
-    \end{equation}
-    \ \\
-    \ \\
-    \ \\
-    \begin{columns}
-    \begin{column}{.15\textwidth}
-        \ \\
-    \end{column}
-    \begin{column}{.85\textwidth}
-    \begin{itemize}
-        \item   Scaling basis has no vanishing moments $\longrightarrow$ 
-		\textbf{long ranged} interaction
-        \item   Wavelet basis has $k$ vanishing moments $\longrightarrow$ 
-		\textbf{short ranged} interaction
-    \end{itemize}
-    \end{column}
-    \end{columns}
-    \ \\
-    \ \\
-    \includegraphics[scale=0.3, clip, viewport = 0 50 680 350]{figures/multipoles.pdf}
-\end{frame}
+%\begin{frame}
+%    \frametitle{Vanishing moments}
+%    \centering
+%    \textbf{A function $f$ has $M$ vanishing moments if}
+%    \begin{equation}
+%        \nonumber
+%        \mu_m = \int_0^1 x^m f(x) dx = 0,\qquad m = 0, 1, \dots, M - 1
+%    \end{equation}
+%    \ \\
+%    \ \\
+%    \ \\
+%    \begin{columns}
+%    \begin{column}{.15\textwidth}
+%        \ \\
+%    \end{column}
+%    \begin{column}{.85\textwidth}
+%    \begin{itemize}
+%        \item   Scaling basis has no vanishing moments $\longrightarrow$ 
+%		\textbf{long ranged} interaction
+%        \item   Wavelet basis has $k$ vanishing moments $\longrightarrow$ 
+%		\textbf{short ranged} interaction
+%    \end{itemize}
+%    \end{column}
+%    \end{columns}
+%    \ \\
+%    \ \\
+%    \includegraphics[scale=0.3, clip, viewport = 0 50 680 350]{figures/multipoles.pdf}
+%\end{frame}
 
-\begin{frame}
-    \frametitle{Algorithm}
-    \begin{algorithmic}[1]
-        \STATE create \tree skeleton of empty \nodes for the output function
-        \STATE create list of \emph{all} output \nodes
-        \WHILE{number of output \nodes in the current list $N>0$}
-            \FOR{each output \node in the current list}
-                \STATE fetch \emph{all} input \nodes within bandwidth of the \emph{full} operator
-                \STATE compute scaling and wavelet coefficients of output \node
-            \ENDFOR
-            \FOR{each \node of the output function}
-                \STATE remove \node from current list
-                \IF{\node needs to be refined}
-                    \STATE allocate children \nodes
-                    \STATE add children \nodes to the current list
-                \ENDIF
-            \ENDFOR
-        \ENDWHILE
-    \end{algorithmic}
-    \ \\
-    \ \\
-    \ \\
-    \pause
-    \begin{algorithmic}[1]
-        \FOR{each separated component ($\kappa = 1,\dots,M$) of the operator}
-            \FOR{each s/w component of output function}
-                \FOR{each s/w component of input function}
-                    \STATE fetch appropriate operator component (e.g. $T\times A\times A$)
-                    \STATE construct bandwidth
-                    \STATE fetch input and operator \nodes within bandwidth
-                    \STATE prune list of input \nodes based on Cauchy-Schwartz screening
-                    \FOR{each contributing input \node}
-                        \STATE apply operator
-                    \ENDFOR
-                \ENDFOR
-            \ENDFOR
-        \ENDFOR         
-    \end{algorithmic}
-\end{frame}
+%\begin{frame}
+%    \frametitle{Algorithm}
+%    \begin{algorithmic}[1]
+%        \STATE create \tree skeleton of empty \nodes for the output function
+%        \STATE create list of \emph{all} output \nodes
+%        \WHILE{number of output \nodes in the current list $N>0$}
+%            \FOR{each output \node in the current list}
+%                \STATE fetch \emph{all} input \nodes within bandwidth of the \emph{full} operator
+%                \STATE compute scaling and wavelet coefficients of output \node
+%            \ENDFOR
+%            \FOR{each \node of the output function}
+%                \STATE remove \node from current list
+%                \IF{\node needs to be refined}
+%                    \STATE allocate children \nodes
+%                    \STATE add children \nodes to the current list
+%                \ENDIF
+%            \ENDFOR
+%        \ENDWHILE
+%    \end{algorithmic}
+%    \ \\
+%    \ \\
+%    \ \\
+%    \pause
+%    \begin{algorithmic}[1]
+%        \FOR{each separated component ($\kappa = 1,\dots,M$) of the operator}
+%            \FOR{each s/w component of output function}
+%                \FOR{each s/w component of input function}
+%                    \STATE fetch appropriate operator component (e.g. $T\times A\times A$)
+%                    \STATE construct bandwidth
+%                    \STATE fetch input and operator \nodes within bandwidth
+%                    \STATE prune list of input \nodes based on Cauchy-Schwartz screening
+%                    \FOR{each contributing input \node}
+%                        \STATE apply operator
+%                    \ENDFOR
+%                \ENDFOR
+%            \ENDFOR
+%        \ENDFOR         
+%    \end{algorithmic}
+%\end{frame}
 
 
 \begin{frame}
