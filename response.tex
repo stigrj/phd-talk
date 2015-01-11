@@ -1,130 +1,302 @@
 \begin{frame}
-    \frametitle{Integral formulation linear response}
-    \centering
-    Adding a first order perturbation $\hat{h}^{(1)}$ to the Hamiltonian
-    gives the perturbation in the Fock operator
-    \begin{equation}
-	\nonumber
-	\delta\hat{F} = \hat{h}^{(1)} + \delta v_{eff}(r)
-    \end{equation}
-    \ \\
-    \ \\
-    \ \\
-    where we have a change in the effective potential
-    \begin{equation}
-	\nonumber
-	\delta v_{eff}(r) = \int \frac{\delta \rho(r', r')}{|r-r'|}dr'
-	+ \delta \rho(r,r) \frac{\delta v_{xc}}{\delta\rho}(r)
-    \end{equation}
-    \ \\
-    \ \\
-    \ \\
-    \ \\
-    induced by the perturbed density
-    \begin{equation}
-	\nonumber
-	\delta \rho(r,r') =
-	\sum_i \phi_i(r)\delta\phi_i^\dag(r')\ +\ 
-	\delta\phi_i(r)\phi_i^\dag(r')
-    \end{equation}
-    \ \\
-    \ \\
-    \ \\
-    \ \\
-    The orbital perturbations are obtained by solving the modified Sternheimer 
-    (coupled perturbed HF/DFT) equations
-    \begin{equation}
-	\nonumber
-	\hat{F}\delta\phi_i + \delta\hat{F}\phi_i = 
-	\epsilon_i \Big(\phi_i + \delta\phi_i\Big)
-    \end{equation}
-    \ \\
-    \ \\
-    \ \\
-    \ \\
-    which again are inverted to an integral equation and solved iteratively
-    \begin{equation}
-	\nonumber
-	\delta\phi_i^{n+1} =\ 
-	-2\hat{G}\Big[v_{eff} \delta\phi_i^n + \Big(\hat{h}^{(1)} + 
-        \delta v_{eff}^n + \epsilon_i\Big)\phi_i\Big]
-    \end{equation}
+\frametitle{Integral formulation linear response}
+\centering
+Adding a first order perturbation $\delta\hat{h}$ to the Hamiltonian \\
+gives the perturbation in the Fock operator
+\begin{equation}
+    \nonumber
+    \delta\hat{F} = \delta\hat{h} + \delta \hat{V}
+\end{equation}
+
+%\vspace{6mm}
+%where the changes in the potential operator can have the form
+%\begin{align}
+%    \nonumber
+%    \delta v_{coul}(r) &= \int P(r-r')[\delta\rho(r',r')]dr'\\
+%    \nonumber
+%    \delta v_{xc}(r) &= 
+%        \delta\rho(r,r)\frac{\partial^2 E_{xc}}{\partial\rho^2}(r)\\
+%    \nonumber
+%    \delta \hat{K} \phi_p(r) 
+%    &= \sum_i \phi_i(r) \int P(r-r')[\delta\phi_i^\dag(r')\phi_p(r')]dr' \\
+%    \nonumber
+%    &+ \sum_i \delta\phi_i(r) \int P(r-r')[\phi_i^\dag(r')\phi_p(r')]dr'
+%\end{align}
+
+\vspace{6mm}
+where $\delta\hat{V}$ denotes the changes in the potential \\
+operator induced by the perturbed density
+\begin{equation}
+    \nonumber
+    \delta \rho(r,r') =
+    \sum_i \phi_i(r)\delta\phi_i^\dag(r')\ +\ 
+    \delta\phi_i(r)\phi_i^\dag(r')
+\end{equation}
+
+\pause
+
+\vspace{6mm}
+The orbital perturbations are obtained by solving the modified \\
+Sternheimer (coupled perturbed HF/DFT) equations
+\begin{equation}
+    \nonumber
+    \hat{F}\delta\phi_i + \delta\hat{F}\phi_i = 
+    \sum_j \Big(F_{ij}\delta\phi_j + \delta F_{ij}\phi_j\Big)
+\end{equation}
+
+\vspace{6mm}
+which again are inverted to an integral equation and solved iteratively
+\begin{equation}
+    \nonumber
+    \delta\phi_i^{n+1} =\ 
+    -2\hat{G}\Big[\hat{V} \delta\phi_i^n
+    - \sum_{j \neq i} F_{ij}\delta\phi_j^n
+    + \Big(1 - \sum_j|\phi_j\rangle\langle\phi_j|\Big) \delta\hat{F}^n\phi_i
+    \Big]
+\end{equation}
 \end{frame}
 
 
 \begin{frame}
-    \frametitle{Magnetizability}
-    \begin{columns}
-    \begin{column}[b]{0.5\textwidth}
-	\centering
-	\textbf{Diamagnetic magnetizability}
-	\begin{equation}
-	    \nonumber
-	    \hat{h}^{dia} = -\frac{1}{4}\Big(r_O^2\boldsymbol{I} - 
-                \boldsymbol{r}_O\boldsymbol{r}_O^T\Big)
-	\end{equation}
-	\ \\
-	\begin{equation}
-	    \nonumber
-	    \chi^{dia} = \sum_i \int \phi_i \hat{h}^{dia} \phi_i dr
-	\end{equation}
-    \end{column}
-    \begin{column}[b]{0.5\textwidth}
-	\centering
-	\textbf{Paramagnetic magnetizability}
-	\begin{equation}
-	    \nonumber
-	    \hat{h}^{orb} = -i \boldsymbol{r}_O\times\nabla_j
-	\end{equation}
-	\ \\
-	\begin{equation}
-	    \nonumber
-	    \chi^{para} = \sum_i \int \phi_i \Big(\hat{h}^{orb} \delta\phi_i\Big)^\dag + 
-	    \Big(\hat{h}^{orb}\phi_i\Big)\delta\phi_i^\dag dr
-	\end{equation}
-    \end{column}
-    \end{columns}
-    \ \\
-    \ \\
-    \ \\
-    Where the perturbed orbitals $\delta\phi_i$ are obtained using the $\hat{h}^{orb}$ operator.
-    \ \\
-    \ \\
-    \ \\
+\frametitle{Polarizability}
+\begin{columns}
+
+\begin{column}[b]{0.5\textwidth}
+\centering
+operator
+\end{column}
+
+\begin{column}[b]{0.5\textwidth}
+\centering
+figure
+\end{column}
+
+\end{columns}
+\vspace{5mm}
+\centering
+\vspace{5mm}
 
 \begin{table}
 \tiny
 \centering
-\begin{tabular}{l|l|lll|lll}
-\multicolumn{8}{c}{ Helium magnetizability (a.u) }\\
+\begin{tabular}{l|l|lll|l}
+\multicolumn{6}{c}{\textbf{Polarizability (a.u.)}}\\
 \hline
 \hline
-\multicolumn{1}{l}{Gauge origin}&
-\multicolumn{1}{c}{}&
-\multicolumn{3}{c}{(0.0, 0.0, 0.0) }&
-\multicolumn{3}{c}{(0.0, 0.0, 5.0) }\\
+                    &$E_{tot}$  &$\alpha_{xx}$  &$\alpha_{yy}$  
+                    &$\alpha_{zz}$  &$\alpha_{iso}$ \\
 \hline
-Basis&
-\multicolumn{1}{c|}{$E^{tot}$}&
-\multicolumn{1}{c}{$\chi^{dia}$}&
-\multicolumn{1}{c}{$\chi^{para}$}&
-\multicolumn{1}{c|}{$\chi^{tot}$}&
-\multicolumn{1}{c}{$\chi^{dia}$}&
-\multicolumn{1}{c}{$\chi^{para}$}&
-\multicolumn{1}{c}{$\chi^{tot}$}\\
-\hline			
-Dalton (no GIAO)        &         &       &      &       &       &      &       \\
-cc-pVDZ	                &-2.826706&-0.3997&0.0000&-0.3997&-8.7331&4.6647&-4.0683\\
-cc-pVTZ	                &-2.834079&-0.4214&0.0000&-0.4214&-8.7547&6.4502&-2.3046\\
-aug-cc-pVTZ             &-2.834348&-0.4293&0.0000&-0.4293&-8.7627&8.2833&-0.4793\\
-aug-cc-pVQZ             &-2.834689&-0.4289&0.0000&-0.4289&-8.7623&8.3194&-0.4429\\
-d-aug-cc-pV6Z           &-2.834828&-0.4288&0.0000&-0.4288&-8.7622&8.3305&-0.4317\\
-\hline			                                                                                                        
-MRChem                  &         &       &      &       &       &      &       \\
-$\epsilon = 10^{-3}$    &-2.835240&-0.4287&0.0000&-0.4287&-8.7621&8.3335&-0.4286\\
-$\epsilon = 10^{-4}$    &-2.834839&-0.4288&0.0000&-0.4288&-8.7622&8.3334&-0.4288\\
+MRChem              &          &        &        &        &        \\
+$\epsilon=10^{-3}$  &-76.01459 & 9.4778 & 7.9234 & 8.7537 & 8.7180 \\
+$\epsilon=10^{-4}$  &-76.06548 & 9.4893 & 7.9698 & 8.7665 & 8.7419 \\
+$\epsilon=10^{-5}$  &-76.06552 & 9.4887 & 7.9695 & 8.7658 & 8.7413 \\
+\hline
+Dalton              &          &        &        &        &        \\
+aug-cc-pV6Z         &          &        &        &        &        \\
+aug-cc-pV5Z         &-76.06543 & 9.4852 & 7.9503 & 8.7503 & 8.7286 \\
+aug-cc-pVQZ         &-76.06412 & 9.4842 & 7.9169 & 8.7240 & 8.7084 \\
+aug-cc-pVTZ         &-76.05882 & 9.4632 & 7.7941 & 8.6291 & 8.6288 \\
+aug-cc-pVDZ         &-76.03980 & 9.3304 & 7.4016 & 8.3028 & 8.3450 \\
+                    &          &        &        &        &        \\
+cc-pV6Z             &-76.06551 & 9.2242 & 7.4127 & 8.4060 & 8.3476 \\
+cc-pV5Z             &-76.06520 & 9.0604 & 6.8999 & 8.1594 & 8.0399 \\
+cc-pVQZ             &-76.06295 & 8.7732 & 6.1540 & 7.7173 & 7.5482 \\
+cc-pVTZ             &-76.05536 & 8.2921 & 5.1219 & 6.9736 & 6.7959 \\
+cc-pVDZ             &-76.02544 & 7.2047 & 3.0348 & 5.3360 & 5.1919 \\
 \hline
 \hline
 \end{tabular}
 \end{table}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Magnetizability}
+\begin{columns}
+
+\begin{column}[b]{0.5\textwidth}
+\centering
+\textbf{Diamagnetic magnetizability}
+\begin{equation}
+    \nonumber
+    \hat{h}^{dia} = -\frac{1}{4}\Big(r_O^2\boldsymbol{I} - 
+    \boldsymbol{r}_O\boldsymbol{r}_O^T\Big)
+\end{equation}
+\vspace{2mm}
+\begin{equation}
+    \nonumber
+    \chi^{dia} = \sum_i \int \phi_i \hat{h}^{dia} \phi_i dr
+\end{equation}
+\end{column}
+
+\begin{column}[b]{0.5\textwidth}
+\centering
+\textbf{Paramagnetic magnetizability}
+\begin{equation}
+    \nonumber
+    \hat{h}^{orb} = -i \boldsymbol{r}_O\times\nabla
+\end{equation}
+\vspace{2mm}
+\begin{equation}
+    \nonumber
+    \chi^{para} = \sum_i \int \phi_i \Big(\hat{h}^{orb} \delta\phi_i\Big)^\dag + 
+    \Big(\hat{h}^{orb}\phi_i\Big)\delta\phi_i^\dag dr
+\end{equation}
+\end{column}
+
+\end{columns}
+\vspace{5mm}
+\centering
+Where the perturbed orbitals $\delta\phi_i$ are obtained using 
+the $\hat{h}^{orb}$ operator.
+\vspace{5mm}
+
+\begin{table}
+\tiny
+\centering
+\begin{tabular}{l|l|lll}
+\multicolumn{5}{c}{\textbf{Magnetizability (a.u.)}}\\
+\hline
+\hline
+                    &$E_{tot}$&$\chi^{dia}$ &$\chi^{para}$&$\chi^{tot}$\\
+\hline
+MRChem              &         &             &             &            \\
+$\epsilon=10^{-3}$  &-76.01459& -3.2696     & 0.3243      & -2.9453    \\
+$\epsilon=10^{-4}$  &-76.06548& -3.2688     & 0.3221      & -2.9467    \\
+$\epsilon=10^{-5}$  &-76.06553& -3.2688     & 0.3221      & -2.9467    \\
+\hline
+Dalton (GIAO)       &         &             &             &            \\
+aug-cc-pV6Z         &         &             &             &            \\
+aug-cc-pV5Z         &         &             &             &            \\
+aug-cc-pVQZ         &-76.06412& -3.2898     & 0.3220      & -2.9479    \\
+aug-cc-pVTZ         &-76.05882& -3.2720     & 0.3220      & -2.9500    \\
+aug-cc-pVDZ         &-76.03980& -3.2821     & 0.3248      & -2.9573    \\
+cc-pV6Z	            &         &             &             &            \\
+cc-pV5Z	            &-76.06520& -3.2584     & 0.3234      & -2.9351    \\
+cc-pVQZ	            &-76.06295& -3.2350     & 0.3264      & -2.9087    \\
+cc-pVTZ	            &-76.05536& -3.2047     & 0.3325      & -2.8722    \\
+cc-pVDZ	            &-76.02544& -3.1471     & 0.3568      & -2.7902    \\
+\hline
+\hline
+\end{tabular}
+\end{table}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Nuclear shielding}
+\begin{columns}
+
+\begin{column}[b]{0.5\textwidth}
+\centering
+\textbf{Diamagnetic shielding}
+\begin{equation}
+    \nonumber
+    \hat{h}^{dia} = -\frac{1}{4}\Big(r_O^2\boldsymbol{I} - 
+    \boldsymbol{r}_O\boldsymbol{r}_O^T\Big)
+\end{equation}
+\vspace{2mm}
+\begin{equation}
+    \nonumber
+    \chi^{dia} = \sum_i \int \phi_i \hat{h}^{dia} \phi_i dr
+\end{equation}
+\end{column}
+
+\begin{column}[b]{0.5\textwidth}
+\centering
+\textbf{Paramagnetic shielding}
+\begin{equation}
+    \nonumber
+    \hat{h}^{pso} = -i \boldsymbol{r}_O\times\nabla
+\end{equation}
+\vspace{2mm}
+\begin{equation}
+    \nonumber
+    \chi^{para} = \sum_i \int \phi_i \Big(\hat{h}^{pso} \delta\phi_i\Big)^\dag + 
+    \Big(\hat{h}^{pso}\phi_i\Big)\delta\phi_i^\dag dr
+\end{equation}
+\end{column}
+
+\end{columns}
+\vspace{5mm}
+\centering
+Where the perturbed orbitals $\delta\phi_i$ are obtained using 
+the $\hat{h}^{orb}$ operator.
+\vspace{5mm}
+
+\begin{table}
+\tiny
+\centering
+\begin{tabular}{l|lll|ll}
+\multicolumn{6}{c}{\textbf{Shielding constant (ppm)}}\\
+\hline
+\hline
+                    &$\sigma_{xx}$ &$\sigma_{xz}$&$\sigma_{iso}$ 
+                    &$\sigma_{xx}$ &$\sigma_{iso}$\\
+\hline
+MRChem              &         &         &         &         &         \\
+$\epsilon=10^{-3}$  & 37.5045 & 9.4180  & 29.9332 & 357.5210& 318.9106\\
+$\epsilon=10^{-4}$  & 37.5326 & 9.4862  & 29.9130 & 357.2956& 319.0418\\
+$\epsilon=10^{-5}$  & 37.5532 & 9.5008  & 29.9220 & 357.1585& 319.0446\\
+\hline                                                                
+Dalton (GIAO)       &         &         &         &         &         \\
+aug-cc-pV6Z         &         &         &         &         &         \\
+aug-cc-pV5Z         &         &         &         &         &         \\
+aug-cc-pVQZ         & 37.5831 & 9.4309  & 30.0028 & 357.4613& 319.7300\\
+aug-cc-pVTZ         & 37.6995 & 9.3250  & 30.1715 & 357.3193& 320.0901\\
+aug-cc-pVDZ         & 37.9432 & 8.9067  & 30.6418 & 362.5730& 328.5298\\
+cc-pV6Z	            &         &         &         &         &         \\
+cc-pV5Z	            & 37.5538 & 9.4822  & 29.9489 & 356.3598& 319.7752\\
+cc-pVQZ	            & 37.6077 & 9.5013  & 30.0495 & 356.5344& 322.6689\\
+cc-pVTZ	            & 37.7956 & 9.4816  & 30.2585 & 354.9871& 326.9582\\
+cc-pVDZ	            & 38.1757 & 9.1199  & 30.8304 & 359.0978& 338.6980\\
+\hline
+\hline
+\end{tabular}
+\end{table}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Origin dependence}
+
+\begin{table}
+\tiny
+\centering
+\begin{tabular}{l|ll|lll}
+\multicolumn{6}{c}{\textbf{Helium magnetizability (a.u.)}}\\
+\hline
+\hline
+\multicolumn{6}{c}{}\\
+\multicolumn{1}{l}{Gauge origin}&
+\multicolumn{2}{c}{(0.0, 0.0, 0.0) }&
+\multicolumn{3}{c}{(0.0, 0.0, 5.0) }\\
+\multicolumn{6}{c}{}\\
+\hline
+&
+\multicolumn{1}{c}{$E^{tot}$}&
+\multicolumn{1}{c|}{$\chi^{tot}$}&
+\multicolumn{1}{c}{$\chi^{dia}$}&
+\multicolumn{1}{c}{$\chi^{para}$}&
+\multicolumn{1}{c}{$\chi^{tot}$}\\
+\hline
+MRChem              &         &       &       &      &       \\
+$\epsilon=10^{-3}$  &-2.861643&-0.3951&-8.7284&8.3270&-0.4014\\
+$\epsilon=10^{-4}$  &-2.861662&-0.3949&-8.7283&8.3333&-0.3950\\
+$\epsilon=10^{-5}$  &-2.861630&-0.3950&-8.7283&8.3334&-0.3948\\
+\hline
+Dalton (no GIAO)    &         &       &       &      &       \\
+aug-cc-pV6Z         &-2.861673&-0.3951&-8.7283&8.3292&-0.3991\\
+aug-cc-pV5Z         &-2.861627&-0.3950&-8.7284&8.3222&-0.4062\\
+aug-cc-pVQZ         &-2.861522&-0.3953&-8.7286&8.3157&-0.4129\\
+aug-cc-pVTZ         &-2.861183&-0.3957&-8.7290&8.2806&-0.4484\\
+aug-cc-pVDZ	    &-2.855705&-0.3990&-8.7324&8.0633&-0.6691\\
+\hline
+\hline
+\end{tabular}
+\end{table}
+
 \end{frame}

@@ -2,96 +2,167 @@
     \frametitle{Integral formulation SCF}
     \begin{columns}
     \begin{column}[b]{0.4\textwidth}
+
     \centering
-    The Kohn-Sham equations
+    The Hartree-Fock/Kohn-Sham equations
     \begin{equation}
-	\nonumber
-	\left[-\frac{1}{2}\nabla^2 + v_{eff}(r)\right]
-	\phi_i(r) =\ \epsilon_i \phi_i(r)
+        \nonumber
+        \left[-\frac{1}{2}\nabla^2 + \hat{V}\right]
+        \phi_i(r) =\ \epsilon_i \phi_i(r)
     \end{equation}
-    \ \\
-    \ \\
-    \ \\
+
+    \vspace{5mm}
     can be reorganized
     \begin{equation}
-	\nonumber
-	\left[-\nabla^2 - 2\epsilon_i\right]\phi_i(r) =\ 
-	-2v_{eff}(r)\phi_i(r)
+        \nonumber
+        \left[-\nabla^2 - 2\epsilon_i\right]\phi_i(r) =\ 
+        -2\hat{V}\phi_i(r)
     \end{equation}
-    \ \\
-    \ \\
-    \ \\
+
+    \vspace{5mm}
     inverted to integral form
     \begin{equation}
-	\nonumber
-	\phi_i(r) =\ -2\int G(r-r')\
-	    \Big[v_{eff}(r') \phi_i(r')\Big] dr'
+        \nonumber
+        \phi_i(r) =\ -2\int G(r-r')\
+        \Big[\hat{V} \phi_i(r')\Big] dr'
     \end{equation}
-    \ \\
-    \ \\
-    \ \\
+
+    \vspace{5mm}
     and solved iteratively
     \begin{equation}
-	\nonumber
-	\phi_i^{n+1} =\ -2\hat{G}\left[v_{eff}^n\phi_i^n\right]
+        \nonumber
+        \phi_i^{n+1} =\ -2\hat{G}\left[\hat{V}^n\phi_i^n\right]
     \end{equation}
-    \ \\
-    \ \\
-    \ \\
-    Standard iterative subspace acceleration techniques (KAIN or DIIS) can be applied
-    \ \\
-    \ \\
-    \ \\
-    \ \\
+
+    \vspace{5mm}
+    Standard iterative subspace acceleration 
+    techniques (KAIN or DIIS) can be applied
+    \vspace{5mm}
     \end{column}
+
     \begin{column}[b]{0.6\textwidth}
     \begin{figure}
-	\includegraphics[scale=0.2, clip, viewport = 100 450 400 720]{figures/methane.pdf}
-	\includegraphics[scale=0.3, clip, viewport = 320 200 520 400]{figures/methaneGrid.pdf}
+        \includegraphics[scale=0.2, clip, viewport = 100 450 400 720]
+        {figures/methane.pdf}
+        \includegraphics[scale=0.3, clip, viewport = 320 200 520 400]
+        {figures/methaneGrid.pdf}
     \end{figure}
+
     \begin{figure}
-	\includegraphics[scale=0.6, clip, viewport = 50 350 300 540]{figures/convergence.pdf}
+        \includegraphics[scale=0.6, clip, viewport = 50 350 300 540]
+        {figures/convergence.pdf}
     \end{figure}
+
     \end{column}
     \end{columns}
 \end{frame}
 
+
+
 \begin{frame}
-    \frametitle{Integral formulation}
+    \frametitle{Orbital localization}
     \centering
-    The Kohn-Sham equations
+    The Foster-Boys algorithm calculates the unitary transformation \\
+    that maximizes the separation between orbitals by the measure
     \begin{equation}
 	\nonumber
-	\left[-\frac{1}{2}\nabla^2 + v_{eff}(\boldsymbol{r})\right]
-	\phi_i(\boldsymbol{r}) =\ \epsilon_i \phi(\boldsymbol{r})
+	L = \sum_{i}^{N_{occ}} \Big(
+		\langle\phi_i|r_x|\phi_i\rangle^2 + 
+		\langle\phi_i|r_y|\phi_i\rangle^2 + 
+		\langle\phi_i|r_z|\phi_i\rangle^2 \Big)
     \end{equation}
-    \ \\
-    \ \\
-    \ \\
-    \ \\
-    \pause
-    can be expressed in integral form
-    \begin{equation}
-	\nonumber
-	\phi_i(\boldsymbol{r}) =\ -2\int H^{\mu}(\boldsymbol{r}-\boldsymbol{r}')\
-	    \Big[v_{eff}(\boldsymbol{r}') \phi_i(\boldsymbol{r}')\Big] d\boldsymbol{r}'
-    \end{equation}
-    \ \\
-    \ \\
-    \ \\
-    \ \\
-    \pause
-    and solved iteratively
-    \begin{equation}
-	\nonumber
-	\phi_i^{n+1} =\ -2\hat{H}\left[v_{eff}^n\phi_i^n\right]
-    \end{equation}
-    \ \\
-    \ \\
-    \ \\
-    \ \\
-    standard iterative subspace acceleration techniques (KAIN or DIIS) can be applied
+    \begin{columns}
+    \begin{column}[b]{0.48\linewidth}
+    \begin{center}
+    \only<1>{\includegraphics[scale=0.3, clip, viewport = 80 260 600 400]
+        {figures/alkane.pdf}}
+    \only<2,3>{\includegraphics[scale=0.3, clip, viewport = 80 560 600 700]
+        {figures/alkane.pdf}}
+    \only<1>{\includegraphics[scale=0.3, clip, viewport = 80 260 600 400]
+        {figures/can_orb_1.pdf}}
+    \only<2,3>{\includegraphics[scale=0.3, clip, viewport = 80 560 600 700]
+        {figures/can_orb_1.pdf}}
+    \only<1>{\includegraphics[scale=0.3, clip, viewport = 80 260 600 400]
+        {figures/can_orb_2.pdf}}
+    \only<2,3>{\includegraphics[scale=0.3, clip, viewport = 80 560 600 700]
+        {figures/can_orb_2.pdf}}
+    \end{center}
+    \end{column}
+    \begin{column}[b]{0.48\linewidth}
+    \begin{center}
+    \only<3>{\includegraphics[scale=0.3, clip, viewport = 80 560 600 700]
+        {figures/loc_orb_1.pdf}\\}
+    \only<3>{\includegraphics[scale=0.3, clip, viewport = 80 560 600 700]
+        {figures/loc_orb_2.pdf}\\}
+    \only<3>{\includegraphics[scale=0.3, clip, viewport = 80 560 600 700]
+        {figures/loc_orb_3.pdf}}
+    \end{center}
+    \end{column}
+    \end{columns}
 \end{frame}
+
+
+\begin{frame}
+    \frametitle{Calculation of Fock matrix}
+    \begin{columns}
+    \begin{column}[b]{0.55\textwidth}
+    \centering
+    We can solve directly for the localized MOs by introducing the
+    (non-diagonal) Fock matrix into the HF/KS equations
+    \begin{equation}
+        \nonumber
+        \phi_i^{n+1} =\ -2\hat{G}\left[\hat{V}^n\phi_i^n - 
+            \sum_{j\neq i} F^n_{ij}\phi_j^n\right]
+    \end{equation}
+
+    \vspace{5mm}
+    where we have the Fock matrix
+    \begin{equation}
+        \nonumber
+        F_{ij} = \langle \phi_i | \hat{T} + \hat{V} | \phi_j \rangle
+    \end{equation}
+
+    \vspace{5mm}
+    The kinetic part can be calculated using first order \\
+    differential operators
+    \begin{equation}
+        \nonumber
+        T_{ij} =
+        \langle \phi_i | -\frac{1}{2}\nabla^2 | \phi_j \rangle = 
+        \frac{1}{2}\langle \nabla \phi_i | \nabla \phi_j \rangle 
+    \end{equation}
+
+    \pause
+    \vspace{5mm}
+    or we can compute the (exact) Fock matrix at a given iteration without any 
+    reference to the kinetic energy operator
+    \begin{align}
+        \nonumber
+        F^{n+1} &= \tilde{S}^n F^{n} + \Delta F_{pot}^n\\
+        \nonumber
+        \tilde{S}^n &= \langle \phi_i^{n+1} | \phi_j^n \rangle\\
+        \nonumber
+        \Delta F_{pot}^n
+        &= \langle \phi_i^{n+1} | \hat{V}^n | \Delta\phi_j^n \rangle
+        + \langle \phi_i^{n+1} | \Delta\hat{V}^n | \phi_j^n \rangle
+    \end{align}
+
+    \end{column}
+
+    \begin{column}[b]{0.45\textwidth}
+    \begin{figure}
+	\includegraphics[scale=0.5, clip, viewport = 50 550 300 740]
+                {figures/accuracy.pdf}
+    \end{figure}
+    \begin{figure}
+	\includegraphics[scale=0.5, clip, viewport = 300 550 550 740]
+                {figures/accuracy.pdf}
+    \end{figure}
+
+    \end{column}
+    \end{columns}
+\end{frame}
+
 
 %\begin{frame}
 %    \frametitle{Hydrogen atom}
@@ -126,192 +197,155 @@
 %    \end{column}
 %    \end{columns}    
 %    \begin{center}
-%	\includegraphics[scale=0.6, clip, viewport = 50 550 540 730]{figures/convergence.pdf}
+%	\includegraphics[scale=0.6, clip, viewport = 50 550 540 730]
+%       {figures/convergence.pdf}
 %    \end{center}
 %\end{frame}
 
 %\begin{frame}
 %    \frametitle{Hydrogen atom}
-%    \only<1>{\includegraphics[viewport = 50 430 300 640, clip, scale=1.2]{figures/s1Orb_1.pdf}}
-%    \only<2>{\includegraphics[viewport = 50 430 300 640, clip, scale=1.2]{figures/s1Orb_2.pdf}}
-%    \only<3>{\includegraphics[viewport = 50 430 300 640, clip, scale=1.2]{figures/s1Orb_3.pdf}}
-%    \only<4>{\includegraphics[viewport = 50 430 300 640, clip, scale=1.2]{figures/s1Orb_4.pdf}}
-%    \only<5>{\includegraphics[viewport = 50 430 300 640, clip, scale=1.2]{figures/s1Orb_5.pdf}}
-%    \only<6>{\includegraphics[viewport = 50 430 300 640, clip, scale=1.2]{figures/s1Orb_10.pdf}}
+%    \only<1>{\includegraphics[viewport = 50 430 300 640, clip, scale=1.2]
+%       {figures/s1Orb_1.pdf}}
+%    \only<2>{\includegraphics[viewport = 50 430 300 640, clip, scale=1.2]
+%       {figures/s1Orb_2.pdf}}
+%    \only<3>{\includegraphics[viewport = 50 430 300 640, clip, scale=1.2]
+%       {figures/s1Orb_3.pdf}}
+%    \only<4>{\includegraphics[viewport = 50 430 300 640, clip, scale=1.2]
+%       {figures/s1Orb_4.pdf}}
+%    \only<5>{\includegraphics[viewport = 50 430 300 640, clip, scale=1.2]
+%       {figures/s1Orb_5.pdf}}
+%    \only<6>{\includegraphics[viewport = 50 430 300 640, clip, scale=1.2]
+%       {figures/s1Orb_10.pdf}}
 %\end{frame}
 
-\begin{frame}
-    \frametitle{Many-electron systems}
-    \begin{columns}
-    \begin{column}[b]{0.1\textwidth}
-    \ \\
-    \end{column}
-    \begin{column}[b]{0.4\textwidth}
-    \centering
-    Density
-    \begin{equation}
-	\nonumber
-	\rho^n(\boldsymbol{r}) = \sum_i |\phi_i^n(\boldsymbol{r})|^2
-    \end{equation}
-    \end{column}
-    \begin{column}[b]{0.4\textwidth}
-    \centering
-    Potentials
-    \begin{equation}   
-	\nonumber
-	\rho^n(\boldsymbol{r}) \rightarrow v_{eff}^n(\boldsymbol{r})
-    \end{equation}
-    \end{column}
-    \begin{column}[b]{0.1\textwidth}
-    \ \\
-    \end{column}
-    \end{columns}
-    \ \\
-    \ \\
-    \begin{columns}
-    \begin{column}[b]{0.1\textwidth}
-    \ \\
-    \end{column}
-    \begin{column}[b]{0.4\textwidth}
-    \centering
-    Power iteration
-    \begin{equation}
-	\nonumber
-	\tilde{\phi}_i^n = -2\hat{H}\left[v_{eff}^n\phi_i^n\right]
-    \end{equation}
-    \end{column}
-    \begin{column}[b]{0.4\textwidth}
-    \centering
-    Calculate updates
-    \begin{equation}
-	\nonumber
-	\Delta\phi^n = \tilde{\phi}^n - \phi^n
-    \end{equation}
-    \end{column}
-    \begin{column}[b]{0.1\textwidth}
-    \ \\
-    \end{column}
-    \end{columns}
-    \ \\
-    \ \\
-    \pause
-    \only<1,2>{
-    \centering
-    \ \\
-    \textbf{Complicating issues}
-    \ \\
-    \begin{columns}
-    \begin{column}[b]{0.25\textwidth}
-    \ \\
-    \end{column}
-    \begin{column}[b]{0.75\textwidth}
-    \begin{itemize}
-	\item	Straightforward iteration will bring all\\ 
-		orbitals to the lowest energy eigenfunction
-	\item	Orthonormality must be imposed
-	\item	Achieved by diagonalizing the Fock matrix 
-    \end{itemize}
-    \end{column}
-    \end{columns}
-    \begin{equation}
-        \nonumber
-        F_{ij} = \left<\phi_i|\hat{T} + v_{eff}|\phi_j\right>
-    \end{equation}
-    \ \\
-    \ \\
-    \ \\
-    \ \\
-    }
-    \only<3,4,5>{
-    \centering
-    Compute Fock matrix update
-    \begin{equation}
-	\nonumber
-	\Delta F_{ij}^n = \left<\tilde{\phi}_i^n|v_{eff}^n |\Delta\phi_j^n\right>
-			    + \left<\tilde{\phi}_i^n|\Delta v_{eff}^n|\phi_j^n\right>
-    \end{equation}
-    \ \\
-    \ \\
-    \ \\
-    \pause
-    \pause
-    \begin{columns}
-    \begin{column}[b]{0.1\textwidth}
-    \ \\
-    \end{column}
-    \begin{column}[b]{0.4\textwidth}
-    \centering
-    Diagonalize matrix
-    \begin{equation}
-	\nonumber
-	F^{n+1} = M^{-1}\tilde{F}^nM
-    \end{equation}
-    \end{column}
-    \begin{column}[b]{0.4\textwidth}
-    \centering
-    Rotate orbitals
-    \begin{equation}
-	\nonumber
-	\phi_i^{n+1} = \sum_jM^{-1}_{ij}\tilde{\phi}_j^n
-    \end{equation}
-    \end{column}
-    \begin{column}[b]{0.1\textwidth}
-    \ \\
-    \end{column}
-    \end{columns}
-    \ \\
-    \ \\
-    \pause
-    Compute iterative subspace acceleration (KAIN or DIIS)\\
-    \ \\
-    Orthonormalize\\
-    \ \\
-    }
-\end{frame}
-
-\begin{frame}
-    \frametitle{Many-electron systems}
-    \begin{columns}
-    \begin{column}[b]{0.20\linewidth}
-	\ \\
-	\ \\
-    \end{column}
-    \begin{column}[b]{0.30\linewidth}
-    \begin{figure}
-	\centering
-	\includegraphics[scale=0.2, clip, viewport = 60 450 600 720]{figures/methane.pdf}\\
-	\ \\
-	\ \\
-    \end{figure}
-    \end{column}
-    \begin{column}[b]{0.50\linewidth}
-    \begin{figure}
-	\begin{center}
-	\includegraphics[scale=0.45, clip, viewport = 320 200 520 400]{figures/methaneGrid.pdf}\\
-	\end{center}
-    \end{figure}
-    \end{column}
-    \end{columns}
-    \begin{center}
-	\includegraphics[scale=0.6, clip, viewport = 50 350 550 540]{figures/convergence.pdf}
-    \end{center}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Many-electron systems}
-    \centering
-    Overall accuracy kept at $\epsilon = 10^{-6}$
-    \begin{center}
-	\includegraphics[scale=0.6, clip, viewport = 50 550 550 740]{figures/accuracy.pdf}
-    \end{center}
-    \ \\
-    \ \\
-    \ \\
-    \begin{itemize}
-	\item All orbitals of all atoms converge within the requested precision
-	\item Energies are an order of magnitude more accurate than the orbitals
-    \end{itemize}
-\end{frame}
+%\begin{frame}
+%    \frametitle{Many-electron systems}
+%    \begin{columns}
+%    \begin{column}[b]{0.1\textwidth}
+%    \ \\
+%    \end{column}
+%    \begin{column}[b]{0.4\textwidth}
+%    \centering
+%    Density
+%    \begin{equation}
+%	\nonumber
+%	\rho^n(\boldsymbol{r}) = \sum_i |\phi_i^n(\boldsymbol{r})|^2
+%    \end{equation}
+%    \end{column}
+%    \begin{column}[b]{0.4\textwidth}
+%    \centering
+%    Potentials
+%    \begin{equation}   
+%	\nonumber
+%	\rho^n(\boldsymbol{r}) \rightarrow v_{eff}^n(\boldsymbol{r})
+%    \end{equation}
+%    \end{column}
+%    \begin{column}[b]{0.1\textwidth}
+%    \ \\
+%    \end{column}
+%    \end{columns}
+%    \ \\
+%    \ \\
+%    \begin{columns}
+%    \begin{column}[b]{0.1\textwidth}
+%    \ \\
+%    \end{column}
+%    \begin{column}[b]{0.4\textwidth}
+%    \centering
+%    Power iteration
+%    \begin{equation}
+%	\nonumber
+%	\tilde{\phi}_i^n = -2\hat{H}\left[v_{eff}^n\phi_i^n\right]
+%    \end{equation}
+%    \end{column}
+%    \begin{column}[b]{0.4\textwidth}
+%    \centering
+%    Calculate updates
+%    \begin{equation}
+%	\nonumber
+%	\Delta\phi^n = \tilde{\phi}^n - \phi^n
+%    \end{equation}
+%    \end{column}
+%    \begin{column}[b]{0.1\textwidth}
+%    \ \\
+%    \end{column}
+%    \end{columns}
+%    \ \\
+%    \ \\
+%    \pause
+%    \only<1,2>{
+%    \centering
+%    \ \\
+%    \textbf{Complicating issues}
+%    \ \\
+%    \begin{columns}
+%    \begin{column}[b]{0.25\textwidth}
+%    \ \\
+%    \end{column}
+%    \begin{column}[b]{0.75\textwidth}
+%    \begin{itemize}
+%	\item	Straightforward iteration will bring all\\ 
+%		orbitals to the lowest energy eigenfunction
+%	\item	Orthonormality must be imposed
+%	\item	Achieved by diagonalizing the Fock matrix 
+%    \end{itemize}
+%    \end{column}
+%    \end{columns}
+%    \begin{equation}
+%        \nonumber
+%        F_{ij} = \left<\phi_i|\hat{T} + v_{eff}|\phi_j\right>
+%    \end{equation}
+%    \ \\
+%    \ \\
+%    \ \\
+%    \ \\
+%    }
+%    \only<3,4,5>{
+%    \centering
+%    Compute Fock matrix update
+%    \begin{equation}
+%	\nonumber
+%	\Delta F_{ij}^n = \left<\tilde{\phi}_i^n|v_{eff}^n |\Delta\phi_j^n\right>
+%			    + \left<\tilde{\phi}_i^n|\Delta v_{eff}^n|\phi_j^n\right>
+%    \end{equation}
+%    \ \\
+%    \ \\
+%    \ \\
+%    \pause
+%    \pause
+%    \begin{columns}
+%    \begin{column}[b]{0.1\textwidth}
+%    \ \\
+%    \end{column}
+%    \begin{column}[b]{0.4\textwidth}
+%    \centering
+%    Diagonalize matrix
+%    \begin{equation}
+%	\nonumber
+%	F^{n+1} = M^{-1}\tilde{F}^nM
+%    \end{equation}
+%    \end{column}
+%    \begin{column}[b]{0.4\textwidth}
+%    \centering
+%    Rotate orbitals
+%    \begin{equation}
+%	\nonumber
+%	\phi_i^{n+1} = \sum_jM^{-1}_{ij}\tilde{\phi}_j^n
+%    \end{equation}
+%    \end{column}
+%    \begin{column}[b]{0.1\textwidth}
+%    \ \\
+%    \end{column}
+%    \end{columns}
+%    \ \\
+%    \ \\
+%    \pause
+%    Compute iterative subspace acceleration (KAIN or DIIS)\\
+%    \ \\
+%    Orthonormalize\\
+%    \ \\
+%    }
+%\end{frame}
 
 \begin{frame}
 \frametitle{Accurate calculations}
@@ -323,7 +357,9 @@ LDA energies in atomic units (Hartree)
     \begin{tabular}{lr@{.}lr@{.}lr@{.}lr@{.}lr@{.}lr@{.}l}
     \hline
     \hline
-    &\multicolumn{4}{c}{Helium}&\multicolumn{4}{c}{Neon}&\multicolumn{4}{c}{Argon}\\
+    &\multicolumn{4}{c}{Helium}
+    &\multicolumn{4}{c}{Neon}
+    &\multicolumn{4}{c}{Argon}\\
     &\multicolumn{2}{c}{HOMO}&\multicolumn{2}{c}{Total}
     &\multicolumn{2}{c}{HOMO}&\multicolumn{2}{c}{Total}
     &\multicolumn{2}{c}{HOMO}&\multicolumn{2}{c}{Total}\\
@@ -350,98 +386,14 @@ aug-cc-pVDZ		&-0&569386&-2&8291516&-0&498201&-128&176831&-0&382143&-525&915702\\
 \ \\
 \ \\
 \begin{itemize}
-    \item   We are able to attain \textbf{considerably higher} accuracy than high-quality 
-	    Gaussian basis sets
-    \item   Energies are not variational, but \textbf{basis set limit} within the requested 
-	    precision
+    \item   We are able to attain \textbf{considerably higher} accuracy than 
+            high-quality Gaussian basis sets
+    \item   Energies are not variational, but \textbf{basis set limit} within 
+            the requested precision
     \item   Calculations are still more expensive than conventional methods
 \end{itemize}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Orbital localization}
-    \centering
-    Total energy invariant under unitary transformations among occupied orbitals
-    \begin{equation}
-	\nonumber
-	\phi_i(\boldsymbol{r}) = \sum_j U_{ji}^\ast \phi_i(\boldsymbol{r}), 
-	\qquad \qquad U^\ast U = UU^\ast = I
-    \end{equation}
-    Possible to find matrix $U$ that leads to localized orbitals\\
-    \begin{columns}
-    \begin{column}[b]{0.48\linewidth}
-    \begin{center}
-\only<1>{\includegraphics[scale=0.3, clip, viewport = 80 260 600 400]{figures/alkane.pdf}}
-\only<2,3>{\includegraphics[scale=0.3, clip, viewport = 80 560 600 700]{figures/alkane.pdf}}
-\only<1>{\includegraphics[scale=0.3, clip, viewport = 80 260 600 400]{figures/can_orb_1.pdf}}
-\only<2,3>{\includegraphics[scale=0.3, clip, viewport = 80 560 600 700]{figures/can_orb_1.pdf}}
-\only<1>{\includegraphics[scale=0.3, clip, viewport = 80 260 600 400]{figures/can_orb_2.pdf}}
-\only<2,3>{\includegraphics[scale=0.3, clip, viewport = 80 560 600 700]{figures/can_orb_2.pdf}}
-    \end{center}
-    \end{column}
-    \begin{column}[b]{0.48\linewidth}
-    \begin{center}
-\only<3>{\includegraphics[scale=0.3, clip, viewport = 80 560 600 700]{figures/loc_orb_1.pdf}\\}
-\only<3>{\includegraphics[scale=0.3, clip, viewport = 80 560 600 700]{figures/loc_orb_2.pdf}\\}
-\only<3>{\includegraphics[scale=0.3, clip, viewport = 80 560 600 700]{figures/loc_orb_3.pdf}}
-    \end{center}
-    \end{column}
-    \end{columns}
-\end{frame}
-
-%\begin{frame}
-%\frametitle{Orbital localization}
-%    \centering
-%    Number of iterations required to converge the orbitals to $\epsilon_r \leq 10^{-4}$
-%\begin{table}
-%\tiny
-%\centering
-%\begin{tabular}{lcrrrrrrrr}
-%\hline
-%\hline
-%	    &		&\multicolumn{8}{c}{Size $m$ of KAIN history}\\
-%Molecule    & N orbitals&  0	&  1    &  2    &  3    &  4    &  5    &  6    &  7    \\
-%\hline      &   	&       &       &       &       &       &       &       &       \\
-%&&\multicolumn{8}{c}{Canonical orbitals}\\
-%$C_{ 1}H_{ 4}$	&  5    &  8    &  8    &  7    &  6    &  6    &  6    &  6    &  6    \\ 
-%$C_{ 2}H_{ 6}$	&  9    &  9    &  8    &  7    &  7    &  7    &  7    &  7    &  7    \\ 
-%$C_{ 4}H_{10}$	& 17    & 17    & 15    & 10    &  9    & 10    & 10    & 10    & 10    \\
-%$C_{ 6}H_{14}$	& 25	& 36    & 23    & 13    & 12    & 11    & 11    & 11    & 11    \\
-%              	&   	&       &       &       &       &       &       &       &       \\
-%&&\multicolumn{8}{c}{Localized orbitals}\\
-%$C_{ 1}H_{ 4}$	&  5	&  9    &  9    &  7    &  7    &  7    &  7    &  7    &  7    \\ 
-%$C_{ 2}H_{ 6}$	&  9	& 10    & 10    &  8    &  8    &  8    &  8    &  8    &  8    \\ 
-%$C_{ 4}H_{10}$	& 17	& 13    & 12    &  9    &  9    &  9    &  9    &  9    &  9    \\
-%$C_{ 6}H_{14}$	& 25	& 14    & 11    &  9    & 10    &  9    &  9    &  9    &  9    \\
-%$C_{ 8}H_{18}$	& 33	& 11    & 10    &  8    &  9    &  8    &  8    &  8    &  8    \\
-%$C_{10}H_{22}$	& 41	& 11    & 11    &  9    &  9    &  8    &  8    &  8    &  8    \\
-%              	&   	&       &       &       &       &       &       &       &       \\
-%\hline
-%\hline
-%\end{tabular}
-%\end{table}
-%\ \\
-%\ \\
-%\ \\
-%\begin{columns}
-%\begin{column}{0.5\textwidth}
-%\ \ \ \ \textbf{Canonical orbitals}
-%\begin{itemize}
-%    \item more efficient for small molecules
-%    \item power iteration deteriorates for bigger systems
-%    \item subspace acceleration required
-%\end{itemize}
-%\end{column}
-%\begin{column}{0.5\textwidth}
-%\ \ \ \ \textbf{Localized orbitals}
-%\begin{itemize}
-%    \item more efficient for bigger systems
-%    \item power iteration unaffected by system size
-%    \item subspace acceleration not required
-%\end{itemize}
-%\end{column}
-%\end{columns}
-%\end{frame}
 
 %\begin{frame}
 %    \frametitle{Accurate calculations}
