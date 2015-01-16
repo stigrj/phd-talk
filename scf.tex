@@ -1,7 +1,7 @@
 \begin{frame}
     \frametitle{Integral formulation SCF}
     \begin{columns}
-    \begin{column}[b]{0.4\textwidth}
+    \begin{column}[b]{0.45\textwidth}
 
     \centering
     The Hartree-Fock/Kohn-Sham equations
@@ -15,23 +15,24 @@
     can be reorganized
     \begin{equation}
         \nonumber
-        \left[-\nabla^2 - 2\epsilon_i\right]\phi_i(r) =\ 
-        -2\hat{V}\phi_i(r)
+        \left[-\nabla^2 - 2\lambda_i\right]\phi_i(r) =\ 
+        -2\hat{V}\phi_i(r) + 2(\epsilon_i - \lambda_i)\phi_i(r)
     \end{equation}
 
     \vspace{5mm}
     inverted to integral form
     \begin{equation}
         \nonumber
-        \phi_i(r) =\ -2\int G(r-r')\
-        \Big[\hat{V} \phi_i(r')\Big] dr'
+        \phi_i(r) =\ -2\int H(r-r')\
+        \Big[\hat{V} \phi_i(r') - (\epsilon_i - \lambda_i)\phi_i(r')\Big] dr'
     \end{equation}
 
     \vspace{5mm}
     and solved iteratively
     \begin{equation}
         \nonumber
-        \phi_i^{n+1} =\ -2\hat{G}\left[\hat{V}^n\phi_i^n\right]
+        \phi_i^{n+1} =\ -2\hat{H}\left[\hat{V}^n\phi_i^n
+        - (\epsilon^n_i - \lambda^n_i)\phi_i^n\right]
     \end{equation}
 
     \vspace{5mm}
@@ -40,7 +41,7 @@
     \vspace{5mm}
     \end{column}
 
-    \begin{column}[b]{0.6\textwidth}
+    \begin{column}[b]{0.55\textwidth}
     \begin{figure}
         \includegraphics[scale=0.2, clip, viewport = 100 450 400 720]
         {figures/methane.pdf}
@@ -55,50 +56,85 @@
 
     \end{column}
     \end{columns}
+    \centering
+    \vspace{2mm}
+    \tiny
+    M.H. Kalos, 
+    {\it Physical Review}, 
+    \textbf{128(4)}
+    (1962)\\
+    R.J. Harrison, G.I. Fann, T. Yanai, Z. Gan, and G. Beylkin, 
+    {\it J Chem Phys}, 
+    \textbf{121}
+    (2004)
 \end{frame}
 
 
 
 \begin{frame}
     \frametitle{Orbital localization}
-    \centering
-    The Foster-Boys algorithm calculates the unitary transformation \\
-    that maximizes the separation between orbitals by the measure
-    \begin{equation}
-	\nonumber
-	L = \sum_{i}^{N_{occ}} \Big(
-		\langle\phi_i|r_x|\phi_i\rangle^2 + 
-		\langle\phi_i|r_y|\phi_i\rangle^2 + 
-		\langle\phi_i|r_z|\phi_i\rangle^2 \Big)
-    \end{equation}
     \begin{columns}
     \begin{column}[b]{0.48\linewidth}
     \begin{center}
-    \only<1>{\includegraphics[scale=0.3, clip, viewport = 80 260 600 400]
-        {figures/alkane.pdf}}
-    \only<2,3>{\includegraphics[scale=0.3, clip, viewport = 80 560 600 700]
-        {figures/alkane.pdf}}
-    \only<1>{\includegraphics[scale=0.3, clip, viewport = 80 260 600 400]
-        {figures/can_orb_1.pdf}}
-    \only<2,3>{\includegraphics[scale=0.3, clip, viewport = 80 560 600 700]
-        {figures/can_orb_1.pdf}}
-    \only<1>{\includegraphics[scale=0.3, clip, viewport = 80 260 600 400]
-        {figures/can_orb_2.pdf}}
-    \only<2,3>{\includegraphics[scale=0.3, clip, viewport = 80 560 600 700]
-        {figures/can_orb_2.pdf}}
+    \textbf{Canonical}
+    \begin{equation}
+        \nonumber
+        \phi_i^{n+1} =\ -2\hat{H}\Bigg[\hat{V}^n\phi_i^n
+        - (\epsilon^n_i - \lambda^n_i)\phi_i^n\Bigg]
+    \end{equation}
+
+    \vspace{8mm}
+
+    \includegraphics[scale=0.3, clip, viewport = 80 560 600 700]
+        {figures/alkane.pdf}\\
+    \includegraphics[scale=0.3, clip, viewport = 80 560 600 700]
+        {figures/can_orb_1.pdf}\\
+    \includegraphics[scale=0.3, clip, viewport = 80 560 600 700]
+        {figures/can_orb_2.pdf}
     \end{center}
     \end{column}
+
     \begin{column}[b]{0.48\linewidth}
     \begin{center}
-    \only<3>{\includegraphics[scale=0.3, clip, viewport = 80 560 600 700]
+    \only<2>{
+    \textbf{Localized}
+    \begin{equation}
+        \nonumber
+        \phi_i^{n+1} =\ -2\hat{H}\Bigg[\hat{V}^n\phi_i^n
+        - \sum_j(F^n_{ij} - \Lambda^n_{ij})\phi_j^n\Bigg]
+    \end{equation}
+    }
+
+    \vspace{8mm}
+
+    %\only<1>{\includegraphics[scale=0.3, clip, viewport = 80 160 600 300]
+        %{figures/loc_orb_1.pdf}\\}
+    %\only<1>{\includegraphics[scale=0.3, clip, viewport = 80 160 600 300]
+        %{figures/loc_orb_2.pdf}\\}
+    %\only<1>{\includegraphics[scale=0.3, clip, viewport = 80 160 600 300]
+        %{figures/loc_orb_3.pdf}}
+    \only<2>{\includegraphics[scale=0.3, clip, viewport = 80 560 600 700]
         {figures/loc_orb_1.pdf}\\}
-    \only<3>{\includegraphics[scale=0.3, clip, viewport = 80 560 600 700]
+    \only<2>{\includegraphics[scale=0.3, clip, viewport = 80 560 600 700]
         {figures/loc_orb_2.pdf}\\}
-    \only<3>{\includegraphics[scale=0.3, clip, viewport = 80 560 600 700]
+    \only<2>{\includegraphics[scale=0.3, clip, viewport = 80 560 600 700]
         {figures/loc_orb_3.pdf}}
     \end{center}
     \end{column}
     \end{columns}
+    \only<1,2>{
+    \vspace{5mm}
+    \centering
+    \tiny
+    S.F. Boys,
+    {\it Rev. Mod. Phys.}, 
+    \textbf{32:296}
+    (1960)\\
+    J.M. Foster, S.F. Boys,
+    {\it Rev. Mod. Phys.}, 
+    \textbf{32:300}
+    (1960)
+    }
 \end{frame}
 
 
@@ -107,22 +143,14 @@
     \begin{columns}
     \begin{column}[b]{0.55\textwidth}
     \centering
-    We can solve directly for the localized MOs by introducing the
-    (non-diagonal) Fock matrix into the HF/KS equations
-    \begin{equation}
-        \nonumber
-        \phi_i^{n+1} =\ -2\hat{G}\left[\hat{V}^n\phi_i^n - 
-            \sum_{j\neq i} F^n_{ij}\phi_j^n\right]
-    \end{equation}
-
-    \vspace{5mm}
-    where we have the Fock matrix
+    We need to calculate the Fock matrix
     \begin{equation}
         \nonumber
         F_{ij} = \langle \phi_i | \hat{T} + \hat{V} | \phi_j \rangle
     \end{equation}
 
     \vspace{5mm}
+
     The kinetic part can be calculated using first order \\
     differential operators
     \begin{equation}
@@ -132,20 +160,30 @@
         \frac{1}{2}\langle \nabla \phi_i | \nabla \phi_j \rangle 
     \end{equation}
 
+    \vspace{8mm}
     \pause
-    \vspace{5mm}
-    or we can compute the (exact) Fock matrix at a given iteration without any 
-    reference to the kinetic energy operator
+
+    But we can also compute the \textbf{exact} Fock matrix at a given iteration 
+    without any reference to the kinetic energy operator
+
     \begin{align}
         \nonumber
-        F^{n+1} &= \tilde{S}^n F^{n} + \Delta F_{pot}^n\\
+        F^{n+1}    &= F^n + \Delta F^n\\
         \nonumber
-        \tilde{S}^n &= \langle \phi_i^{n+1} | \phi_j^n \rangle\\
+        \Delta F^n &= \Delta S_1^nF^{n}+\Delta S_2^n\Lambda^n+\Delta F_{pot}^n\\
         \nonumber
-        \Delta F_{pot}^n
+        & \\
+        \nonumber
+        (\Delta S_1^n)_{ij} &= \langle \Delta \phi_i^n | \phi_j^n \rangle\\
+        \nonumber
+        (\Delta S_2^n)_{ij} &= \langle \phi_i^{n+1} | \Delta \phi_j^n \rangle\\
+        \nonumber
+        (\Delta F_{pot}^n)_{ij}
         &= \langle \phi_i^{n+1} | \hat{V}^n | \Delta\phi_j^n \rangle
         + \langle \phi_i^{n+1} | \Delta\hat{V}^n | \phi_j^n \rangle
     \end{align}
+
+    \vspace{2mm}
 
     \end{column}
 
@@ -350,41 +388,40 @@
 \begin{frame}
 \frametitle{Accurate calculations}
 \centering
-LDA energies in atomic units (Hartree)
 \begin{table}
-    \tiny
     \centering
-    \begin{tabular}{lr@{.}lr@{.}lr@{.}lr@{.}lr@{.}lr@{.}l}
+    \begin{tabular}{lr@{.}lr@{.}l}
+    \multicolumn{5}{c}{\textbf{LDA energy of Argon (a.u.)}}\\
     \hline
     \hline
-    &\multicolumn{4}{c}{Helium}
-    &\multicolumn{4}{c}{Neon}
-    &\multicolumn{4}{c}{Argon}\\
-    &\multicolumn{2}{c}{HOMO}&\multicolumn{2}{c}{Total}
-    &\multicolumn{2}{c}{HOMO}&\multicolumn{2}{c}{Total}
-    &\multicolumn{2}{c}{HOMO}&\multicolumn{2}{c}{Total}\\
-    \hline
-    &\multicolumn{4}{c}{}&\multicolumn{4}{c}{}&\multicolumn{4}{c}{}\\
-MRChem $\epsilon=10^{-3}$&-0&570467&-2&8348568&-0&496833&-128&262186&-0&387692&-525&966790\\
-MRChem $\epsilon=10^{-5}$&-0&570424&-2&8348352&-0&498035&-128&233472&-0&382348&-525&946109\\
-MRChem $\epsilon=10^{-7}$&-0&570425&-2&8348836&-0&498034&-128&233481&-0&382330&-525&946196\\
-&\multicolumn{4}{c}{}&\multicolumn{4}{c}{}&\multicolumn{4}{c}{}\\
-NIST			&-0&570425&-2&8348836&-0&498034&-128&233481&-0&382330&-525&946195\\
-&\multicolumn{4}{c}{}&\multicolumn{4}{c}{}&\multicolumn{4}{c}{}\\
-aug-cc-pV6Z		&-0&570424&-2&8348289&-0&498027&-128&233402&-0&382323&-525&944181\\
-aug-cc-pV5Z		&-0&570417&-2&8347859&-0&498059&-128&232889&-0&382388&-525&942021\\
-aug-cc-pVQZ		&-0&570406&-2&8346891&-0&498302&-128&229212&-0&382463&-525&938021\\
-aug-cc-pVTZ	        &-0&570260&-2&8343489&-0&498859&-128&218459&-0&382838&-525&933682\\
-aug-cc-pVDZ		&-0&569386&-2&8291516&-0&498201&-128&176831&-0&382143&-525&915702\\
-&\multicolumn{4}{c}{}&\multicolumn{4}{c}{}&\multicolumn{4}{c}{}\\
+                        &\multicolumn{4}{c}{}   \\
+    &\multicolumn{2}{c}{HOMO}
+    &\multicolumn{2}{c}{Total}\\
+                        &\multicolumn{4}{c}{}   \\
+    MW $\epsilon=10^{-3}$  &-0&387692&-525&966790  \\
+    MW $\epsilon=10^{-5}$  &-0&382348&-525&946109  \\
+    MW $\epsilon=10^{-7}$  &-0&382330&-525&946196  \\
+                        &\multicolumn{4}{c}{}   \\
+    NIST                &-0&382330&-525&946195  \\
+                        &\multicolumn{4}{c}{}   \\
+    aug-cc-pV6Z		&-0&382323&-525&944181  \\
+    %aug-cc-pV5Z		&-0&382388&-525&942021  \\
+    aug-cc-pVQZ		&-0&382463&-525&938021  \\
+    %aug-cc-pVTZ	        &-0&382838&-525&933682  \\
+    aug-cc-pVDZ		&-0&382143&-525&915702  \\
+                        &\multicolumn{4}{c}{}   \\
     \hline
     \hline
     \end{tabular}
 \end{table}
+
+\vspace{1mm}
+
 \it{NIST: National Institute of Standards and Technology (Basis set limit)}\\
-\ \\
-\ \\
-\ \\
+\it{GTO calculations using Dalton}
+
+\vspace{5mm}
+
 \begin{itemize}
     \item   We are able to attain \textbf{considerably higher} accuracy than 
             high-quality Gaussian basis sets
@@ -392,6 +429,7 @@ aug-cc-pVDZ		&-0&569386&-2&8291516&-0&498201&-128&176831&-0&382143&-525&915702\\
             the requested precision
     \item   Calculations are still more expensive than conventional methods
 \end{itemize}
+
 \end{frame}
 
 
