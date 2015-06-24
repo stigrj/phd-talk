@@ -1,61 +1,88 @@
 \begin{frame}
 \frametitle{Integral formulation linear response}
+
+\begin{columns}
+\begin{column}[b]{0.48\linewidth}
 \centering
-Adding a first order perturbation $\delta\hat{h}$ to the Hamiltonian \\
-gives the perturbation in the Fock operator
+\textbf{Time-dependent perturbation}
+\begin{align}
+    \nonumber
+    \hat{H}^{(1)}(t) &= 
+    \hat{h}^{(1)}e^{i\omega t} +
+    \hat{h}^{(1)\dag}e^{-i\omega t}\\
+    \nonumber
+    &\ \\
+    \nonumber
+    \rho^{(1)}(t) &= 
+    \tilde{\rho}^{(1)}e^{i\omega t} +
+    \tilde{\rho}^{(1)\dag}e^{-i\omega t}\\
+    \nonumber
+    &\ \\
+    \nonumber
+    \pert{\tilde{\rho}}{1}(r,r') &= 
+    \sum_i x_i(r)\orbital_i^\dag(r') + \orbital_i(r)y_i^\dag(r')
+\end{align}
+\end{column}
+
+\begin{column}[b]{0.48\linewidth}
+\centering
+\textbf{First-order operators}
+\begin{align}
+    \nonumber
+    \pert{\coulomb}{1} \orbital_p &=
+        \int\frac{\pert{\tilde{\rho}}{1}(r',r')\orbital_p(r)}{|r-r'|} \ud r' \\
+    \nonumber
+    \pert{\exchange}{1} \orbital_p &=
+        \int\frac{\pert{\tilde{\rho}}{1}(r,r')\orbital_p(r')}{|r-r'|} \ud r' \\
+    \nonumber
+    \pert{\xc}{1} \orbital_p &= 
+        \bigg[\frac{\delta^2 E_{xc}}{\delta \rho^2}
+        \big[\pert{\rho}{0}\big]*\pert{\tilde{\rho}}{1}\bigg] \orbital_p
+\end{align}
+\end{column}
+\end{columns}
+
+\vspace{7mm}
+\centering
+\textbf{Working equations for dynamic linear response}
+\begin{align}
+    \nonumber
+    x_i &= -2 \Helmholtzp{
+    \pert{\potential}{0}x_i +
+    \Big(1 - \pert{\density}{0}\Big)
+    \Big(\pert{\hamiltonian}{1} + \pert{\potential}{1}\Big)\orbital_i}\\
+    \nonumber
+    y_i &= -2 \Helmholtzm{
+    \pert{\potential}{0}y_i +
+    \Big(1 - \pert{\density}{0}\Big)
+    \Big(\pert{\hamiltonian}{1} + \pert{\potential}{1}\Big)^\dag\orbital_i}
+\end{align}
+
+
+\vspace{7mm}
+
+\begin{columns}
+\begin{column}[b]{0.48\linewidth}
+\centering
+\textbf{BSH operators} 
 \begin{equation}
     \nonumber
-    \delta\hat{F} = \delta\hat{h} + \delta \hat{V}
+    2\hat{G}_i^{(\pm)} = \Big[\hat{T} - (\epsilon_i \pm \omega)\Big]^{-1} 
 \end{equation}
+\end{column}
 
-%\vspace{6mm}
-%where the changes in the potential operator can have the form
-%\begin{align}
-%    \nonumber
-%    \delta v_{coul}(r) &= \int P(r-r')[\delta\rho(r',r')]dr'\\
-%    \nonumber
-%    \delta v_{xc}(r) &= 
-%        \delta\rho(r,r)\frac{\partial^2 E_{xc}}{\partial\rho^2}(r)\\
-%    \nonumber
-%    \delta \hat{K} \phi_p(r) 
-%    &= \sum_i \phi_i(r) \int P(r-r')[\delta\phi_i^\dag(r')\phi_p(r')]dr' \\
-%    \nonumber
-%    &+ \sum_i \delta\phi_i(r) \int P(r-r')[\phi_i^\dag(r')\phi_p(r')]dr'
-%\end{align}
-
-\vspace{6mm}
-where $\delta\hat{V}$ denotes the changes in the potential \\
-operator induced by the perturbed density
+\begin{column}[b]{0.48\linewidth}
+\centering
+\textbf{Density operator}
 \begin{equation}
     \nonumber
-    \delta \rho(r,r') =
-    \sum_i \phi_i(r)\delta\phi_i^\dag(r')\ +\ 
-    \delta\phi_i(r)\phi_i^\dag(r')
+    \pert{\density}{0} = \sum_i \ket{\orbital_i}\bra{\orbital_i}
 \end{equation}
-
-\pause
-
-\vspace{6mm}
-The orbital perturbations are obtained by solving the modified \\
-Sternheimer (coupled perturbed HF/DFT) equations
-\begin{equation}
-    \nonumber
-    \hat{F}\delta\phi_i + \delta\hat{F}\phi_i = 
-    \sum_j \Big(F_{ij}\delta\phi_j + \delta F_{ij}\phi_j\Big)
-\end{equation}
-
-\vspace{6mm}
-which again are inverted to an integral equation and solved iteratively
-\begin{equation}
-    \nonumber
-    \delta\phi_i^{n+1} =\ 
-    -2\hat{H}\Big[\hat{V} \delta\phi_i^n
-    - \sum_j \big(F_{ij} - \Lambda_{ij}\big)\delta\phi_j^n
-    + \Big(1 - \sum_j|\phi_j\rangle\langle\phi_j|\Big) \delta\hat{F}^n\phi_i
-    \Big]
-\end{equation}
+\end{column}
+\end{columns}
 
 \vspace{5mm}
+\centering
 \tiny
 T. Yanai, R.J. Harrison, N.C. Handy,
 {\it Mol. Phys.},
@@ -64,77 +91,119 @@ T. Yanai, R.J. Harrison, N.C. Handy,
 H. Sekino, Y. Maeda, T. Yanai, R.J. Harrison,
 {\it J. Chem. Phys.},
 \textbf{129} 
-(2008)
+(2008)\\
+T. Yanai, G. I. Fann, G. Beylkin, R. J. Harrison,
+\it{Phys. Chem. Chem. Phys.}, 
+\textbf{(published online)},
+(2015)
 
 \end{frame}
 
+\begin{frame}
+\frametitle{Energy}
+
+\centering
+\textbf{Methyloxirane molecule}
+\hspace{30mm}
+\textbf{Adaptive grid}
+\begin{minipage}{0.5\textwidth}
+\centering
+\includegraphics[scale=0.15, viewport = 0 180 550 650, clip]{figures/methyloxirane_white.jpg}
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
+\centering
+\includegraphics[angle=-90, scale=0.25, viewport = 170 150 470 700, clip]{figures/methyloxirane_grid.pdf}
+\end{minipage}
+
+\vspace{5mm}
+
+\begin{table}
+    \centering
+    \begin{tabular}{r|cr|cr}
+    \multicolumn{5}{c}{\textbf{Total energy (a.u.)}}\\
+    \hline               
+    \hline               
+                     &               &               &               &               \\
+                     &Hartree-Fock   &Time           &LDA            &Time           \\
+    \hspace{20mm}\   &\hspace{20mm}\ &\hspace{05mm}\ &\hspace{20mm}\ &\hspace{05mm}\ \\
+    MRChem $10^{-2}$ & -192.0425     &  30m          & -191.5975     &   2m          \\
+    MRChem $10^{-3}$ & -192.0002     &    h          & -191.5622     &   5m          \\
+    MRChem $10^{-4}$ & -192.0000     &    h          & -191.5619     &  10m          \\
+                     &               &               &               &               \\
+    aug-cc-pVQZ      & -191.9968     &  30m          & -191.5563     &  30m          \\
+        cc-pVQZ      & -191.9960     &  10m          & -191.5549     &  10m          \\
+    aug-cc-pVDZ      & -191.9357     &  $<$1m        & -191.4817     &  $<$1m        \\
+        cc-pVDZ      & -191.9232     &  $\ll$1m      & -191.4622     &  $\ll$1m      \\
+                     &               &               &               &               \\
+    \hline
+    \hline
+    \end{tabular}
+\end{table}
+
+\centering
+\it{Wall time given on 16 CPUs}\\
+\it{GTO calculations using Dalton}
+
+\end{frame}
 
 \begin{frame}
 \frametitle{Polarizability}
 \begin{columns}
 
-\begin{column}[b]{0.5\textwidth}
+\begin{column}[b]{0.3\textwidth}
 \centering
 \textbf{Electric dipole operator}
 \begin{equation}
     \nonumber
-    \delta \hat{h} = \boldsymbol{\mu}
+    \pert{\hamiltonian}{E} = \boldsymbol{r}_O
 \end{equation}
 \end{column}
 
 
-\begin{column}[b]{0.5\textwidth}
+\begin{column}[b]{0.7\textwidth}
 \centering
 \textbf{Polarizability}
 \begin{equation}
     \nonumber
     \alpha 
-    %= \sum_i \int \phi_i \Big(\boldsymbol{\mu} \delta\phi_i\Big)^\dag dr 
-    %+ \int \Big(\boldsymbol{\mu} \delta \phi_i\Big) \phi_i^\dag dr
-    = \int \boldsymbol{\mu} \ \delta\rho \ dr
+    %= \int \pert{\hamiltonian}{E} \ \pert{\rho}{E} \ dr
+    = \sum_i 
+    \bra{\orbital_i}\pert{\hamiltonian}{E} \ket{\pert{x_i}{E}} + 
+    \bra{\pert{y_i}{E}}\pert{\hamiltonian}{E}\ket{\orbital_i}
 \end{equation}
 \end{column}
 \end{columns}
 
 \vspace{5mm}
 
-\centering
-Where the perturbed orbitals $\delta\phi_i$ are obtained using 
-the $\boldsymbol{\mu}$ operator.
-
-\vspace{5mm}
 
 \begin{table}
 %\tiny
-\begin{tabular}{l|c|ccc|c}
-\multicolumn{6}{c}{\textbf{Hartree-Fock polarizability of $H_2O$ (a.u.)}}\\
+\begin{tabular}{r|c|cr|cr}
+\multicolumn{6}{c}{\textbf{LDA polarizability of methyloxirane (a.u.)}}\\
 \hline
 \hline
-                    &          &        &        &        &        \\
-                    &$E_{tot}$  &$\alpha_{xx}$  &$\alpha_{yy}$  
-                    &$\alpha_{zz}$  &$\alpha_{iso}$ \\
-                    &          &        &        &        &        \\
-%$\epsilon=10^{-3}$  &-76.01459 & 9.4778 & 7.9234 & 8.7537 & 8.7180 \\
-MW $\epsilon=10^{-4}$  &-76.06548 & 9.4893 & 7.9698 & 8.7665 & 8.7419 \\
-MW $\epsilon=10^{-5}$  &-76.06552 & 9.4887 & 7.9695 & 8.7658 & 8.7413 \\
-                    &          &        &        &        &        \\
-aug-cc-pV5Z         &-76.06543 & 9.4852 & 7.9503 & 8.7503 & 8.7286 \\
-%aug-cc-pVQZ         &-76.06412 & 9.4842 & 7.9169 & 8.7240 & 8.7084 \\
-%aug-cc-pVTZ         &-76.05882 & 9.4632 & 7.7941 & 8.6291 & 8.6288 \\
-aug-cc-pVDZ         &-76.03980 & 9.3304 & 7.4016 & 8.3028 & 8.3450 \\
-                    &          &        &        &        &        \\
-%cc-pV6Z             &-76.06551 & 9.2242 & 7.4127 & 8.4060 & 8.3476 \\
-cc-pV5Z             &-76.06520 & 9.0604 & 6.8999 & 8.1594 & 8.0399 \\
-%cc-pVQZ             &-76.06295 & 8.7732 & 6.1540 & 7.7173 & 7.5482 \\
-%cc-pVTZ             &-76.05536 & 8.2921 & 5.1219 & 6.9736 & 6.7959 \\
-cc-pVDZ             &-76.02544 & 7.2047 & 3.0348 & 5.3360 & 5.1919 \\
-                    &          &        &        &        &        \\
+	             &               &               &               &               &               \\
+                     & $E^{tot}$     & Static        &Time           & Dynamic       &Time           \\
+    \hspace{20mm}\   &\hspace{20mm}\ &\hspace{20mm}\ &\hspace{05mm}\ &\hspace{20mm}\ &\hspace{05mm}\ \\
+    MRChem $10^{-2}$ & -191.5975     & 44.0764       &   30m         & 45.2747       &   1h          \\
+    MRChem $10^{-3}$ & -191.5622     & 44.0939       &    1h         & 45.2907       &   2h          \\
+    MRChem $10^{-4}$ & -191.5619     & 44.0935       &    2h         & 45.2903       &   3h          \\
+	             &               &               &               &               &               \\
+    aug-cc-pVQZ      & -191.5563     & 44.1326       &    1h         & 45.3380       &   2h          \\
+	cc-pVQZ      & -191.5549     & 42.3602       &   30m         & 43.4064       &   1h          \\
+    aug-cc-pVDZ      & -191.4817     & 44.0050       &    1m         & 45.2025       &   2m          \\
+	cc-pVDZ      & -191.4622     & 36.5586       &    $<$1m      & 37.3993       &   1m          \\
+	             &               &               &               &               &               \\
 \hline
 \hline
 \end{tabular}
 \end{table}
 
-\it{GTO calculations using LSDalton}
+\centering
+\it{Wall time given on 16 CPUs}\\
+\it{GTO calculations using Dalton}\\
+\it{Dynamic response at sodium D line (589.3 nm) wavelength}
 
 \end{frame}
 
@@ -148,16 +217,19 @@ cc-pVDZ             &-76.02544 & 7.2047 & 3.0348 & 5.3360 & 5.1919 \\
 \textbf{Diamagnetic magnetizability}
 \begin{equation}
     \nonumber
-    \hat{h}^{dia} = -\frac{1}{4}\Big(r_O^2\boldsymbol{I} - 
-    \boldsymbol{r}_O\boldsymbol{r}_O^T\Big)
+    \pert{\hamiltonian}{B,B} = 
+    -\frac{1}{4}\Big(r_O^2\boldsymbol{I} 
+    -\boldsymbol{r}_O\boldsymbol{r}_O^T\Big)
 \end{equation}
 
 \vspace{2mm}
 
-\begin{equation}
+\begin{align}
     \nonumber
-    \chi^{dia} = \sum_i \int \phi_i \hat{h}^{dia} \phi_i dr
-\end{equation}
+    \chi^{dia} &= \sum_i \bra{\orbital_i} \pert{\hamiltonian}{B,B} \ket{\orbital_i}
+%    \nonumber
+%    \chi^{dia} &= \int \pert{\hat{h}}{dia} \rho \ud r
+\end{align}
 \end{column}
 
 \begin{column}[b]{0.5\textwidth}
@@ -165,53 +237,49 @@ cc-pVDZ             &-76.02544 & 7.2047 & 3.0348 & 5.3360 & 5.1919 \\
 \textbf{Paramagnetic magnetizability}
 \begin{equation}
     \nonumber
-    \hat{h}^{orb} = -i \boldsymbol{r}_O\times\nabla
+    \pert{\hamiltonian}{B} = -i \boldsymbol{r}_O\times\nabla
 \end{equation}
 \vspace{2mm}
-\begin{equation}
+\begin{align}
     \nonumber
-    \chi^{para} = \sum_i \int \phi_i \Big(\hat{h}^{orb} \delta\phi_i\Big)^\dag + 
-    \Big(\hat{h}^{orb}\delta\phi_i\Big)\phi_i^\dag dr
-\end{equation}
+    \chi^{para} &= \sum_i 
+    \bra{\orbital_i}\pert{\hamiltonian}{B} \ket{\pert{x_i}{B}} + 
+    \bra{\pert{y_i}{B}}\pert{\hamiltonian}{B}\ket{\orbital_i}
+%    \nonumber
+%    \chi^{para} &= \int \pert{\hat{h}}{orb}\pert{\tilde{\rho}}{orb} \ud r
+\end{align}
 \end{column}
 
 \end{columns}
-\vspace{5mm}
-\centering
-Where the perturbed orbitals $\delta\phi_i$ are obtained using 
-the $\hat{h}^{orb}$ operator.
-\vspace{5mm}
+\vspace{6mm}
 
 \begin{table}
 %\tiny
 \centering
-\begin{tabular}{l|c|ccc}
-\multicolumn{5}{c}{\textbf{Hartree-Fock magnetizability of $H_2O$ (a.u.)}}\\
+\begin{tabular}{r|c|crrr}
+\multicolumn{6}{c}{\textbf{Hartree-Fock magnetizability of methyloxirane (a.u.)}}\\
 \hline
 \hline
-                    &         &             &             &            \\
-                    &$E_{tot}$&$\chi^{dia}$ &$\chi^{para}$&$\chi^{tot}$\\
-                    &         &             &             &            \\
-%$\epsilon=10^{-3}$  &-76.01459& -3.2696     & 0.3243      & -2.9453    \\
-MW $\epsilon=10^{-4}$  &-76.06548& -3.2688     & 0.3221      & -2.9467    \\
-MW $\epsilon=10^{-5}$  &-76.06552& -3.2688     & 0.3220      & -2.9468    \\
-                    &         &             &             &            \\
-aug-cc-pV5Z         &-76.06543& -3.2690     & 0.3220      & -2.9470    \\
-%aug-cc-pVQZ         &-76.06412& -3.2898     & 0.3220      & -2.9479    \\
-%aug-cc-pVTZ         &-76.05882& -3.2720     & 0.3220      & -2.9500    \\
-aug-cc-pVDZ         &-76.03980& -3.2821     & 0.3248      & -2.9573    \\
-       	            &         &             &             &            \\
-cc-pV5Z	            &-76.06520& -3.2584     & 0.3234      & -2.9351    \\
-%cc-pVQZ	     &-76.06295& -3.2350     & 0.3264      & -2.9087    \\
-%cc-pVTZ	     &-76.05536& -3.2047     & 0.3325      & -2.8722    \\
-cc-pVDZ	            &-76.02544& -3.1471     & 0.3568      & -2.7902    \\
-       	            &         &             &             &            \\
+                     &               &               &                     &                     &               \\
+                     &$E^{tot}$      & GIAO          & $O=(0,0,0)$         & $O=(5,5,5)$         &Time           \\
+    \hspace{15mm}\   &\hspace{15mm}\ &\hspace{15mm}\ &\hspace{15mm}\       &\hspace{15mm}\       &\hspace{05mm}\ \\
+    MRChem $10^{-2}$ & -192.0425     &               &  -9.5497\ \ \ \ \ \ &  -9.9222\ \ \ \ \ \ &    4h         \\
+    MRChem $10^{-3}$ & -192.0002     &               &  -9.4730\ \ \ \ \ \ &  -9.4363\ \ \ \ \ \ &    6h         \\
+    MRChem $10^{-4}$ & -192.0000     &               &  -9.4758\ \ \ \ \ \ &  -9.4795\ \ \ \ \ \ &   12h         \\
+                     &               &               &                     &                     &               \\
+    aug-cc-pVQZ      & -191.9968     & -9.4736       & -10.5253\ \ \ \ \ \ & -26.0533\ \ \ \ \ \ &    2h         \\
+	cc-pVQZ      & -191.9960     & -9.4681       & -10.8019\ \ \ \ \ \ & -29.2395\ \ \ \ \ \ &    1h         \\
+    aug-cc-pVDZ      & -191.9357     & -9.5369       & -15.4438\ \ \ \ \ \ &-101.6430\ \ \ \ \ \ &    1m         \\
+	cc-pVDZ      & -191.9232     & -9.4924       & -19.0342\ \ \ \ \ \ &-140.0203\ \ \ \ \ \ &    $<$1m      \\
+                     &               &               &                     &                     &               \\
 \hline
 \hline
 \end{tabular}
 \end{table}
 
-\it{GTO (GIAOs) calculations using Dalton}
+\centering
+\it{Wall time given on 16 CPUs}\\
+\it{GTO calculations using Dalton}
 
 \end{frame}
 
@@ -225,13 +293,14 @@ cc-pVDZ	            &-76.02544& -3.1471     & 0.3568      & -2.7902    \\
 \textbf{Diamagnetic shielding}
 \begin{equation}
     \nonumber
-    \hat{h}_K^{dia} = \frac{\alpha}{2}\frac{\Big(r_O^Tr_K\boldsymbol{I} - 
+    \pert{\hamiltonian}{M_K,B} =
+    \frac{\alpha}{2}\frac{\Big(r_O^Tr_K\boldsymbol{I} - 
     \boldsymbol{r}_O\boldsymbol{r}_O^T\Big)}{r_K^3}
 \end{equation}
 \vspace{2mm}
 \begin{equation}
     \nonumber
-    \sigma^{dia} = \sum_i \int \phi_i \hat{h}_K^{dia} \phi_i dr
+    \xi^{dia} = \sum_i \bra{\orbital_i} \pert{\hamiltonian}{M_K,B} \ket{\orbital_i}
 \end{equation}
 \end{column}
 
@@ -240,98 +309,120 @@ cc-pVDZ	            &-76.02544& -3.1471     & 0.3568      & -2.7902    \\
 \textbf{Paramagnetic shielding}
 \begin{equation}
     \nonumber
-    \hat{h}_K^{pso} = -i \alpha^2 \frac{\boldsymbol{r}_K\times\nabla}{r_K^3}
+    \pert{\hamiltonian}{M_K} = -i \alpha^2 \frac{\boldsymbol{r}_K\times\nabla}{r_K^3}
 \end{equation}
 \vspace{2mm}
 \begin{equation}
     \nonumber
-    \sigma^{para} = \sum_i \int \phi_i \Big(\hat{h}_K^{pso} \delta\phi_i\Big)^\dag + 
-    \Big(\hat{h}_K^{pso}\delta\phi_i\Big)\phi_i^\dag dr
+    \xi^{para} = \sum_i 
+    \bra{\orbital_i}\pert{\hamiltonian}{M_K} \ket{\pert{x_i}{B}} + 
+    \bra{\pert{y_i}{B}}\pert{\hamiltonian}{M_K}\ket{\orbital_i}
 \end{equation}
 \end{column}
 
 \end{columns}
 \vspace{5mm}
-\centering
-Where the perturbed orbitals $\delta\phi_i$ are obtained using 
-the $\hat{h}^{orb}$ operator.
-\vspace{5mm}
 
 \begin{table}
 %\tiny
 \centering
-\begin{tabular}{l|lll|ll}
-\multicolumn{6}{c}{\textbf{Hartree-Fock shielding tensor of $H_2O$ (ppm)}}\\
+\begin{tabular}{r|c|cccr}
+\multicolumn{6}{c}{\textbf{Hartree-Fock shielding tensor of oxygen in methyloxirane (ppm)}}\\
 \hline
 \hline
-                    &         &         &         &         &         \\
-&\multicolumn{3}{|c}{Hydrogen }&\multicolumn{2}{|c}{Oxygen }\\
-                    &         &         &         &         &         \\
-                    &$\sigma_{xx}$ &$\sigma_{xz}$&$\sigma_{iso}$ 
-                    &$\sigma_{xx}$ &$\sigma_{iso}$\\
-                    &         &         &         &         &         \\
-%$\epsilon=10^{-3}$  & 37.5045 & 9.4180  & 29.9332 & 357.5210& 318.9106\\
-MW $\epsilon=10^{-4}$  & 37.5326 & 9.4862  & 29.9130 & 357.2956& 319.0418\\
-MW $\epsilon=10^{-5}$  & 37.5532 & 9.5008  & 29.9220 & 357.1585& 319.0446\\
-                    &         &         &         &         &         \\
-aug-cc-pV5Z         & 37.5552 & 9.4710  & 29.9477 & 357.0290& 318.9910\\
-%aug-cc-pVQZ         & 37.5831 & 9.4309  & 30.0028 & 357.4613& 319.7300\\
-%aug-cc-pVTZ         & 37.6995 & 9.3250  & 30.1715 & 357.3193& 320.0901\\
-aug-cc-pVDZ         & 37.9432 & 8.9067  & 30.6418 & 362.5730& 328.5298\\
-       	            &         &         &         &         &         \\
-cc-pV5Z	            & 37.5538 & 9.4822  & 29.9489 & 356.3598& 319.7752\\
-%cc-pVQZ	     & 37.6077 & 9.5013  & 30.0495 & 356.5344& 322.6689\\
-%cc-pVTZ	     & 37.7956 & 9.4816  & 30.2585 & 354.9871& 326.9582\\
-cc-pVDZ	            & 38.1757 & 9.1199  & 30.8304 & 359.0978& 338.6980\\
-       	            &         &         &         &         &         \\
+                     &               &               &               &               &               \\
+                     & $E^{tot}$     &$\xi^{dia}$    & $\xi^{para}$  &$\xi^{tot}$    &Time           \\
+       	             &\hspace{15mm}\ &\hspace{15mm}\ &\hspace{15mm}\ &\hspace{15mm}\ &\hspace{05mm}\ \\
+    MRChem $10^{-2}$ & -192.0425     &  446.7869     &  -96.6166     &  350.1703     &    4h         \\
+    MRChem $10^{-3}$ & -192.0002     &  447.3444     &  -91.7855     &  355.5589     &    6h         \\
+    MRChem $10^{-4}$ & -192.0000     &  447.3089     &  -90.9386     &  356.3704     &   12h         \\
+	             &               &               &               &               &               \\
+    aug-cc-pVQZ      & -191.9968     &  447.7508     &  -90.6691     &  357.0817     &    2h         \\
+	cc-pVQZ      & -191.9960     &  447.7833     &  -89.6304     &  358.1529     &    1h         \\
+    aug-cc-pVDZ      & -191.9357     &  451.0119     &  -88.5778     &  362.4341     &    1m         \\
+	cc-pVDZ      & -191.9232     &  451.6103     &  -87.4153     &  364.1950     &    $<$1m      \\
+	             &               &               &               &               &               \\
 \hline
 \hline
 \end{tabular}
 \end{table}
 
+\centering
+\it{Wall time given on 16 CPUs}\\
 \it{GTO (GIAOs) calculations using Dalton}
 
 \end{frame}
 
 
-%\begin{frame}
-%\frametitle{Origin dependence}
-%\centering
+\begin{frame}
+\frametitle{Optical rotation}
+\begin{columns}
 
-%\begin{table}
+\begin{column}[b]{0.5\textwidth}
+\centering
+\textbf{Electric-magnetic polarizability}
+\begin{equation}
+    \nonumber
+    \pert{\hamiltonian}{E} = \boldsymbol{r}_O \qquad \qquad
+    \pert{\hamiltonian}{B} = -i \boldsymbol{r}_O\times\nabla
+\end{equation}
+\vspace{4mm}
+\begin{equation}
+    \nonumber
+    G = \sum_i 
+    \bra{\orbital_i}\pert{\hamiltonian}{B} \ket{\pert{x_i}{E}} + 
+    \bra{\pert{y_i}{E}}\pert{\hamiltonian}{B}\ket{\orbital_i}
+\end{equation}
+\end{column}
+
+\begin{column}[b]{0.5\textwidth}
+\centering
+\textbf{Optical rotation}
+\vspace{2mm}
+\begin{equation}
+    \nonumber
+    \beta = \omega^{-1}Tr\big[G\big]
+\end{equation}
+\vspace{2mm}
+\begin{equation}
+    \nonumber
+    \alpha = \frac{28800\pi^2N_A\nu^2}{c^2M}\beta
+\end{equation}
+\end{column}
+
+\end{columns}
+\vspace{5mm}
+
+\begin{table}
 %\tiny
-%\centering
-%\begin{tabular}{l|ll|lll}
-%\multicolumn{6}{c}{\textbf{Hartree-Fock magnetizability of Helium (a.u.)}}\\
-%\hline
-%\hline
-%                    &         &       &       &      &       \\
-%\multicolumn{1}{l}{Gauge origin}&
-%\multicolumn{2}{|c}{(0, 0, 0) }&
-%\multicolumn{3}{|c}{(0, 0, 5) }\\
-%                    &         &       &       &      &       \\
-%&
-%\multicolumn{1}{c}{$E^{tot}$}&
-%\multicolumn{1}{c|}{$\chi^{tot}$}&
-%\multicolumn{1}{c}{$\chi^{dia}$}&
-%\multicolumn{1}{c}{$\chi^{para}$}&
-%\multicolumn{1}{c}{$\chi^{tot}$}\\
-%                    &         &       &       &      &       \\
-%%$\epsilon=10^{-3}$  &-2.861543&-0.3951&-8.7284&8.3270&-0.4014\\
-%$\epsilon=10^{-4}$  &-2.861662&-0.3949&-8.7283&8.3334&-0.3951\\
-%$\epsilon=10^{-5}$  &-2.861676&-0.3950&-8.7283&8.3333&-0.3950\\
-%                    &         &       &       &      &       \\
-%aug-cc-pV6Z         &-2.861673&-0.3951&-8.7283&8.3292&-0.3991\\
-%%aug-cc-pV5Z         &-2.861627&-0.3950&-8.7284&8.3222&-0.4062\\
-%aug-cc-pVQZ         &-2.861522&-0.3953&-8.7286&8.3157&-0.4129\\
-%%aug-cc-pVTZ         &-2.861183&-0.3957&-8.7290&8.2806&-0.4484\\
-%aug-cc-pVDZ	    &-2.855705&-0.3990&-8.7324&8.0633&-0.6691\\
-%                    &         &       &       &      &       \\
-%\hline
-%\hline
-%\end{tabular}
-%\end{table}
-%
-%\it{GTO (no GIAOs) calculations using Dalton}
-%
-%\end{frame}
+\centering
+\begin{tabular}{r|c|rrr}
+\multicolumn{5}{c}{\textbf{LDA optical rotation of methyloxirane (a.u.)}}\\
+\hline
+\hline
+	             &               &                       &                           &               \\
+                     &$E^{tot}$      
+                     &\multicolumn{1}{c}{$\beta$}
+                     &\multicolumn{1}{c}{$\alpha$}
+                     &Time           \\
+    \hspace{20mm}\   &\hspace{20mm}\ &\hspace{20mm}\         &\hspace{20mm}\             &\hspace{5mm}\ \\
+    MRChem $10^{-2}$ & -191.5975     & 0.121265\ \ \ \ \ \ \ &   6.2440\ \ \ \ \ \ \ \ \ &    1h         \\
+    MRChem $10^{-3}$ & -191.5622     & 0.134859\ \ \ \ \ \ \ &   6.9439\ \ \ \ \ \ \ \ \ &    2h         \\
+    MRChem $10^{-4}$ & -191.5619     & 0.136527\ \ \ \ \ \ \ &   7.0298\ \ \ \ \ \ \ \ \ &    3h         \\
+	             &               &                       &                           &               \\
+    aug-cc-pVQZ      & -191.5563     & 0.127538\ \ \ \ \ \ \ &   6.5669\ \ \ \ \ \ \ \ \ &    2h         \\
+	cc-pVQZ      & -191.5549     & 0.016025\ \ \ \ \ \ \ &   0.8249\ \ \ \ \ \ \ \ \ &    1h         \\
+    aug-cc-pVDZ      & -191.4817     & 0.010036\ \ \ \ \ \ \ &   0.5170\ \ \ \ \ \ \ \ \ &    2m         \\
+	cc-pVDZ      & -191.4622     &-0.852053\ \ \ \ \ \ \ & -43.8711\ \ \ \ \ \ \ \ \ &    1m         \\
+	             &               &                       &                           &               \\
+\hline
+\hline
+\end{tabular}
+\end{table}
+
+\centering
+\it{Wall time given on 16 CPUs}\\
+\it{GTO (GIAOs) calculations using Dalton}\\
+\it{Dynamic response at sodium D line (589.3 nm) wavelength}
+
+\end{frame}

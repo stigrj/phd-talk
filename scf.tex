@@ -7,38 +7,27 @@
     The Hartree-Fock/Kohn-Sham equations
     \begin{equation}
         \nonumber
-        \left[-\frac{1}{2}\nabla^2 + \hat{V}\right]
-        \phi_i(r) =\ \epsilon_i \phi_i(r)
+        \left[\hat{T} + \hat{V}\right]\orbital_i(r) =\ \epsilon_i \orbital_i(r)
     \end{equation}
 
     \vspace{5mm}
-    can be reorganized
+    are inverted using the operator
     \begin{equation}
         \nonumber
-        \left[-\nabla^2 - 2\lambda_i\right]\phi_i(r) =\ 
-        -2\hat{V}\phi_i(r) + 2(\epsilon_i - \lambda_i)\phi_i(r)
-    \end{equation}
-
-    \vspace{5mm}
-    inverted to integral form
-    \begin{equation}
-        \nonumber
-        \phi_i(r) =\ -2\int H(r-r')\
-        \Big[\hat{V} \phi_i(r') - (\epsilon_i - \lambda_i)\phi_i(r')\Big] dr'
+        2\hat{G}_i = \left[\hat{T} - \epsilon_i\right]^{-1}
     \end{equation}
 
     \vspace{5mm}
     and solved iteratively
     \begin{equation}
         \nonumber
-        \phi_i^{n+1} =\ -2\hat{H}\left[\hat{V}^n\phi_i^n
-        - (\epsilon^n_i - \lambda^n_i)\phi_i^n\right]
+        \orbital_i^{n+1} =\ -2\Helmholtz{\hat{V}^n\orbital_i^n}
     \end{equation}
 
     \vspace{5mm}
-    Standard iterative subspace acceleration 
-    techniques (KAIN or DIIS) can be applied
-    \vspace{5mm}
+    Krylov subspace Accelerated Inexact Newton (KAIN) 
+    method is used to improve convergence
+    \vspace{10mm}
     \end{column}
 
     \begin{column}[b]{0.55\textwidth}
@@ -60,16 +49,14 @@
     \vspace{2mm}
     \tiny
     M.H. Kalos, 
-    {\it Physical Review}, 
+    {\it Phys. Rev.}, 
     \textbf{128(4)}
     (1962)\\
-    R.J. Harrison, G.I. Fann, T. Yanai, Z. Gan, and G. Beylkin, 
-    {\it J Chem Phys}, 
+    R.J. Harrison, G.I. Fann, T. Yanai, Z. Gan, G. Beylkin, 
+    {\it J. Chem. Phys.}, 
     \textbf{121}
     (2004)
 \end{frame}
-
-
 
 \begin{frame}
     \frametitle{Orbital localization}
@@ -79,8 +66,7 @@
     \textbf{Canonical}
     \begin{equation}
         \nonumber
-        \phi_i^{n+1} =\ -2\hat{H}\Bigg[\hat{V}^n\phi_i^n
-        - (\epsilon^n_i - \lambda^n_i)\phi_i^n\Bigg]
+        \orbital_i^{n+1} =\ -2\hat{G}_i\Bigg[\hat{V}^n\orbital_i^n\Bigg]
     \end{equation}
 
     \vspace{8mm}
@@ -100,8 +86,8 @@
     \textbf{Localized}
     \begin{equation}
         \nonumber
-        \phi_i^{n+1} =\ -2\hat{H}\Bigg[\hat{V}^n\phi_i^n
-        - \sum_j(F^n_{ij} - \Lambda^n_{ij})\phi_j^n\Bigg]
+        \orbital_i^{n+1} =\ -2\Helmholtz{\hat{V}^n\orbital_i^n
+        - \sum_{j\neq i}F^n_{ij}\orbital_j^n}
     \end{equation}
     }
 
@@ -137,69 +123,68 @@
     }
 \end{frame}
 
-
-\begin{frame}
-    \frametitle{Calculation of Fock matrix}
-    \begin{columns}
-    \begin{column}[b]{0.55\textwidth}
-    \centering
-    We need to calculate the Fock matrix
-    \begin{equation}
-        \nonumber
-        F_{ij} = \langle \phi_i | \hat{T} + \hat{V} | \phi_j \rangle
-    \end{equation}
-
-    \vspace{5mm}
-
-    The kinetic part can be calculated using first order \\
-    differential operators
-    \begin{equation}
-        \nonumber
-        T_{ij} =
-        \langle \phi_i | -\frac{1}{2}\nabla^2 | \phi_j \rangle = 
-        \frac{1}{2}\langle \nabla \phi_i | \nabla \phi_j \rangle 
-    \end{equation}
-
-    \vspace{8mm}
-    \pause
-
-    But we can also compute the \textbf{exact} Fock matrix at a given iteration 
-    without any reference to the kinetic energy operator
-
-    \begin{align}
-        \nonumber
-        F^{n+1}    &= F^n + \Delta F^n\\
-        \nonumber
-        \Delta F^n &= \Delta S_1^nF^{n}+\Delta S_2^n\Lambda^n+\Delta F_{pot}^n\\
-        \nonumber
-        & \\
-        \nonumber
-        (\Delta S_1^n)_{ij} &= \langle \Delta \phi_i^n | \phi_j^n \rangle\\
-        \nonumber
-        (\Delta S_2^n)_{ij} &= \langle \phi_i^{n+1} | \Delta \phi_j^n \rangle\\
-        \nonumber
-        (\Delta F_{pot}^n)_{ij}
-        &= \langle \phi_i^{n+1} | \hat{V}^n | \Delta\phi_j^n \rangle
-        + \langle \phi_i^{n+1} | \Delta\hat{V}^n | \phi_j^n \rangle
-    \end{align}
-
-    \vspace{2mm}
-
-    \end{column}
-
-    \begin{column}[b]{0.45\textwidth}
-    \begin{figure}
-	\includegraphics[scale=0.5, clip, viewport = 50 550 300 740]
-                {figures/accuracy.pdf}
-    \end{figure}
-    \begin{figure}
-	\includegraphics[scale=0.5, clip, viewport = 300 550 550 740]
-                {figures/accuracy.pdf}
-    \end{figure}
-
-    \end{column}
-    \end{columns}
-\end{frame}
+%\begin{frame}
+%    \frametitle{Calculation of Fock matrix}
+%    \begin{columns}
+%    \begin{column}[b]{0.55\textwidth}
+%    \centering
+%    We need to calculate the Fock matrix
+%    \begin{equation}
+%        \nonumber
+%        F_{ij} = \langle \orbital_i | \hat{T} + \hat{V} | \orbital_j \rangle
+%    \end{equation}
+%
+%    \vspace{5mm}
+%
+%    The kinetic part can be calculated using first order \\
+%    differential operators
+%    \begin{equation}
+%        \nonumber
+%        T_{ij} =
+%        \langle \orbital_i | -\frac{1}{2}\nabla^2 | \orbital_j \rangle = 
+%        \frac{1}{2}\langle \nabla \orbital_i | \nabla \orbital_j \rangle 
+%    \end{equation}
+%
+%    \vspace{8mm}
+%    \pause
+%
+%    But we can also compute the \textbf{exact} Fock matrix at a given iteration 
+%    without any reference to the kinetic energy operator
+%
+%    \begin{align}
+%        \nonumber
+%        F^{n+1}    &= F^n + \Delta F^n\\
+%        \nonumber
+%        \Delta F^n &= \Delta S_1^nF^{n}+\Delta S_2^n\Lambda^n+\Delta F_{pot}^n\\
+%        \nonumber
+%        & \\
+%        \nonumber
+%        (\Delta S_1^n)_{ij} &= \langle \Delta \orbital_i^n | \orbital_j^n \rangle\\
+%        \nonumber
+%        (\Delta S_2^n)_{ij} &= \langle \orbital_i^{n+1} | \Delta \orbital_j^n \rangle\\
+%        \nonumber
+%        (\Delta F_{pot}^n)_{ij}
+%        &= \langle \orbital_i^{n+1} | \hat{V}^n | \Delta\orbital_j^n \rangle
+%        + \langle \orbital_i^{n+1} | \Delta\hat{V}^n | \orbital_j^n \rangle
+%    \end{align}
+%
+%    \vspace{2mm}
+%
+%    \end{column}
+%
+%    \begin{column}[b]{0.45\textwidth}
+%    \begin{figure}
+%	\includegraphics[scale=0.5, clip, viewport = 50 550 300 740]
+%                {figures/accuracy.pdf}
+%    \end{figure}
+%    \begin{figure}
+%	\includegraphics[scale=0.5, clip, viewport = 300 550 550 740]
+%                {figures/accuracy.pdf}
+%    \end{figure}
+%
+%    \end{column}
+%    \end{columns}
+%\end{frame}
 
 
 %\begin{frame}
@@ -208,7 +193,7 @@
 %    \textbf{Power iteration}
 %    \begin{equation}
 %	\nonumber
-%	\phi^{n+1} = -2\hat{H}\left[v_{nuc}\phi^n\right]
+%	\orbital^{n+1} = -2\hat{H}\left[v_{nuc}\orbital^n\right]
 %    \end{equation}
 %    \ \\
 %    \ \\
@@ -222,7 +207,7 @@
 %    \textbf{Orbital update}
 %    \begin{equation}
 %	\nonumber
-%	\Delta\phi^n = \phi^{n+1} - \phi^n
+%	\Delta\orbital^n = \orbital^{n+1} - \orbital^n
 %    \end{equation}
 %    \end{column}
 %    \begin{column}{.50\textwidth}
@@ -230,7 +215,7 @@
 %    \textbf{Energy update}
 %    \begin{equation}
 %	\nonumber
-%	\Delta \epsilon^n = \left<\phi^{n+1}|v_{nuc}|\Delta\phi^n\right>
+%	\Delta \epsilon^n = \left<\orbital^{n+1}|v_{nuc}|\Delta\orbital^n\right>
 %    \end{equation}
 %    \end{column}
 %    \end{columns}    
@@ -267,7 +252,7 @@
 %    Density
 %    \begin{equation}
 %	\nonumber
-%	\rho^n(\boldsymbol{r}) = \sum_i |\phi_i^n(\boldsymbol{r})|^2
+%	\rho^n(\boldsymbol{r}) = \sum_i |\orbital_i^n(\boldsymbol{r})|^2
 %    \end{equation}
 %    \end{column}
 %    \begin{column}[b]{0.4\textwidth}
@@ -293,7 +278,7 @@
 %    Power iteration
 %    \begin{equation}
 %	\nonumber
-%	\tilde{\phi}_i^n = -2\hat{H}\left[v_{eff}^n\phi_i^n\right]
+%	\tilde{\orbital}_i^n = -2\hat{H}\left[v_{eff}^n\orbital_i^n\right]
 %    \end{equation}
 %    \end{column}
 %    \begin{column}[b]{0.4\textwidth}
@@ -301,7 +286,7 @@
 %    Calculate updates
 %    \begin{equation}
 %	\nonumber
-%	\Delta\phi^n = \tilde{\phi}^n - \phi^n
+%	\Delta\orbital^n = \tilde{\orbital}^n - \orbital^n
 %    \end{equation}
 %    \end{column}
 %    \begin{column}[b]{0.1\textwidth}
@@ -331,7 +316,7 @@
 %    \end{columns}
 %    \begin{equation}
 %        \nonumber
-%        F_{ij} = \left<\phi_i|\hat{T} + v_{eff}|\phi_j\right>
+%        F_{ij} = \left<\orbital_i|\hat{T} + v_{eff}|\orbital_j\right>
 %    \end{equation}
 %    \ \\
 %    \ \\
@@ -343,8 +328,9 @@
 %    Compute Fock matrix update
 %    \begin{equation}
 %	\nonumber
-%	\Delta F_{ij}^n = \left<\tilde{\phi}_i^n|v_{eff}^n |\Delta\phi_j^n\right>
-%			    + \left<\tilde{\phi}_i^n|\Delta v_{eff}^n|\phi_j^n\right>
+%	\Delta F_{ij}^n = \left<\tilde{\orbital}_i^n|v_{eff}^n |\Delta\orbital_j^n\right>
+%			    + \left<\tilde{\orbital}_i^n|\Delta
+%			    v_{eff}^n|\orbital_j^n\right>
 %    \end{equation}
 %    \ \\
 %    \ \\
@@ -368,7 +354,7 @@
 %    Rotate orbitals
 %    \begin{equation}
 %	\nonumber
-%	\phi_i^{n+1} = \sum_jM^{-1}_{ij}\tilde{\phi}_j^n
+%	\orbital_i^{n+1} = \sum_jM^{-1}_{ij}\tilde{\orbital}_j^n
 %    \end{equation}
 %    \end{column}
 %    \begin{column}[b]{0.1\textwidth}
@@ -385,52 +371,52 @@
 %    }
 %\end{frame}
 
-\begin{frame}
-\frametitle{Accurate calculations}
-\centering
-\begin{table}
-    \centering
-    \begin{tabular}{lr@{.}lr@{.}l}
-    \multicolumn{5}{c}{\textbf{LDA energy of Argon (a.u.)}}\\
-    \hline
-    \hline
-                        &\multicolumn{4}{c}{}   \\
-    &\multicolumn{2}{c}{HOMO}
-    &\multicolumn{2}{c}{Total}\\
-                        &\multicolumn{4}{c}{}   \\
-    MW $\epsilon=10^{-3}$  &-0&387692&-525&966790  \\
-    MW $\epsilon=10^{-5}$  &-0&382348&-525&946109  \\
-    MW $\epsilon=10^{-7}$  &-0&382330&-525&946196  \\
-                        &\multicolumn{4}{c}{}   \\
-    NIST                &-0&382330&-525&946195  \\
-                        &\multicolumn{4}{c}{}   \\
-    aug-cc-pV6Z		&-0&382323&-525&944181  \\
-    %aug-cc-pV5Z		&-0&382388&-525&942021  \\
-    aug-cc-pVQZ		&-0&382463&-525&938021  \\
-    %aug-cc-pVTZ	        &-0&382838&-525&933682  \\
-    aug-cc-pVDZ		&-0&382143&-525&915702  \\
-                        &\multicolumn{4}{c}{}   \\
-    \hline
-    \hline
-    \end{tabular}
-\end{table}
-
-\vspace{1mm}
-
-\it{NIST: National Institute of Standards and Technology (Basis set limit)}\\
-\it{GTO calculations using Dalton}
-
-\vspace{5mm}
-
-\begin{itemize}
-    \item   We are able to attain \textbf{considerably higher} accuracy than 
-            high-quality Gaussian basis sets
-    \item   Energies are not variational, but \textbf{basis set limit} within 
-            the requested precision
-    \item   Calculations are still more expensive than conventional methods
-\end{itemize}
-
-\end{frame}
+%\begin{frame}
+%\frametitle{Accurate calculations}
+%\centering
+%\begin{table}
+%    \centering
+%    \begin{tabular}{lr@{.}lr@{.}l}
+%    \multicolumn{5}{c}{\textbf{LDA energy of Argon (a.u.)}}\\
+%    \hline
+%    \hline
+%                        &\multicolumn{4}{c}{}   \\
+%    &\multicolumn{2}{c}{HOMO}
+%    &\multicolumn{2}{c}{Total}\\
+%                        &\multicolumn{4}{c}{}   \\
+%    MW $\epsilon=10^{-3}$  &-0&387692&-525&966790  \\
+%    MW $\epsilon=10^{-5}$  &-0&382348&-525&946109  \\
+%    MW $\epsilon=10^{-7}$  &-0&382330&-525&946196  \\
+%                        &\multicolumn{4}{c}{}   \\
+%    NIST                &-0&382330&-525&946195  \\
+%                        &\multicolumn{4}{c}{}   \\
+%    aug-cc-pV6Z		&-0&382323&-525&944181  \\
+%%    aug-cc-pV5Z		&-0&382388&-525&942021  \\
+%    aug-cc-pVQZ		&-0&382463&-525&938021  \\
+%%    aug-cc-pVTZ	        &-0&382838&-525&933682  \\
+%    aug-cc-pVDZ		&-0&382143&-525&915702  \\
+%                        &\multicolumn{4}{c}{}   \\
+%    \hline
+%    \hline
+%    \end{tabular}
+%\end{table}
+%
+%\vspace{1mm}
+%
+%\it{NIST: National Institute of Standards and Technology (Basis set limit)}\\
+%\it{GTO calculations using Dalton}
+%
+%\vspace{5mm}
+%
+%\begin{itemize}
+%    \item   We are able to attain \textbf{considerably higher} accuracy than 
+%            high-quality Gaussian basis sets
+%    \item   Energies are not variational, but \textbf{basis set limit} within 
+%            the requested precision
+%    \item   Calculations are still more expensive than conventional methods
+%\end{itemize}
+%
+%\end{frame}
 
 
 %\begin{frame}
@@ -439,9 +425,9 @@
 %    Replacing the exchange-correlation potential $v_{xc}$ with the exact exchange operator
 %    \begin{equation}
 %	\nonumber
-%	\hat{K}\phi_i(\boldsymbol{r}) = \sum_j \phi_j(\boldsymbol{r}) 
+%	\hat{K}\orbital_i(\boldsymbol{r}) = \sum_j \orbital_j(\boldsymbol{r}) 
 %	\int P(\boldsymbol{r}-\boldsymbol{r}')
-%	\left[\phi_i(\boldsymbol{r}')\phi_j(\boldsymbol{r}')\right] d\boldsymbol{r}'
+%	\left[\orbital_i(\boldsymbol{r}')\orbital_j(\boldsymbol{r}')\right] d\boldsymbol{r}'
 %    \end{equation}
 %    gives the Hartree-Fock equations, which can be solved by the same iterative methods
 %    \ \\

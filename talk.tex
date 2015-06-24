@@ -11,6 +11,7 @@
 \usepackage{algorithm}
 \usepackage{algorithmic}
 \usepackage{color}
+\usepackage{braket}
 \usepackage{verbatim}
 \usepackage{amsbsy}
 \usepackage{multirow}
@@ -38,8 +39,8 @@
 {../templets/ctcc_general.jpg}}
 
 \title{\\\vspace{1cm}
-Electric and magnetic properties in the \\
-multiresolution multiwavelet basis}
+Basis set limit molecular properties \\
+using multiwavelets}
 %\subtitle{\textcolor{magenta}{My subtitle (if applicable)}}
 \author{Stig Rune Jensen}
 \institute[CTCC]{\\[-6mm]stig.r.jensen@uit.no\\
@@ -47,21 +48,9 @@ multiresolution multiwavelet basis}
 \includegraphics[height=1.5cm]{../templets/uio.pdf}\hspace{1cm} 
 \includegraphics[height=1.5cm]{../templets/sff.pdf}\hspace{1cm}
 \includegraphics[height=1.5cm]{../templets/uit.pdf}}
-\date{Numerical Methods in Quantum Chemistry\\ January 14 2015}
+\date{NKS meeting in Bergen\\ June 29-30 2015}
 
-\newcommand{\gb}[1]{green!#1!black}
-\newcommand{\rb}[1]{red!#1!black}
-\newcommand{\bb}[1]{blue!#1!black}
-\newcommand{\coleq}{red!60!black}
-\newcommand{\du}{\textrm{d}}
-
-\newcommand{\mydef}{\stackrel{\text{def}}{\hbox{=}}} 
-\newcommand{\Node}{\texttt{Node\ }}
-\newcommand{\node}{\texttt{node\ }}
-\newcommand{\nodes}{\texttt{nodes\ }}
-\newcommand{\Tree}{\texttt{Tree\ }}
-\newcommand{\tree}{\texttt{tree\ }}
-\newcommand{\trees}{\texttt{trees\ }}
+\include{newcommands}
 
 \begin{document}
 
@@ -74,13 +63,13 @@ multiresolution multiwavelet basis}
 \maketitle
 }
 
-\include{summary}
+%\include{summary}
 %\include{outlook}
-\include{mw_theory}
-\include{poisson}
-\include{parallel}
-\include{dft}
-\include{scf}
+%\include{mw_theory}
+%\include{poisson}
+%\include{parallel}
+%\include{dft}
+%\include{scf}
 \include{response}
 %\include{summary}
 \include{acknowlegments}
