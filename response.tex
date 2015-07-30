@@ -84,65 +84,18 @@
 \vspace{5mm}
 \centering
 \tiny
-T. Yanai, R.J. Harrison, N.C. Handy,
+T. Yanai \etal,
 {\it Mol. Phys.},
 \textbf{103:2-3} 
 (2005)\\
-H. Sekino, Y. Maeda, T. Yanai, R.J. Harrison,
+H. Sekino \etal,
 {\it J. Chem. Phys.},
 \textbf{129} 
 (2008)\\
-T. Yanai, G. I. Fann, G. Beylkin, R. J. Harrison,
+T. Yanai, \etal,
 \it{Phys. Chem. Chem. Phys.}, 
 \textbf{(published online)},
 (2015)
-
-\end{frame}
-
-\begin{frame}
-\frametitle{Energy}
-
-\centering
-\textbf{Methyloxirane molecule}
-\hspace{30mm}
-\textbf{Adaptive grid}
-\begin{minipage}{0.5\textwidth}
-\centering
-\includegraphics[scale=0.15, viewport = 0 180 550 650, clip]{figures/methyloxirane_white.jpg}
-\end{minipage}%
-\begin{minipage}{0.5\textwidth}
-\centering
-\includegraphics[angle=-90, scale=0.25, viewport = 170 150 470 700, clip]{figures/methyloxirane_grid.pdf}
-\end{minipage}
-
-\vspace{5mm}
-
-\begin{table}
-    \centering
-    \begin{tabular}{r|cr|cr}
-    \multicolumn{5}{c}{\textbf{Total energy (a.u.)}}\\
-    \hline               
-    \hline               
-                     &               &               &               &               \\
-                     &Hartree-Fock   &Time           &LDA            &Time           \\
-    \hspace{20mm}\   &\hspace{20mm}\ &\hspace{05mm}\ &\hspace{20mm}\ &\hspace{05mm}\ \\
-    MRChem $10^{-2}$ & -192.0425     &  30m          & -191.5975     &   2m          \\
-    MRChem $10^{-3}$ & -192.0002     &    h          & -191.5622     &   5m          \\
-    MRChem $10^{-4}$ & -192.0000     &    h          & -191.5619     &  10m          \\
-                     &               &               &               &               \\
-    aug-cc-pVQZ      & -191.9968     &  30m          & -191.5563     &  30m          \\
-        cc-pVQZ      & -191.9960     &  10m          & -191.5549     &  10m          \\
-    aug-cc-pVDZ      & -191.9357     &  $<$1m        & -191.4817     &  $<$1m        \\
-        cc-pVDZ      & -191.9232     &  $\ll$1m      & -191.4622     &  $\ll$1m      \\
-                     &               &               &               &               \\
-    \hline
-    \hline
-    \end{tabular}
-\end{table}
-
-\centering
-\it{Wall time given on 16 CPUs}\\
-\it{GTO calculations using Dalton}
 
 \end{frame}
 
@@ -288,7 +241,7 @@ T. Yanai, G. I. Fann, G. Beylkin, R. J. Harrison,
 \frametitle{Nuclear shielding}
 \begin{columns}
 
-\begin{column}[b]{0.5\textwidth}
+\begin{column}[b]{0.4\textwidth}
 \centering
 \textbf{Diamagnetic shielding}
 \begin{equation}
@@ -304,12 +257,14 @@ T. Yanai, G. I. Fann, G. Beylkin, R. J. Harrison,
 \end{equation}
 \end{column}
 
-\begin{column}[b]{0.5\textwidth}
+\begin{column}[b]{0.6\textwidth}
 \centering
 \textbf{Paramagnetic shielding}
 \begin{equation}
     \nonumber
-    \pert{\hamiltonian}{M_K} = -i \alpha^2 \frac{\boldsymbol{r}_K\times\nabla}{r_K^3}
+    \pert{\hamiltonian}{M_K} 
+    = -i \alpha^2 \frac{\boldsymbol{r}_K\times\nabla}{r_K^3} \qquad \qquad
+    \pert{\hamiltonian}{B} = -i \boldsymbol{r}_O\times\nabla
 \end{equation}
 \vspace{2mm}
 \begin{equation}
