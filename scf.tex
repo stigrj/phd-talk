@@ -1,61 +1,67 @@
 \begin{frame}
     \frametitle{Integral formulation SCF}
     \begin{columns}
-    \begin{column}[b]{0.45\textwidth}
+    \begin{column}[b]{0.5\textwidth}
 
     \centering
-    The Hartree-Fock/Kohn-Sham equations
+    \textbf{Kohn-Sham equations}
     \begin{equation}
         \nonumber
-        \left[\hat{T} + \hat{V}\right]\orbital_i(r) =\ \epsilon_i \orbital_i(r)
+        \left[\hat{T} + \hat{V}\right]\ket{\orbital_i} =\ 
+        \epsilon_i \ket{\orbital_i}
     \end{equation}
 
     \vspace{5mm}
-    are inverted using the Bound-State\\ Helmholtz (BSH) operator
-    \begin{align}
-        \nonumber
-        2\hat{G}_i  &=  \left[\hat{T} - \epsilon_i\right]^{-1}
-    \end{align}
 
-    \vspace{5mm}
-    and solved iteratively
+    \textbf{Bound-State Helmholtz operator}
     \begin{equation}
         \nonumber
-        \orbital_i^{n+1} =\ -2\Helmholtz{\hat{V}^n\orbital_i^n}
+        2\hat{G}_i  = \left[\hat{T} - \epsilon_i\right]^{-1} 
     \end{equation}
 
     \vspace{5mm}
-    Krylov subspace Accelerated Inexact Newton (KAIN) 
-    method is used to improve convergence
+
+    \textbf{Iterative solution}
+    \begin{equation}
+        \nonumber
+        \ket{\orbital_i}^{n+1} =\ -2\Helmholtz{\hat{V}^n\ket{\orbital_i}^n}
+    \end{equation}
+
     \vspace{10mm}
     \end{column}
 
-    \begin{column}[b]{0.55\textwidth}
+    \begin{column}[b]{0.5\textwidth}
+%    \begin{figure}
+%        \includegraphics[scale=0.2, clip, viewport = 100 450 400 720]
+%        {figures/methane.pdf}
+%        \includegraphics[scale=0.3, clip, viewport = 320 200 520 400]
+%        {figures/methaneGrid.pdf}
+%    \end{figure}
+%    \begin{figure}
+%        \includegraphics[scale=0.6, clip, viewport = 50 350 300 540]
+%        {figures/convergence.pdf}
+%    \end{figure}
     \begin{figure}
-        \includegraphics[scale=0.2, clip, viewport = 100 450 400 720]
-        {figures/methane.pdf}
-        \includegraphics[scale=0.3, clip, viewport = 320 200 520 400]
-        {figures/methaneGrid.pdf}
-    \end{figure}
-
-    \begin{figure}
-        \includegraphics[scale=0.6, clip, viewport = 50 350 300 540]
-        {figures/convergence.pdf}
+	\includegraphics[scale=0.55, clip, viewport = 50 565 300 715]
+                {figures/accuracy.pdf}\\
+	\includegraphics[scale=0.55, clip, viewport = 301 550 551 715]
+                {figures/accuracy.pdf}
     \end{figure}
 
     \end{column}
     \end{columns}
-    \centering
-    \vspace{2mm}
-    \tiny
-    M.H. Kalos, 
-    {\it Phys. Rev.}, 
-    \textbf{128(4)}
-    (1962)\\
-    R.J. Harrison \etal,
-    {\it J. Chem. Phys.}, 
-    \textbf{121}
-    (2004)
+
+    %\centering
+    %\vspace{2mm}
+    %\tiny
+    %M.H. Kalos, 
+    %{\it Phys. Rev.}, 
+    %\textbf{128(4)}
+    %(1962)\\
+    %R.J. Harrison \etal,
+    %{\it J. Chem. Phys.}, 
+    %\textbf{121}
+    %(2004)
 \end{frame}
 
 %\begin{frame}
@@ -470,51 +476,51 @@
 %\end{itemize}
 %\end{frame}
 
-\begin{frame}
-\frametitle{Ground state energy}
-
-\centering
-\textbf{Methyloxirane molecule}
-\hspace{30mm}
-\textbf{Adaptive grid}
-\begin{minipage}{0.5\textwidth}
-\centering
-\includegraphics[scale=0.15, viewport = 0 180 550 650, clip]{figures/methyloxirane_white.jpg}
-\end{minipage}%
-\begin{minipage}{0.5\textwidth}
-\centering
-\includegraphics[angle=-90, scale=0.25, viewport = 170 150 470 700, clip]{figures/methyloxirane_grid.pdf}
-\end{minipage}
-
-\vspace{5mm}
-
-\begin{table}
-    \centering
-    \begin{tabular}{r|cr|cr}
-    \multicolumn{5}{c}{\textbf{Total energy (a.u.)}}\\
-    \hline               
-    \hline               
-                     &               &               &               &               \\
-                     &Hartree-Fock   &Time           &LDA            &Time           \\
-    \hspace{20mm}\   &\hspace{20mm}\ &\hspace{05mm}\ &\hspace{20mm}\ &\hspace{05mm}\ \\
-    MRChem $10^{-2}$ & -192.0425     &  30m          & -191.5975     &   2m          \\
-    MRChem $10^{-3}$ & -192.0002     &   1h          & -191.5622     &   5m          \\
-    MRChem $10^{-4}$ & -192.0000     &   3h          & -191.5619     &  10m          \\
-                     &               &               &               &               \\
-    aug-cc-pVQZ      & -191.9968     &  30m          & -191.5563     &  30m          \\
-        cc-pVQZ      & -191.9960     &  10m          & -191.5549     &  10m          \\
-    aug-cc-pVDZ      & -191.9357     &  $<$1m        & -191.4817     &  $<$1m        \\
-        cc-pVDZ      & -191.9232     &  $\ll$1m      & -191.4622     &  $\ll$1m      \\
-                     &               &               &               &               \\
-    \hline
-    \hline
-    \end{tabular}
-\end{table}
-
-\centering
-\it{Wall time given on 16 CPUs}\\
-\it{GTO calculations using Dalton}
-
-\end{frame}
+%\begin{frame}
+%\frametitle{Ground state energy}
+%
+%\centering
+%\textbf{Methyloxirane molecule}
+%\hspace{30mm}
+%\textbf{Adaptive grid}
+%\begin{minipage}{0.5\textwidth}
+%\centering
+%\includegraphics[scale=0.15, viewport = 0 180 550 650, clip]{figures/methyloxirane_white.jpg}
+%\end{minipage}%
+%\begin{minipage}{0.5\textwidth}
+%\centering
+%\includegraphics[angle=-90, scale=0.25, viewport = 170 150 470 700, clip]{figures/methyloxirane_grid.pdf}
+%\end{minipage}
+%
+%\vspace{5mm}
+%
+%\begin{table}
+%    \centering
+%    \begin{tabular}{r|cr|cr}
+%    \multicolumn{5}{c}{\textbf{Total energy (a.u.)}}\\
+%    \hline               
+%    \hline               
+%                     &               &               &               &               \\
+%                     &Hartree-Fock   &Time           &LDA            &Time           \\
+%    \hspace{20mm}\   &\hspace{20mm}\ &\hspace{05mm}\ &\hspace{20mm}\ &\hspace{05mm}\ \\
+%    MRChem $10^{-2}$ & -192.0425     &  30m          & -191.5975     &   2m          \\
+%    MRChem $10^{-3}$ & -192.0002     &   1h          & -191.5622     &   5m          \\
+%    MRChem $10^{-4}$ & -192.0000     &   3h          & -191.5619     &  10m          \\
+%                     &               &               &               &               \\
+%    aug-cc-pVQZ      & -191.9968     &  30m          & -191.5563     &  30m          \\
+%        cc-pVQZ      & -191.9960     &  10m          & -191.5549     &  10m          \\
+%    aug-cc-pVDZ      & -191.9357     &  $<$1m        & -191.4817     &  $<$1m        \\
+%        cc-pVDZ      & -191.9232     &  $\ll$1m      & -191.4622     &  $\ll$1m      \\
+%                     &               &               &               &               \\
+%    \hline
+%    \hline
+%    \end{tabular}
+%\end{table}
+%
+%\centering
+%\it{Wall time given on 16 CPUs}\\
+%\it{GTO calculations using Dalton}
+%
+%\end{frame}
 
 

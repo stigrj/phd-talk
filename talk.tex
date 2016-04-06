@@ -1,6 +1,6 @@
 \pagenumbering{arabic}
 %\documentclass[slides]{beamer}
-\documentclass[mathserif, 8pt]{beamer}
+\documentclass[mathserif, 10pt]{beamer}
 \usepackage[framesassubsections]{beamerprosper}
 \setbeamercovered{transparent}
 %\documentclass[slides,hyperref={pdfpagelabels=false}]{beamer}
@@ -39,8 +39,7 @@
 {../templets/ctcc_general.jpg}}
 
 \title{\\\vspace{1cm}
-Basis set limit molecular properties \\
-using multiwavelets}
+Benchmarking DFT functionals on \\ magnetic properties}
 %\subtitle{\textcolor{magenta}{My subtitle (if applicable)}}
 \author{Stig Rune Jensen}
 \institute[CTCC]{\\[-6mm]stig.r.jensen@uit.no\\
@@ -48,7 +47,7 @@ using multiwavelets}
 \includegraphics[height=1.5cm]{../templets/uio.pdf}\hspace{1cm} 
 \includegraphics[height=1.5cm]{../templets/sff.pdf}\hspace{1cm}
 \includegraphics[height=1.5cm]{../templets/uit.pdf}}
-\date{NKS meeting in Bergen\\ June 29-30 2015}
+\date{CTCC meeting in Alta\\ April 7 2016}
 
 \include{newcommands}
 
@@ -65,13 +64,17 @@ using multiwavelets}
 
 %\include{summary}
 %\include{outlook}
+\include{introduction}
 \include{mw_theory}
 %\include{poisson}
 %\include{parallel}
-%\include{dft}
+\include{dft}
 \include{scf}
-\include{response}
-\include{summary}
+%\include{response}
+\include{magnetic_response}
+\include{magnetic_benchmark}
+%\include{summary}
+\include{conclusions}
 \include{acknowlegments}
 
 \end{document}
