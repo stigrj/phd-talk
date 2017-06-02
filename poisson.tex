@@ -1,15 +1,11 @@
-%\begin{frame}
-%    \centering
-%    \Large{Part II:}\\
-%    \ \\
-%    \ \\
-%    \centering
-%    \Large{Linear scaling Coulomb interaction in the multiwavelet basis,\\
-%	a parallel implementation}
-%\end{frame}
+\begin{frame}
+    \centering
+    \textbf{\Large{Poisson operator}}
+\end{frame}
 
 \begin{frame}
-    \frametitle{Operator representation}
+    \frametitle{Non-standard operator representation}
+    \tiny
     \begin{columns}
     \begin{column}[b]{0.5\linewidth}
     \begin{itemize}
@@ -19,26 +15,24 @@
 		\nonumber
 		g(\boldsymbol{r}) = \left[T f\right](\boldsymbol{r}) = 
 		    \int K(\boldsymbol{r} - \boldsymbol{r'})f(\boldsymbol{r'}) d\boldsymbol{r'}
-	    \end{equation}
-	    \ \\
-	    \ \\
+	    \end{equation}\pause
 	\item \textbf{Scaling projection} of operator at scale $n$
 	    \begin{equation}
 		\nonumber
 		T \approx T^n
-	    \end{equation}
+	    \end{equation}\pause
 	\item \textbf{Wavelet projections} obtained by the difference
 	    \begin{equation}
 		\nonumber
 		T^{n+1} - T^n = A^n + B^n + C^n
-	    \end{equation}
+	    \end{equation}\pause\pause\pause\pause\pause
 	\item \textbf{Multiresolution operator} obtained by recursion
 	    \begin{equation}
 		\nonumber
 		T^N = T^0 + \sum_{n=0}^{N-1} \left[A^n + B^n + C^n\right]
-	    \end{equation}
-	\item Scaling operator $T$ is \textbf{dense}
-	\item Wavelet operators $A$, $B$ and $C$ are \textbf{sparse} 
+	    \end{equation}\pause
+	%\item Scaling operator $T$ is \textbf{dense}
+	%\item Wavelet operators $A$, $B$ and $C$ are \textbf{sparse} 
     \end{itemize}
     \end{column}
     \begin{column}[b]{0.5\linewidth}
@@ -67,12 +61,19 @@
     \includegraphics[scale=0.6, clip, viewport = 240 280 450 480]
     {figures/matrix/matrix_6.pdf}
     }
+    \only<8>{\hspace{1mm}
+    \includegraphics[scale=0.6, clip, viewport = 240 280 450 480]
+    {figures/matrix/matrix_6.pdf}
+    }
+    \only<9>{\hspace{1mm}
+    \includegraphics[scale=0.6, clip, viewport = 240 280 450 480]
+    {figures/matrix/matrix_6.pdf}
+    }
     \vspace{5mm}
     \end{center}
     \end{column}
     \end{columns}
     \vspace{5mm}
-
     \begin{columns}
     \begin{column}{.48\textwidth}
     \centering
@@ -105,6 +106,7 @@
 
 \begin{frame}
     \frametitle{Coulomb interaction}
+    \scriptsize
     \begin{itemize}
 	\item	Electrostatic potential from a \textbf{point charge} follows from Coulomb's law
 		\begin{equation}
@@ -112,17 +114,13 @@
 		    V(\boldsymbol{r}) = \frac{q}{4\pi\epsilon_0}
 		    \frac{1}{|\boldsymbol{r}-\boldsymbol{r}'|}
 		\end{equation}
-		\ \\
-		\ \\
-		\ \\
+		\vspace{2mm}
 	\item	Electrostatic potential from a \textbf{charge density} is given by the Poisson equation
 		\begin{equation}
 		    \nonumber
 		    \nabla^2 V(\boldsymbol{r}) = -\rho(\boldsymbol{r})
 		\end{equation}
-		\ \\
-		\ \\
-		\ \\
+		\vspace{2mm}
 	\item	Can be solved directly in integral form using the Poisson kernel
 		\begin{equation}
 		    \nonumber
@@ -130,16 +128,10 @@
 		    \int P(\boldsymbol{r}-\boldsymbol{r'})\rho(\boldsymbol{r'}) d\boldsymbol{r'} =
 		    \int\frac{\rho(\boldsymbol{r'})}{4\pi|\boldsymbol{r} - \boldsymbol{r'}|} d\boldsymbol{r'} 
 		\end{equation}
-		\ \\
-		\ \\
-		\ \\
+		\vspace{2mm}
     \end{itemize}
-    \ \\
-    \ \\
-    \ \\
     \begin{columns}
     \begin{column}{.30\textwidth}
-        \ \\
     \end{column}
     \begin{column}{.40\textwidth}
         \ \ \ \ \textbf{Numerical problems}
@@ -150,13 +142,13 @@
 	\end{itemize}
     \end{column}
     \begin{column}{.30\textwidth}
-	\ \\
     \end{column}
     \end{columns}
 \end{frame}
 
 \begin{frame}
     \frametitle{Separation of variables using Gaussians}
+    \tiny
     \centering
     The Poisson equation is solved in integral form using the Poisson kernel
     \begin{equation}
@@ -235,42 +227,34 @@
     }
     \only<8>{
     \vspace{3mm}
-    \normalsize{Combined with the sparse wavelet representation of 
+    \scriptsize{Combined with the sparse wavelet representation of 
     operators we get\\ \textbf{linear scaling algorithms}}
     }
 \end{frame}
 
 \begin{frame}
     \frametitle{Vanishing moments}
+    \scriptsize
     \centering
     \textbf{A function $f$ has $M$ vanishing moments if}
     \begin{equation}
         \nonumber
         \mu_m = \int_0^1 x^m f(x) dx = 0,\qquad m = 0, 1, \dots, M - 1
     \end{equation}
-    \ \\
-    \ \\
-    \ \\
-    \begin{columns}
-    \begin{column}{.15\textwidth}
-        \ \\
-    \end{column}
-    \begin{column}{.85\textwidth}
+    \vspace{2mm}
     \begin{itemize}
         \item   Scaling basis has no vanishing moments $\longrightarrow$ 
 		\textbf{long ranged} interaction
         \item   Wavelet basis has $k$ vanishing moments $\longrightarrow$ 
 		\textbf{short ranged} interaction
     \end{itemize}
-    \end{column}
-    \end{columns}
-    \ \\
-    \ \\
+    \vspace{2mm}
     \includegraphics[scale=0.4, clip, viewport = 0 50 680 350]{figures/multipoles.pdf}
 \end{frame}
 
 %\begin{frame}
 %    \frametitle{Algorithm}
+%    \tiny
 %    \begin{algorithmic}[1]
 %        \STATE create \tree skeleton of empty \nodes for the output function
 %        \STATE create list of \emph{all} output \nodes
@@ -288,9 +272,9 @@
 %            \ENDFOR
 %        \ENDWHILE
 %    \end{algorithmic}
-%    \ \\
-%    \ \\
-%    \ \\
+%
+%    \vspace{2mm}
+%
 %    \pause
 %    \begin{algorithmic}[1]
 %        \FOR{each separated component ($\kappa = 1,\dots,M$) of the operator}
@@ -309,54 +293,55 @@
 %    \end{algorithmic}
 %\end{frame}
 
-
 \begin{frame}
     \frametitle{Linear scaling Coulomb interaction}
+    \scriptsize
     \begin{columns}
     \begin{column}{.10\textwidth}
     \ \\
     \end{column}
     \begin{column}{.40\textwidth}
 	\centering
-	\ \\
-	\ \\
-	\ \\
-	\ \\
-	\textbf{Alkane chains}
+
+        \vspace{2mm}
+	
+        \textbf{Alkane chains}
 	\begin{equation}
 	    \nonumber
 	    C_{n}H_{2n+2}, \qquad n=2,\dots,70
 	\end{equation}
-	\ \\
-	\ \\
-	\ \\
-	\textbf{Fitted curve}
+
+        \vspace{4mm}
+	
+        \textbf{Fitted curve}
 	\begin{equation}
 	    \nonumber
 	    t(n) = 12.5 + 2.34n^{0.754} 
 	\end{equation}
     \end{column}
-    \begin{column}{.50\textwidth}
+    \begin{column}{.60\textwidth}
 	\centering
+
+        \vspace{3mm}
+
 	\begin{figure}
-	    \includegraphics[scale=0.3, clip, viewport = 80 560 600 720]{figures/alkane.pdf}
+	    \includegraphics[scale=0.3, clip, viewport = 60 570 600 670]{figures/alkane.pdf}
 	\end{figure}
+
+        \vspace{2mm}
+
 	\textbf{Fitted curve}
 	\begin{equation}
 	    \nonumber
 	    t(n) = -6.0 + 1.33n^{0.991}
 	\end{equation}
-	\ \\
-	\ \\
+        \vspace{2mm}
     \end{column}
     \end{columns}    
-    \ \\
     \begin{center}
 	\includegraphics[scale=0.6, clip, viewport = 50 550 540 730]{figures/linearScaling.pdf}
     \end{center}
-
-    \vspace{10mm}
-
+    \vspace{15mm}
 \end{frame}
 
 

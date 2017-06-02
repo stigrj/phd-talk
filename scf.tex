@@ -1,6 +1,6 @@
 \begin{frame}
     \centering
-    \textbf{\Large{Iterative solution algorithms}}
+    \textbf{\Large{Multiwavelet Self-Consistent Field}}
 \end{frame}
 
 \begin{frame}
@@ -776,6 +776,7 @@
 
 \begin{frame}
 \frametitle{Ground state energy}
+\scriptsize
 \centering
 \begin{table}
     \centering
@@ -787,18 +788,18 @@
     &\multicolumn{2}{c}{HOMO}
     &\multicolumn{2}{c}{Total}\\
                         &\multicolumn{4}{c}{}   \\
-    MW $\epsilon=10^{-3}$  &-0&387692&-525&966790  \\
-    MW $\epsilon=10^{-5}$  &-0&382348&-525&946109  \\
-    MW $\epsilon=10^{-7}$  &-0&382330&-525&946196  \\
-                        &\multicolumn{4}{c}{}   \\
-    NIST                &-0&382330&-525&946195  \\
-                        &\multicolumn{4}{c}{}   \\
-    aug-cc-pV6Z		&-0&382323&-525&944181  \\
-%    aug-cc-pV5Z		&-0&382388&-525&942021  \\
-    aug-cc-pVQZ		&-0&382463&-525&938021  \\
-%    aug-cc-pVTZ	        &-0&382838&-525&933682  \\
-    aug-cc-pVDZ		&-0&382143&-525&915702  \\
-                        &\multicolumn{4}{c}{}   \\
+    MW $\epsilon=10^{-3}$  &-0&38\red{7692}&-525&966\red{790}  \\
+    MW $\epsilon=10^{-5}$  &-0&3823\red{48}&-525&9461\red{09}  \\
+    MW $\epsilon=10^{-7}$  &-0&382330      &-525&94619\red{6}  \\
+                           &\multicolumn{4}{c}{}   \\
+    NIST                   &-0&382330      &-525&946195  \\
+                           &\multicolumn{4}{c}{}   \\
+    aug-cc-pV6Z		   &-0&3823\red{23}&-525&94\red{4181}  \\
+    %aug-cc-pV5Z		   &-0&3823\red{88}&-525&94\red{2021}  \\
+    aug-cc-pVQZ		   &-0&382\red{463}&-525&93\red{8021}  \\
+    %aug-cc-pVTZ	           &-0&382\red{838}&-525&9\red{33682}  \\
+    aug-cc-pVDZ		   &-0&382\red{143}&-525&9\red{15702}  \\
+                           &\multicolumn{4}{c}{}   \\
     \hline
     \hline
     \end{tabular}
@@ -817,7 +818,7 @@
 
 \begin{itemize}
     \item   We are able to attain \textbf{considerably higher} accuracy than 
-            high-quality Gaussian basis sets
+            high-quality GTOs
     \item   Energies are not variational, but \textbf{basis set limit} within 
             the requested precision
 \end{itemize}
@@ -826,6 +827,7 @@
 
 \begin{frame}
 \frametitle{Ground state energy}
+\scriptsize
 
 \centering
 \textbf{Methyloxirane molecule}
@@ -839,36 +841,25 @@
 \centering
 \includegraphics[angle=-90, scale=0.25, viewport = 170 150 470 700, clip]{figures/methyloxirane_grid.pdf}
 \end{minipage}
-
-\vspace{5mm}
-
 \begin{table}
     \centering
-    \begin{tabular}{r|cr|cr}
-    \multicolumn{5}{c}{\textbf{Total energy (a.u.)}}\\
+    \textbf{Total wall time on 16 CPUs}
+    \begin{tabular}{rcr|rcr}
     \hline               
     \hline               
-                     &               &               &               &               \\
-                     &Hartree-Fock   &Time           &LDA            &Time           \\
-    \hspace{20mm}\   &\hspace{20mm}\ &\hspace{05mm}\ &\hspace{20mm}\ &\hspace{05mm}\ \\
-    MRChem $10^{-2}$ & -192.0425     &  30m          & -191.5975     &   2m          \\
-    MRChem $10^{-3}$ & -192.0002     &   1h          & -191.5622     &   5m          \\
-    MRChem $10^{-4}$ & -192.0000     &   3h          & -191.5619     &  10m          \\
-                     &               &               &               &               \\
-    aug-cc-pVQZ      & -191.9968     &  30m          & -191.5563     &  30m          \\
-        cc-pVQZ      & -191.9960     &  10m          & -191.5549     &  10m          \\
-    aug-cc-pVDZ      & -191.9357     &  $<$1m        & -191.4817     &  $<$1m        \\
-        cc-pVDZ      & -191.9232     &  $\ll$1m      & -191.4622     &  $\ll$1m      \\
-                     &               &               &               &               \\
+                         &                    &                &                  &                   &                  \\
+    MRChem               & PBE energy (a.u.)  & Time           & Dalton           & PBE energy (a.u.) & Time             \\
+    \hspace{10mm}\       & \hspace{20mm}\     & \hspace{05mm}\ & \hspace{10mm}\   & \hspace{05mm}\    & \hspace{05mm}\   \\
+    $\epsilon = 10^{-2}$ & -191.\red{??????}  &  ??m           & aug-cc-pVDZ      & -191.\red{??????} &  ??m             \\
+    $\epsilon = 10^{-3}$ & -191.?\red{?????}  &  ??m           & aug-cc-pVTZ      & -191.?\red{?????} &  ??m             \\
+    $\epsilon = 10^{-4}$ & -191.??\red{????}  &  ??m           & aug-cc-pVQZ      & -191.??\red{????} &  ??m             \\
+    $\epsilon = 10^{-5}$ & -191.???\red{???}  &  ??m           & aug-cc-pV5Z      & -191.???\red{???} &  ??m             \\
+    $\epsilon = 10^{-6}$ & -191.????\red{??}  &  ??m           & aug-cc-pV6Z      & -191.????\red{??} &  ??m             \\
+                         &                    &                \\
     \hline
     \hline
     \end{tabular}
 \end{table}
-
-\centering
-\it{Wall time given on 16 CPUs}\\
-\it{GTO calculations using Dalton}
-
 \end{frame}
 
 \begin{frame}

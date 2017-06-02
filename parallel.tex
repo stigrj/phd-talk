@@ -1,173 +1,173 @@
-%\begin{frame}
-%    \frametitle{Parallel programming}
-%    Why parallel processing?
-%    \begin{itemize}
-%	\item	To get more processing power
-%	\item	To get more available memory
-%	\item	Future $\rightarrow$ \emph{more} processors rather than faster
-%    \end{itemize}
-%    \ \\
-%    \ \\
-%    \ \\
-%    \pause
-%    Parallelization means
-%    \begin{itemize}
-%	\item	\textbf{distributing work} among available processors
-%	\item	\textbf{syncronizing} distributed work
-%	\item	\textbf{distributing data} among available memory
-%	\item	\textbf{communicating} distributed data
-%    \end{itemize}
-%\end{frame}
+\begin{frame}
+    \centering
+    \textbf{\Large{Parallel implementation}}
+\end{frame}
 
-%\begin{frame}
-%    \frametitle{Shared memory (OpenMP)}
-%    \begin{columns}
-%    \begin{column}[b]{0.45\linewidth}
-%	Pros
-%	\begin{itemize}
-%	    \item Relatively simple implementation
-%	    \item Quick way to good performance
-%	    \item No communication
-%	    \item Simple load balance
-%	\end{itemize}
-%	\ \\
-%	\ \\
-%	\pause
-%	Cons
-%        \begin{itemize}
-%	    \item Small to medium scale parallelization
-%	    \item Limited memory
-%	    \item Race conditions
-%	    \item Tedious debugging (Heisenbugs)
-%	\end{itemize}
-%	\ \\
-%	\ \\
-%    \end{column}
-%    \begin{column}[b]{0.4\linewidth}
-%	\only<3>{\includegraphics[viewport = 120 160 460 450, clip, scale=0.4]{figures/parallel_OMP.pdf}}
-%	\ \\
-%	\ \\
-%	\ \\
-%	\ \\
-%    \end{column}
-%    \end{columns}
-%\end{frame}
+\begin{frame}
+    \frametitle{Parallel programming}
+    Why parallel processing?
+    \begin{itemize}
+	\item	To get more processing power
+	\item	To get more available memory
+	\item	Future $\rightarrow$ \emph{more} processors rather than faster
+    \end{itemize}
 
-%\begin{frame}
-%    \frametitle{Distributed memory (MPI)}
-%    \begin{columns}
-%    \begin{column}[b]{0.45\linewidth}
-%	Pros
-%	\begin{itemize}
-%	    \item Large scale parallelization
-%	    \item Extensive memory
-%	\end{itemize}
-%	\ \\
-%	\ \\
-%	\ \\
-%	\ \\
-%	\pause
-%	Cons
-%	\begin{itemize}
-%	    \item Complicated implementation
-%	    \item User specified work/data decomposition 
-%	    \item User specified communication
-%	    \item Difficult to load balance
-%	    \item Communication overhead
-%	\end{itemize}
-%    \end{column}
-%    \begin{column}[b]{0.4\linewidth}
-%	\only<3>{\includegraphics[viewport = 120 160 460 450, clip, scale=0.4]{figures/parallel_mpi_2.pdf}}
-%	\ \\
-%	\ \\
-%	\ \\
-%    \end{column}
-%    \end{columns}
-%\end{frame}
-%
-%\begin{frame}
-%    \frametitle{Parallel efficiency}
-%    \begin{center}
-%    \only<1>{\includegraphics[clip, viewport = 50 250 550 800, scale=0.5]{figures/amdahl.pdf}}
-%    \only<2>{\includegraphics[clip, viewport = 50 250 550 800, scale=0.5]{figures/parallel_efficiency_1.pdf}}
-%    \only<3>{\includegraphics[clip, viewport = 50 250 550 800, scale=0.5]{figures/parallel_efficiency_2.pdf}}
-%    \only<4>{\includegraphics[clip, viewport = 50 250 550 800, scale=0.5]{figures/parallel_efficiency_3.pdf}}
-%    \end{center}
-%\end{frame}
+    \vspace{5mm}
 
-%\begin{frame}
-%    \frametitle{Parallelization}
-%    \begin{columns}
-%    \begin{column}{.5\textwidth}
-%	\ \ \ \ \textbf{Shared memory using OpenMP}
-%	\begin{itemize}
-%	    \item All CPUs have access to the \textbf{full} grid
-%	    \item No communication needed
-%	    \item Small scale parallelization ($<50$ CPUs)
-%	    \item Work (grid cells) dynamically distributed
-%	\end{itemize}
-%    \end{column}
-%    \begin{column}{.5\textwidth}
-%	\ \ \ \ \textbf{Distributed memory using MPI}
-%	\begin{itemize}
-%	    \item Each CPU has access to a \textbf{local} part of the grid
-%	    \item Communication required
-%	    \item Large scale parallelization ($>1000$ CPUs)
-%	    \item Work (grid cells) distributed \it{a priori}
-%	\end{itemize}
-%    \end{column}
-%    \end{columns}
-%    \ \\
-%    \ \\
-%    \ \\
-%    \ \\
-%    \begin{columns}
-%    \begin{column}{0.4\textwidth}
-%	\centering
-%	\includegraphics[angle=-90, scale=0.15]{figures/caroteneGrid.pdf}
-%    \end{column}
-%    \begin{column}{0.6\textwidth}
-%	\centering
-%	\textbf{Lebesgue path}
-%	\includegraphics[scale=0.5, viewport = 150 350 500 435, clip]{figures/lebesgue.pdf}
-%	\ \\
-%	\ \\
-%	\ \\
-%	\textbf{Hilbert path}
-%	\includegraphics[scale=0.5, viewport = 150 350 500 435, clip]{figures/hilbert.pdf}
-%    \end{column}
-%    \end{columns}
-%\end{frame}
+    \pause
+    Parallelization means
+    \begin{itemize}
+	\item	\textbf{distributing work} among available processors
+	\item	\textbf{syncronizing} distributed work
+	\item	\textbf{distributing data} among available memory
+	\item	\textbf{communicating} distributed data
+    \end{itemize}
+\end{frame}
 
-%\begin{frame}
-%    \frametitle{Parallelization}
-%    \begin{columns}
-%    \begin{column}{.5\textwidth}
-%	\ \ \ \ \textbf{Shared memory using OpenMP}
-%	\begin{itemize}
-%	    \item All CPUs have access to the \textbf{full} grid
-%	    \item No communication needed
-%	    \item Small scale parallelization ($<50$ CPUs)
-%	    \item Work (grid cells) dynamically distributed
-%	\end{itemize}
-%    \end{column}
-%    \begin{column}{.5\textwidth}
-%	\ \ \ \ \textbf{Distributed memory using MPI}
-%	\begin{itemize}
-%	    \item Each CPU has access to a \textbf{local} part of the grid
-%	    \item Communication required
-%	    \item Large scale parallelization ($>1000$ CPUs)
-%	    \item Work (grid cells) distributed \it{a priori}
-%	\end{itemize}
-%    \end{column}
-%    \end{columns}
-%    \ \\
-%    \ \\
-%    \ \\
-%    \ \\
-%    \centering
-%    \includegraphics[angle=0, scale=0.2]{figures/caroteneGrid.pdf}
-%\end{frame}
+\begin{frame}
+    \frametitle{Shared memory (OpenMP)}
+    \begin{columns}
+    \begin{column}[b]{0.4\linewidth}
+	\textbf{Pros}
+	\begin{itemize}
+	    \item Relatively simple implementation
+	    \item Quick way to good performance
+	    \item No communication
+	    \item Simple load balance
+	\end{itemize}
+        \vspace{2mm}
+	\pause
+	\textbf{Cons}
+        \begin{itemize}
+	    \item Small to medium scale parallelization
+	    \item Limited memory
+	    \item Race conditions
+	    \item Tedious debugging (Heisenbugs)
+	\end{itemize}
+    \end{column}
+    \begin{column}[b]{0.6\linewidth}
+	\only<3>{\includegraphics[viewport = 120 160 460 450, clip, scale=0.55]{figures/parallel_OMP.pdf}}
+
+	\vspace{5mm}
+
+    \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Distributed memory (MPI)}
+    \begin{columns}
+    \begin{column}[b]{0.4\linewidth}
+	\textbf{Pros}
+	\begin{itemize}
+	    \item Large scale parallelization
+	    \item Extensive memory
+	\end{itemize}
+
+        \vspace{5mm}
+
+	\pause
+	\textbf{Cons}
+	\begin{itemize}
+	    \item Complicated implementation
+	    \item User specified work/data decomposition 
+	    \item User specified communication
+	    \item Difficult to load balance
+	    \item Communication overhead
+	\end{itemize}
+    \end{column}
+    \begin{column}[b]{0.6\linewidth}
+	\only<3>{\includegraphics[viewport = 120 160 460 450, clip, scale=0.55]{figures/parallel_mpi_2.pdf}}
+
+        \vspace{5mm}
+
+    \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Parallel efficiency}
+    \begin{center}
+    \only<1>{\includegraphics[clip, viewport = 50 250 550 800, scale=0.5]{figures/amdahl.pdf}}
+    \only<2>{\includegraphics[clip, viewport = 50 250 550 800, scale=0.5]{figures/parallel_efficiency_1.pdf}}
+    \only<3>{\includegraphics[clip, viewport = 50 250 550 800, scale=0.5]{figures/parallel_efficiency_2.pdf}}
+    \only<4>{\includegraphics[clip, viewport = 50 250 550 800, scale=0.5]{figures/parallel_efficiency_3.pdf}}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Parallelization}
+    \tiny
+    \begin{columns}
+    \begin{column}{.5\textwidth}
+	\ \ \ \ \textbf{Shared memory using OpenMP}
+	\begin{itemize}
+	    \item All CPUs have access to the \textbf{full} grid
+	    \item No communication needed
+	    \item Small scale parallelization ($<50$ CPUs)
+	    \item Work (grid cells) dynamically distributed
+	\end{itemize}
+    \end{column}
+    \begin{column}{.5\textwidth}
+	\ \ \ \ \textbf{Distributed memory using MPI}
+	\begin{itemize}
+	    \item Each CPU has access to a \textbf{local} part of the grid
+	    \item Communication required
+	    \item Large scale parallelization ($>1000$ CPUs)
+	    \item Work (grid cells) distributed \it{a priori}
+	\end{itemize}
+    \end{column}
+    \end{columns}
+
+    \vspace{10mm}
+
+    \begin{columns}
+    \begin{column}{0.4\textwidth}
+	\centering
+	\includegraphics[angle=-90, scale=0.15]{figures/caroteneGrid.pdf}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+	\centering
+	\textbf{Lebesgue path}
+	\includegraphics[scale=0.5, viewport = 150 350 500 435, clip]{figures/lebesgue.pdf}
+
+        \vspace{2mm}
+
+	\textbf{Hilbert path}
+	\includegraphics[scale=0.5, viewport = 150 350 500 435, clip]{figures/hilbert.pdf}
+    \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Parallelization}
+    \tiny
+    \begin{columns}
+    \begin{column}{.5\textwidth}
+	\ \ \ \ \textbf{Shared memory using OpenMP}
+	\begin{itemize}
+	    \item All CPUs have access to the \textbf{full} grid
+	    \item No communication needed
+	    \item Small scale parallelization ($<50$ CPUs)
+	    \item Work (grid cells) dynamically distributed
+	\end{itemize}
+    \end{column}
+    \begin{column}{.5\textwidth}
+	\ \ \ \ \textbf{Distributed memory using MPI}
+	\begin{itemize}
+	    \item Each CPU has access to a \textbf{local} part of the grid
+	    \item Communication required
+	    \item Large scale parallelization ($>1000$ CPUs)
+	    \item Work (grid cells) distributed \it{a priori}
+	\end{itemize}
+    \end{column}
+    \end{columns}
+
+    \vspace{10mm}
+
+    \centering
+    \includegraphics[angle=0, scale=0.2]{figures/caroteneGrid.pdf}
+\end{frame}
 
 \begin{frame}
     \frametitle{Linear scaling and parallel performance}
@@ -204,6 +204,7 @@
 
 \begin{frame}
     \frametitle{Parallel performance}
+    \scriptsize
     \centering
     Wall clock computation time in seconds for parallel calculation of electronic potential\\
     of diamond fragments using pure OpenMP and hybrid MPI/OpenMP strategies.\\
@@ -241,8 +242,9 @@
 	\hline
     \end{tabular}
     \end{table}
-    \ \\
-    \ \\
+
+    \vspace{3mm}
+
     \begin{itemize}
 	\item Computation time can be pushed down to a few seconds for all systems
 	\item Efficient OpenMP implementation (90\% at 16 CPUs)

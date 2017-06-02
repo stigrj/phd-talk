@@ -1,4 +1,9 @@
 \begin{frame}
+    \centering
+    \textbf{\Large{Magnetic Properties}}
+\end{frame}
+
+\begin{frame}
     \frametitle{Magnetic properties}
     \centering
     \textbf{The electronic Hamiltonian in an external magnetic field}
@@ -15,6 +20,7 @@
 
     \vspace{10mm}
 
+    \pause
     \textbf{The vector potential defines the magnetic field}
     \begin{equation}
         \nonumber
@@ -23,6 +29,7 @@
 
     \vspace{10mm}
 
+    \pause
     \textbf{The vector potential depends on the choice of origin,\\
     but the magnetic field does not}
 \end{frame}
@@ -83,6 +90,7 @@
 
     \vspace{5mm}
 
+    \pause
     \textbf{History}
     \begin{columns}
     \begin{column}[b]{0.1\linewidth}
@@ -97,188 +105,189 @@
     \end{column}
     \end{columns}
 \end{frame}
+
 \begin{frame}
-\frametitle{Magnetic properties}
+    \frametitle{Magnetic properties}
+    \centering
+    \textbf{Second order property}
+    \begin{equation}
+        \nonumber
+        M = \left. \frac{\ud^2 E}{\ud b \ud a}\right|_{a,b=0}
+    \end{equation}
 
-\centering
-\textbf{Second order property}
-\begin{equation}
-    \nonumber
-    M = \left. \frac{\ud^2 E}{\ud b \ud a}\right|_{a,b=0}
-\end{equation}
+    \vspace{8mm}
 
-\vspace{8mm}
+    \begin{columns}
+    \begin{column}[b]{0.15\linewidth}
+    \end{column}
 
-\begin{columns}
-\begin{column}[b]{0.2\linewidth}
-\end{column}
+    \begin{column}[b]{0.65\linewidth}
+    \begin{itemize}
+        \item External magnetic field $\boldsymbol{B}$
+        \item Nuclear magnetic moment $\boldsymbol{M}_K$ of nucleus $K$
+    \end{itemize}
+    \end{column}
 
-\begin{column}[b]{0.6\linewidth}
-\begin{itemize}
-    \item External magnetic field $\boldsymbol{B}$
-    \item Nuclear magnetic moment $\boldsymbol{M}_K$ of nucleus $K$
-\end{itemize}
-\end{column}
+    \begin{column}[b]{0.2\linewidth}
+    \end{column}
+    \end{columns}
 
-\begin{column}[b]{0.2\linewidth}
-\end{column}
-\end{columns}
+    \vspace{13mm}
 
-\vspace{13mm}
+    \begin{columns}
+    \begin{column}[b]{0.3\linewidth}
+        \centering
+        \textbf{Magnetizability tensor}
+        \begin{equation}
+            \nonumber
+            \xi = \left. \frac{\ud^2 E}{\ud \boldsymbol{B} \ud \boldsymbol{B}}\right|_{\boldsymbol{B}=0}
+        \end{equation}
+    \end{column}
 
-\begin{columns}
-\begin{column}[b]{0.3\linewidth}
+    \begin{column}[b]{0.4\linewidth}
+        \centering
+        \textbf{NMR shielding tensor}
+        \begin{equation}
+            \nonumber
+            \sigma_K = \left. \frac{\ud^2 E}{\ud \boldsymbol{M}_K \ud
+            \boldsymbol{B}}\right|_{\boldsymbol{M}_K,\boldsymbol{B}=0}
+        \end{equation}
+    \end{column}
+
+    \begin{column}[b]{0.4\linewidth}
+        \centering
+        \textbf{Spin-spin coupling tensor}
+        \begin{equation}
+            \nonumber
+            K_{KL} = \left. \frac{\ud^2 E}{\ud \boldsymbol{M}_K\ud
+            \boldsymbol{M}_L}\right|_{\boldsymbol{M}_K,\boldsymbol{M}_L=0}
+        \end{equation}
+    \end{column}
+    \end{columns}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Magnetic properties}
+    \begin{columns}
+    \begin{column}[b]{0.48\linewidth}
+        \centering
+        \textbf{First-order interaction}
+        \begin{equation}
+            \nonumber
+            \hat{h}^{(a)} = 
+            \left. \frac{\ud \hat{H}}{\ud a}\right|_{a=0}
+        \end{equation}
+    \end{column}
+
+    \begin{column}[b]{0.48\linewidth}
+        \centering
+        \textbf{Second-order interaction}
+        \begin{equation}
+            \nonumber
+            \hat{h}^{(a,b)} = 
+            \left. \frac{\ud^2 \hat{H}}{\ud b \ud a}\right|_{a,b=0}
+        \end{equation}
+    \end{column}
+    \end{columns}
+
+    \vspace{5mm}
+
+    \pause
+    \centering
+    \textbf{First-order (paramagnetic) operators}
+    \begin{equation}
+        \nonumber
+        \hat{h}^{(B)} = \frac{1}{2}\sum_j^{el} \hat{l}_{jO} \qquad \qquad \qquad
+        \hat{h}^{(M_K)} = \alpha^2 \sum_j^{el} \frac{\hat{l}_{jK}}{r_{jK}^3}
+    \end{equation}
+
+    \vspace{5mm}
+
+    \pause
+    \textbf{Second-order (diamagnetic) operators}
+    \begin{align}
+        \nonumber
+        \hat{h}^{(B,B)} &= 
+        \sum_j^{el} \left(r_{jO}\cdot r_{jO}\right)I - r_{jO}r_{jO}^T\\
+        \nonumber
+        \hat{h}^{(B,M_K)} &= \frac{\alpha^2}{2} 
+        \sum_j^{el} \frac{\left(r_{jO}\cdot r_{jK}\right)I -
+        r_{jO}r_{jK}^T}{r_{jK}^3}
+    \end{align}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Magnetic properties}
+    \centering
+    \textbf{Traditional formulation}
+    \begin{equation}
+        \nonumber
+        M = \bra{0}\pert{\hamiltonian}{a,b}\ket{0} - 2\sum_{n \neq 0}
+        \frac{\bra{0}\pert{\hamiltonian}{a}\ket{n}\bra{n}\pert{\hamiltonian}{b}\ket{0}}
+        {E_n - E_0}
+    \end{equation}
+
+    \vspace{7mm}
+
+    \textbf{Density matrix formulation}
+    \begin{equation}
+        \nonumber
+        M = Tr\Big[\pert{D}{0}\pert{h}{a,b}\Big] + Tr\Big[\pert{D}{a}\pert{h}{b}\Big]
+    \end{equation}
+
+    \vspace{7mm}
+
+    \textbf{Real-space formulation}
+    \begin{equation}
+        \nonumber
+        M = 
+        \int \pert{\density}{0}\pert{\hamiltonian}{a,b} \ud r +
+        \int \pert{\density}{a}\pert{\hamiltonian}{b} \ud r
+    \end{equation}
+    \pause
+    \begin{equation}
+        \nonumber
+    M = \sum_i
+        \bra{\pert{\orbital_i}{0}}\pert{\hamiltonian}{a,b}\ket{\pert{\orbital_i}{0}} 
+        + \sum_i \bigg[
+        \bra{\pert{\orbital_i}{0}}\pert{\hamiltonian}{b}\ket{\pert{\orbital_i}{a}} +
+        \bra{\pert{\orbital_i}{a}}\pert{\hamiltonian}{b}\ket{\pert{\orbital_i}{0}}
+        \bigg]
+    \end{equation}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Magnetic properties}
     \centering
     \textbf{Magnetizability tensor}
-    \begin{equation}
+    \begin{align}
         \nonumber
-        \xi = \left. \frac{\ud^2 E}{\ud \boldsymbol{B} \ud \boldsymbol{B}}\right|_{\boldsymbol{B}=0}
-    \end{equation}
-\end{column}
+        \xi_{\mu\nu}
+        &= \int \pert{\density}{0}\pert{\hamiltonian}{B,B}_{\mu\nu} \ud r
+        +  \int \pert{\density}{B}_{\mu}\pert{\hamiltonian}{B}_{\nu} \ud r
+    \end{align}
 
-\begin{column}[b]{0.4\linewidth}
-    \centering
+    \vspace{5mm}
+
     \textbf{NMR shielding tensor}
-    \begin{equation}
+    \begin{align}
         \nonumber
-        \sigma_K = \left. \frac{\ud^2 E}{\ud \boldsymbol{M}_K \ud
-        \boldsymbol{B}}\right|_{\boldsymbol{M}_K,\boldsymbol{B}=0}
-    \end{equation}
-\end{column}
+        \big[\sigma_K\big]_{\mu\nu}
+        &= \int \pert{\density}{0}\pert{\hamiltonian}{B,M_K}_{\mu\nu} \ud r
+        +  \int \pert{\density}{B}_{\mu}\pert{\hamiltonian}{M_K}_{\nu} \ud r
+    \end{align}
 
-\begin{column}[b]{0.4\linewidth}
-    \centering
-    \textbf{Spin-spin coupling tensor}
-    \begin{equation}
-        \nonumber
-        K_{KL} = \left. \frac{\ud^2 E}{\ud \boldsymbol{M}_K\ud
-        \boldsymbol{M}_L}\right|_{\boldsymbol{M}_K,\boldsymbol{M}_L=0}
-    \end{equation}
-\end{column}
-\end{columns}
+    \vspace{5mm}
 
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Magnetic properties}
-
-\begin{columns}
-\begin{column}[b]{0.48\linewidth}
-    \centering
-    \textbf{First-order interaction}
-    \begin{equation}
-        \nonumber
-        \hat{h}^{(a)} = 
-        \left. \frac{\ud \hat{H}}{\ud a}\right|_{a=0}
-    \end{equation}
-\end{column}
-
-\begin{column}[b]{0.48\linewidth}
-    \centering
-    \textbf{Second-order interaction}
-    \begin{equation}
-        \nonumber
-        \hat{h}^{(a,b)} = 
-        \left. \frac{\ud^2 \hat{H}}{\ud b \ud a}\right|_{a,b=0}
-    \end{equation}
-\end{column}
-\end{columns}
-
-\vspace{5mm}
-
-\centering
-\textbf{First-order (paramagnetic) operators}
-\begin{equation}
-    \nonumber
-    \hat{h}^{(B)} = \frac{1}{2}\sum_j^{el} \hat{l}_{jO} \qquad \qquad \qquad
-    \hat{h}^{(M_K)} = \alpha^2 \sum_j^{el} \frac{\hat{l}_{jK}}{r_{jK}^3}
-\end{equation}
-
-\vspace{5mm}
-
-\textbf{Second-order (diamagnetic) operators}
-\begin{align}
-    \nonumber
-    \hat{h}^{(B,B)} &= 
-    \sum_j^{el} \left(r_{jO}\cdot r_{jO}\right)1 - r_{jO}r_{jO}^T\\
-    \nonumber
-    \hat{h}^{(B,M_K)} &= \frac{\alpha^2}{2} 
-    \sum_j^{el} \frac{\left(r_{jO}\cdot r_{jK}\right)1 -
-    r_{jO}r_{jK}^T}{r_{jK}^3}
-\end{align}
-
-\end{frame}
-
-\begin{frame}
-\frametitle{Magnetic properties}
-\centering
-\textbf{Traditional formulation}
-\begin{equation}
-    \nonumber
-    M = \bra{0}\pert{\hamiltonian}{a,b}\ket{0} - 2\sum_{n \neq 0}
-    \frac{\bra{0}\pert{\hamiltonian}{a}\ket{n}\bra{n}\pert{\hamiltonian}{b}\ket{0}}
-    {E_n - E_0}
-\end{equation}
-
-\vspace{7mm}
-
-\textbf{Density matrix formulation}
-\begin{equation}
-    \nonumber
-    M = Tr\Big[\pert{D}{0}\pert{h}{a,b}\Big] + Tr\Big[\pert{D}{a}\pert{h}{b}\Big]
-\end{equation}
-
-\vspace{7mm}
-
-\textbf{Real-space formulation}
-\begin{equation}
-    \nonumber
-    M = 
-    \int \pert{\density}{0}\pert{\hamiltonian}{a,b} \ud r +
-    \int \pert{\density}{a}\pert{\hamiltonian}{b} \ud r
-\end{equation}
-\begin{equation}
-    \nonumber
-    M = \sum_i
-    \bra{\pert{\orbital_i}{0}}\pert{\hamiltonian}{a,b}\ket{\pert{\orbital_i}{0}} 
-    + \sum_i \bigg[
-    \bra{\pert{\orbital_i}{0}}\pert{\hamiltonian}{b}\ket{\pert{\orbital_i}{a}} +
-    \bra{\pert{\orbital_i}{a}}\pert{\hamiltonian}{b}\ket{\pert{\orbital_i}{0}}
-    \bigg]
-\end{equation}
-
-\end{frame}
-
-\begin{frame}
-\frametitle{Magnetic properties}
-\centering
-\textbf{Magnetizability tensor}
-\begin{align}
-    \nonumber
-    \xi_{\mu\nu}
-    &= \int \pert{\density}{0}\pert{\hamiltonian}{B,B}_{\mu\nu} \ud r
-    +  \int \pert{\density}{B}_{\mu}\pert{\hamiltonian}{B}_{\nu} \ud r
-\end{align}
-
-\vspace{5mm}
-
-\textbf{NMR shielding tensor}
-\begin{align}
-    \nonumber
-    \big[\sigma_K\big]_{\mu\nu}
-    &= \int \pert{\density}{0}\pert{\hamiltonian}{B,M_K}_{\mu\nu} \ud r
-    +  \int \pert{\density}{B}_{\mu}\pert{\hamiltonian}{M_K}_{\nu} \ud r
-\end{align}
-
-\vspace{5mm}
-
-\begin{itemize}
-    \item   $\mu,\nu=x,y,z$ are components of the perturbing fields
-    \item   $\xi$ and $\sigma_K$ of \textbf{all} nuclei computed from the
-            \textbf{same} perturbed density $\pert{\density}{B}$
-    \item   $\pert{\density}{B}_\mu$ means density perturbed by
-            $\pert{\hamiltonian}{B}_\mu$, e.i. the magnetic field component $B_\mu$
-    \item   For NMR shieldings, the order of the perturbations can be swapped
-\end{itemize}
+    \scriptsize
+    \begin{itemize}
+        \item   $\mu,\nu=x,y,z$ are components of the perturbing fields
+        \item   $\xi$ and $\sigma_K$ of \textbf{all} nuclei computed from the
+                \textbf{same} perturbed density $\pert{\density}{B}$
+        \item   $\pert{\density}{B}_\mu$ means density perturbed by
+                $\pert{\hamiltonian}{B}_\mu$, e.i. the magnetic field component $B_\mu$
+        \item   For NMR shieldings, the order of the perturbations can be swapped
+    \end{itemize}
 \end{frame}
