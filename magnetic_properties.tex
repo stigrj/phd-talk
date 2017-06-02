@@ -1,0 +1,284 @@
+\begin{frame}
+    \frametitle{Magnetic properties}
+    \centering
+    \textbf{The electronic Hamiltonian in an external magnetic field}
+    \begin{align}
+        \nonumber
+        \hat{H}(\bs{B},\bs{M}) =& \frac{1}{2}\sum_i\Big(-i\nabla + \bs{A}\Big)^2
+        -\sum_i\bs{m}_i\cdot\bs{B}(\bs{r_i}) - \sum_{iK}\frac{Z_K}{r_{iK}}
+        +\frac{1}{2}\sum_{i \neq j}\frac{1}{r_{ij}}\\
+        \nonumber
+        & + \frac{1}{2}\sum_{K \neq L}
+        \frac{Z_K Z_L}{R_{KL}} - \sum_K\bs{M}_K\cdot\bs{B}(\bs{R}_K) +
+        \sum_{K>L}\bs{M}_K^TD_{KL}\bs{M}_L
+    \end{align}
+
+    \vspace{10mm}
+
+    \textbf{The vector potential defines the magnetic field}
+    \begin{equation}
+        \nonumber
+        \bs{B}(\bs{r}_i) = \nabla_i \times \bs{A}(\bs{r}_i)
+    \end{equation}
+
+    \vspace{10mm}
+
+    \textbf{The vector potential depends on the choice of origin,\\
+    but the magnetic field does not}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Magnetic properties}
+    \begin{exampleblock}{{
+        \begin{center}
+        \it{''
+        In theory, theory and practice are the same,\\
+        in practice they are not
+        ''}
+        \end{center}
+        }}
+	\vskip2mm
+	\hspace*\fill{--- Albert Einstein (?)}
+    \end{exampleblock}
+
+    \pause
+    \vspace{10mm}
+
+    \centering
+    \textbf{The gauge origin problem}\\
+    In theory not a problem, the physics is\\
+    independent of the choice of origin\\
+
+    \vspace{5mm}
+
+    In practice the chioce of origin affects the quality of the\\
+    results whenever \textbf{incomplete} basis sets are used
+\end{frame}
+
+\begin{frame}
+    \frametitle{Magnetic properties}
+    \centering
+    \textbf{Several solutions proposed}
+
+    \begin{columns}
+    \begin{column}[b]{0.1\linewidth}
+    \end{column}
+    \begin{column}[b]{0.9\linewidth}
+    \begin{itemize}
+        \item   Individual Gauge for Localized Orbitals (IGLO)
+        \item   Localized Orbitals/Local Origin (LORG)
+        \item   Gauge-Including Atomic Orbitals (GIAO or London AOs)
+    \end{itemize}
+    \end{column}
+    \end{columns}
+
+    \vspace{5mm}
+
+    \textbf{London Atomic Orbitals}
+    \begin{equation}
+        \nonumber
+        \chi_\mu(\bs{r}) =
+        e^{(-i/2)(\bs{B}\times[\bs{R}_\mu-\bs{R}_O]\cdot\bs{r})}\chi_\mu^{(0)}(\bs{r})
+    \end{equation}
+
+    \vspace{5mm}
+
+    \textbf{History}
+    \begin{columns}
+    \begin{column}[b]{0.1\linewidth}
+    \end{column}
+    \begin{column}[b]{0.9\linewidth}
+    \begin{itemize}
+        \item   IGLO most popular in the 80's
+        \item   London orbitals introduced already in the 30's,\\
+                but first efficient implementation in 90's
+        \item   London orbitals completely dominating last 20 years
+    \end{itemize}
+    \end{column}
+    \end{columns}
+\end{frame}
+\begin{frame}
+\frametitle{Magnetic properties}
+
+\centering
+\textbf{Second order property}
+\begin{equation}
+    \nonumber
+    M = \left. \frac{\ud^2 E}{\ud b \ud a}\right|_{a,b=0}
+\end{equation}
+
+\vspace{8mm}
+
+\begin{columns}
+\begin{column}[b]{0.2\linewidth}
+\end{column}
+
+\begin{column}[b]{0.6\linewidth}
+\begin{itemize}
+    \item External magnetic field $\boldsymbol{B}$
+    \item Nuclear magnetic moment $\boldsymbol{M}_K$ of nucleus $K$
+\end{itemize}
+\end{column}
+
+\begin{column}[b]{0.2\linewidth}
+\end{column}
+\end{columns}
+
+\vspace{13mm}
+
+\begin{columns}
+\begin{column}[b]{0.3\linewidth}
+    \centering
+    \textbf{Magnetizability tensor}
+    \begin{equation}
+        \nonumber
+        \xi = \left. \frac{\ud^2 E}{\ud \boldsymbol{B} \ud \boldsymbol{B}}\right|_{\boldsymbol{B}=0}
+    \end{equation}
+\end{column}
+
+\begin{column}[b]{0.4\linewidth}
+    \centering
+    \textbf{NMR shielding tensor}
+    \begin{equation}
+        \nonumber
+        \sigma_K = \left. \frac{\ud^2 E}{\ud \boldsymbol{M}_K \ud
+        \boldsymbol{B}}\right|_{\boldsymbol{M}_K,\boldsymbol{B}=0}
+    \end{equation}
+\end{column}
+
+\begin{column}[b]{0.4\linewidth}
+    \centering
+    \textbf{Spin-spin coupling tensor}
+    \begin{equation}
+        \nonumber
+        K_{KL} = \left. \frac{\ud^2 E}{\ud \boldsymbol{M}_K\ud
+        \boldsymbol{M}_L}\right|_{\boldsymbol{M}_K,\boldsymbol{M}_L=0}
+    \end{equation}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Magnetic properties}
+
+\begin{columns}
+\begin{column}[b]{0.48\linewidth}
+    \centering
+    \textbf{First-order interaction}
+    \begin{equation}
+        \nonumber
+        \hat{h}^{(a)} = 
+        \left. \frac{\ud \hat{H}}{\ud a}\right|_{a=0}
+    \end{equation}
+\end{column}
+
+\begin{column}[b]{0.48\linewidth}
+    \centering
+    \textbf{Second-order interaction}
+    \begin{equation}
+        \nonumber
+        \hat{h}^{(a,b)} = 
+        \left. \frac{\ud^2 \hat{H}}{\ud b \ud a}\right|_{a,b=0}
+    \end{equation}
+\end{column}
+\end{columns}
+
+\vspace{5mm}
+
+\centering
+\textbf{First-order (paramagnetic) operators}
+\begin{equation}
+    \nonumber
+    \hat{h}^{(B)} = \frac{1}{2}\sum_j^{el} \hat{l}_{jO} \qquad \qquad \qquad
+    \hat{h}^{(M_K)} = \alpha^2 \sum_j^{el} \frac{\hat{l}_{jK}}{r_{jK}^3}
+\end{equation}
+
+\vspace{5mm}
+
+\textbf{Second-order (diamagnetic) operators}
+\begin{align}
+    \nonumber
+    \hat{h}^{(B,B)} &= 
+    \sum_j^{el} \left(r_{jO}\cdot r_{jO}\right)1 - r_{jO}r_{jO}^T\\
+    \nonumber
+    \hat{h}^{(B,M_K)} &= \frac{\alpha^2}{2} 
+    \sum_j^{el} \frac{\left(r_{jO}\cdot r_{jK}\right)1 -
+    r_{jO}r_{jK}^T}{r_{jK}^3}
+\end{align}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Magnetic properties}
+\centering
+\textbf{Traditional formulation}
+\begin{equation}
+    \nonumber
+    M = \bra{0}\pert{\hamiltonian}{a,b}\ket{0} - 2\sum_{n \neq 0}
+    \frac{\bra{0}\pert{\hamiltonian}{a}\ket{n}\bra{n}\pert{\hamiltonian}{b}\ket{0}}
+    {E_n - E_0}
+\end{equation}
+
+\vspace{7mm}
+
+\textbf{Density matrix formulation}
+\begin{equation}
+    \nonumber
+    M = Tr\Big[\pert{D}{0}\pert{h}{a,b}\Big] + Tr\Big[\pert{D}{a}\pert{h}{b}\Big]
+\end{equation}
+
+\vspace{7mm}
+
+\textbf{Real-space formulation}
+\begin{equation}
+    \nonumber
+    M = 
+    \int \pert{\density}{0}\pert{\hamiltonian}{a,b} \ud r +
+    \int \pert{\density}{a}\pert{\hamiltonian}{b} \ud r
+\end{equation}
+\begin{equation}
+    \nonumber
+    M = \sum_i
+    \bra{\pert{\orbital_i}{0}}\pert{\hamiltonian}{a,b}\ket{\pert{\orbital_i}{0}} 
+    + \sum_i \bigg[
+    \bra{\pert{\orbital_i}{0}}\pert{\hamiltonian}{b}\ket{\pert{\orbital_i}{a}} +
+    \bra{\pert{\orbital_i}{a}}\pert{\hamiltonian}{b}\ket{\pert{\orbital_i}{0}}
+    \bigg]
+\end{equation}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Magnetic properties}
+\centering
+\textbf{Magnetizability tensor}
+\begin{align}
+    \nonumber
+    \xi_{\mu\nu}
+    &= \int \pert{\density}{0}\pert{\hamiltonian}{B,B}_{\mu\nu} \ud r
+    +  \int \pert{\density}{B}_{\mu}\pert{\hamiltonian}{B}_{\nu} \ud r
+\end{align}
+
+\vspace{5mm}
+
+\textbf{NMR shielding tensor}
+\begin{align}
+    \nonumber
+    \big[\sigma_K\big]_{\mu\nu}
+    &= \int \pert{\density}{0}\pert{\hamiltonian}{B,M_K}_{\mu\nu} \ud r
+    +  \int \pert{\density}{B}_{\mu}\pert{\hamiltonian}{M_K}_{\nu} \ud r
+\end{align}
+
+\vspace{5mm}
+
+\begin{itemize}
+    \item   $\mu,\nu=x,y,z$ are components of the perturbing fields
+    \item   $\xi$ and $\sigma_K$ of \textbf{all} nuclei computed from the
+            \textbf{same} perturbed density $\pert{\density}{B}$
+    \item   $\pert{\density}{B}_\mu$ means density perturbed by
+            $\pert{\hamiltonian}{B}_\mu$, e.i. the magnetic field component $B_\mu$
+    \item   For NMR shieldings, the order of the perturbations can be swapped
+\end{itemize}
+\end{frame}

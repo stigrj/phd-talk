@@ -8,237 +8,237 @@
 %	a parallel implementation}
 %\end{frame}
 
-%\begin{frame}
-%    \frametitle{Operator representation}
-%    \begin{columns}
-%    \begin{column}[b]{0.5\linewidth}
-%    \begin{itemize}
-%	\item	The multiwavelet basis is well suited for\\ 
-%        \textbf{integral convolution operators}
-%	    \begin{equation}
-%		\nonumber
-%		g(\boldsymbol{r}) = \left[T f\right](\boldsymbol{r}) = 
-%		    \int K(\boldsymbol{r} - \boldsymbol{r'})f(\boldsymbol{r'}) d\boldsymbol{r'}
-%	    \end{equation}
-%	    \ \\
-%	    \ \\
-%	\item \textbf{Scaling projection} of operator at scale $n$
-%	    \begin{equation}
-%		\nonumber
-%		T \approx T^n
-%	    \end{equation}
-%	\item \textbf{Wavelet projections} obtained by the difference
-%	    \begin{equation}
-%		\nonumber
-%		T^{n+1} - T^n = A^n + B^n + C^n
-%	    \end{equation}
-%	\item \textbf{Multiresolution operator} obtained by recursion
-%	    \begin{equation}
-%		\nonumber
-%		T^N = T^0 + \sum_{n=0}^{N-1} \left[A^n + B^n + C^n\right]
-%	    \end{equation}
-%	\item Scaling operator $T$ is \textbf{dense}
-%	\item Wavelet operators $A$, $B$ and $C$ are \textbf{sparse} 
-%    \end{itemize}
-%    \end{column}
-%    \begin{column}[b]{0.5\linewidth}
-%    \begin{center}
-%    \only<2>{\hspace{4.0mm}
-%    \includegraphics[scale=0.6, clip, viewport = 240 280 450 480]
-%    {figures/matrix/matrix_1.pdf}
-%    }
-%    \only<3>{\hspace{3.4mm}
-%    \includegraphics[scale=0.6, clip, viewport = 240 280 450 480]
-%    {figures/matrix/matrix_2.pdf}
-%    }
-%    \only<4>{\hspace{2.8mm}
-%    \includegraphics[scale=0.6, clip, viewport = 240 280 450 480]
-%    {figures/matrix/matrix_3.pdf}
-%    }
-%    \only<5>{\hspace{2.2mm}
-%    \includegraphics[scale=0.6, clip, viewport = 240 280 450 480]
-%    {figures/matrix/matrix_4.pdf}
-%    }
-%    \only<6>{\hspace{1.6mm}
-%    \includegraphics[scale=0.6, clip, viewport = 240 280 450 480]
-%    {figures/matrix/matrix_5.pdf}
-%    }
-%    \only<7>{\hspace{1mm}
-%    \includegraphics[scale=0.6, clip, viewport = 240 280 450 480]
-%    {figures/matrix/matrix_6.pdf}
-%    }
-%    \vspace{5mm}
-%    \end{center}
-%    \end{column}
-%    \end{columns}
-%    \vspace{5mm}
-%
-%    \begin{columns}
-%    \begin{column}{.48\textwidth}
-%    \centering
-%    \textbf{Poisson kernel}
-%    \begin{equation}
-%	\nonumber
-%	P(\boldsymbol{r}-\boldsymbol{r}') = 
-%	    \frac{1}{4\pi}\ \frac{1}{|\boldsymbol{r}-\boldsymbol{r}'|}
-%    \end{equation}
-%    \end{column}
-%    \begin{column}{.48\textwidth}
-%    \centering
-%    \textbf{Helmholtz kernel}
-%    \begin{equation}
-%	\nonumber
-%	H^{\mu}(\boldsymbol{r}-\boldsymbol{r}') = \frac{1}{4\pi}\ 
-%	\frac{e^{-\mu |\boldsymbol{r}-\boldsymbol{r}'|}}
-%        {|\boldsymbol{r}-\boldsymbol{r}'|}
-%    \end{equation}
-%    \end{column}
-%    \end{columns}    
-%    \centering
-%    \vspace{8mm}
-%    \tiny
-%    G. Beylkin, R. Coifman, V. Rokhlin, 
-%    {\it Commun. Pure Appl. Math.}
-%    \textbf{44(2)}
-%    (1991)
-%\end{frame}
+\begin{frame}
+    \frametitle{Operator representation}
+    \begin{columns}
+    \begin{column}[b]{0.5\linewidth}
+    \begin{itemize}
+	\item	The multiwavelet basis is well suited for\\ 
+        \textbf{integral convolution operators}
+	    \begin{equation}
+		\nonumber
+		g(\boldsymbol{r}) = \left[T f\right](\boldsymbol{r}) = 
+		    \int K(\boldsymbol{r} - \boldsymbol{r'})f(\boldsymbol{r'}) d\boldsymbol{r'}
+	    \end{equation}
+	    \ \\
+	    \ \\
+	\item \textbf{Scaling projection} of operator at scale $n$
+	    \begin{equation}
+		\nonumber
+		T \approx T^n
+	    \end{equation}
+	\item \textbf{Wavelet projections} obtained by the difference
+	    \begin{equation}
+		\nonumber
+		T^{n+1} - T^n = A^n + B^n + C^n
+	    \end{equation}
+	\item \textbf{Multiresolution operator} obtained by recursion
+	    \begin{equation}
+		\nonumber
+		T^N = T^0 + \sum_{n=0}^{N-1} \left[A^n + B^n + C^n\right]
+	    \end{equation}
+	\item Scaling operator $T$ is \textbf{dense}
+	\item Wavelet operators $A$, $B$ and $C$ are \textbf{sparse} 
+    \end{itemize}
+    \end{column}
+    \begin{column}[b]{0.5\linewidth}
+    \begin{center}
+    \only<2>{\hspace{4.0mm}
+    \includegraphics[scale=0.6, clip, viewport = 240 280 450 480]
+    {figures/matrix/matrix_1.pdf}
+    }
+    \only<3>{\hspace{3.4mm}
+    \includegraphics[scale=0.6, clip, viewport = 240 280 450 480]
+    {figures/matrix/matrix_2.pdf}
+    }
+    \only<4>{\hspace{2.8mm}
+    \includegraphics[scale=0.6, clip, viewport = 240 280 450 480]
+    {figures/matrix/matrix_3.pdf}
+    }
+    \only<5>{\hspace{2.2mm}
+    \includegraphics[scale=0.6, clip, viewport = 240 280 450 480]
+    {figures/matrix/matrix_4.pdf}
+    }
+    \only<6>{\hspace{1.6mm}
+    \includegraphics[scale=0.6, clip, viewport = 240 280 450 480]
+    {figures/matrix/matrix_5.pdf}
+    }
+    \only<7>{\hspace{1mm}
+    \includegraphics[scale=0.6, clip, viewport = 240 280 450 480]
+    {figures/matrix/matrix_6.pdf}
+    }
+    \vspace{5mm}
+    \end{center}
+    \end{column}
+    \end{columns}
+    \vspace{5mm}
 
-%\begin{frame}
-%    \frametitle{Coulomb interaction}
-%    \begin{itemize}
-%	\item	Electrostatic potential from a \textbf{point charge} follows from Coulomb's law
-%		\begin{equation}
-%		    \nonumber
-%		    V(\boldsymbol{r}) = \frac{q}{4\pi\epsilon_0}
-%		    \frac{1}{|\boldsymbol{r}-\boldsymbol{r}'|}
-%		\end{equation}
-%		\ \\
-%		\ \\
-%		\ \\
-%	\item	Electrostatic potential from a \textbf{charge density} is given by the Poisson equation
-%		\begin{equation}
-%		    \nonumber
-%		    \nabla^2 V(\boldsymbol{r}) = -\rho(\boldsymbol{r})
-%		\end{equation}
-%		\ \\
-%		\ \\
-%		\ \\
-%	\item	Can be solved directly in integral form using the Poisson kernel
-%		\begin{equation}
-%		    \nonumber
-%		    V(\boldsymbol{r}) = 
-%		    \int P(\boldsymbol{r}-\boldsymbol{r'})\rho(\boldsymbol{r'}) d\boldsymbol{r'} =
-%		    \int\frac{\rho(\boldsymbol{r'})}{4\pi|\boldsymbol{r} - \boldsymbol{r'}|} d\boldsymbol{r'} 
-%		\end{equation}
-%		\ \\
-%		\ \\
-%		\ \\
-%    \end{itemize}
-%    \ \\
-%    \ \\
-%    \ \\
-%    \begin{columns}
-%    \begin{column}{.30\textwidth}
-%        \ \\
-%    \end{column}
-%    \begin{column}{.40\textwidth}
-%        \ \ \ \ \textbf{Numerical problems}
-%        \begin{itemize}
-%	    \item Not Cartesian separable
-%	    \item Singularity at short-range
-%	    \item Slow decay at long-range
-%	\end{itemize}
-%    \end{column}
-%    \begin{column}{.30\textwidth}
-%	\ \\
-%    \end{column}
-%    \end{columns}
-%\end{frame}
+    \begin{columns}
+    \begin{column}{.48\textwidth}
+    \centering
+    \textbf{Poisson kernel}
+    \begin{equation}
+	\nonumber
+	P(\boldsymbol{r}-\boldsymbol{r}') = 
+	    \frac{1}{4\pi}\ \frac{1}{|\boldsymbol{r}-\boldsymbol{r}'|}
+    \end{equation}
+    \end{column}
+    \begin{column}{.48\textwidth}
+    \centering
+    \textbf{Helmholtz kernel}
+    \begin{equation}
+	\nonumber
+	H^{\mu}(\boldsymbol{r}-\boldsymbol{r}') = \frac{1}{4\pi}\ 
+	\frac{e^{-\mu |\boldsymbol{r}-\boldsymbol{r}'|}}
+        {|\boldsymbol{r}-\boldsymbol{r}'|}
+    \end{equation}
+    \end{column}
+    \end{columns}    
+    \centering
+    \vspace{8mm}
+    \tiny
+    G. Beylkin, R. Coifman, V. Rokhlin, 
+    {\it Commun. Pure Appl. Math.}
+    \textbf{44(2)}
+    (1991)
+\end{frame}
 
-%\begin{frame}
-%    \frametitle{Separation of variables using Gaussians}
-%    \centering
-%    The Poisson equation is solved in integral form using the Poisson kernel
-%    \begin{equation}
-%	\nonumber
-%	V(\boldsymbol{r}) = \int P(\boldsymbol{r}-\boldsymbol{r'})
-%        \rho(\boldsymbol{r'}) d\boldsymbol{r'} =
-%	\int\frac{\rho(\boldsymbol{r'})}
-%        {4\pi|\boldsymbol{r} - \boldsymbol{r'}|} d\boldsymbol{r'} 
-%    \end{equation}
-%
-%    \vspace{3mm}
-%
-%    \begin{columns}
-%    \begin{column}{.50\textwidth}
-%    \begin{itemize}
-%	\item The Poisson kernel can be approximated as
-%	    \begin{equation}
-%		\nonumber
-%		\frac{1}{\boldsymbol{r}} \approx 
-%                \sum_{i=1}^M a_i e^{-\alpha_i \boldsymbol{r}^2} 
-%	    \end{equation}
-%	\item Any accuracy can in principle be obtained
-%	\item Full operator is decomposed into $M$ terms
-%	\item Each operator term is applied separately
-%    \end{itemize}
-%
-%    \vspace{6mm}
-%
-%    \hspace{3mm} \textbf{Solves numerical problems}
-%
-%    \begin{itemize}
-%	\item	Separates coordinates
-%	\item	Removes singularity
-%	\item	Separates length scales
-%    \end{itemize}
-%
-%    \end{column}
-%    \begin{column}{.50\textwidth}
-%	\only<1>{\hspace{2mm}
-%        \includegraphics[scale=0.4, clip, viewport = 110 450 490 800]
-%            {figures/kernel_1.pdf}}
-%	\only<2>{\hspace{2mm}
-%        \includegraphics[scale=0.4, clip, viewport = 110 450 490 800]
-%            {figures/kernel_2.pdf}}
-%	\only<3>{\hspace{2mm}
-%        \includegraphics[scale=0.4, clip, viewport = 110 450 490 800]
-%            {figures/kernel_3.pdf}}
-%	\only<4>{\hspace{2mm}
-%        \includegraphics[scale=0.4, clip, viewport = 110 450 490 800]
-%            {figures/kernel_4.pdf}}
-%	\only<5>{\hspace{2mm}
-%        \includegraphics[scale=0.4, clip, viewport = 110 450 490 800]
-%            {figures/kernel_5.pdf}}
-%	\only<6>{\hspace{2mm}
-%        \includegraphics[scale=0.4, clip, viewport = 110 450 490 800]
-%            {figures/kernel_6.pdf}}
-%	\only<7>{\hspace{2mm}
-%        \includegraphics[scale=0.4, clip, viewport = 110 450 490 800]
-%            {figures/kernel_7.pdf}}
-%	\only<8>{\hspace{0mm}
-%        \includegraphics[scale=0.4, clip, viewport = 110 450 490 800]
-%            {figures/kernel_7.pdf}}
-%    \end{column}
-%    \end{columns}    
-%
-%    \vspace{5mm}
-%
-%    \centering
-%    \only<7>{\vspace{2mm}}
-%    \only<1,2,3,4,5,6,7>{\vspace{6mm}
-%    \tiny
-%    G. Beylkin, M.J. Mohlenkamp,
-%    {\it Proc. Nat. Acad. Sci.}
-%    \textbf{99(16)}
-%    (2002)
-%    }
-%    \only<8>{
-%    \vspace{3mm}
-%    \normalsize{Combined with the sparse wavelet representation of 
-%    operators we get\\ \textbf{linear scaling algorithms}}
-%    }
-%\end{frame}
+\begin{frame}
+    \frametitle{Coulomb interaction}
+    \begin{itemize}
+	\item	Electrostatic potential from a \textbf{point charge} follows from Coulomb's law
+		\begin{equation}
+		    \nonumber
+		    V(\boldsymbol{r}) = \frac{q}{4\pi\epsilon_0}
+		    \frac{1}{|\boldsymbol{r}-\boldsymbol{r}'|}
+		\end{equation}
+		\ \\
+		\ \\
+		\ \\
+	\item	Electrostatic potential from a \textbf{charge density} is given by the Poisson equation
+		\begin{equation}
+		    \nonumber
+		    \nabla^2 V(\boldsymbol{r}) = -\rho(\boldsymbol{r})
+		\end{equation}
+		\ \\
+		\ \\
+		\ \\
+	\item	Can be solved directly in integral form using the Poisson kernel
+		\begin{equation}
+		    \nonumber
+		    V(\boldsymbol{r}) = 
+		    \int P(\boldsymbol{r}-\boldsymbol{r'})\rho(\boldsymbol{r'}) d\boldsymbol{r'} =
+		    \int\frac{\rho(\boldsymbol{r'})}{4\pi|\boldsymbol{r} - \boldsymbol{r'}|} d\boldsymbol{r'} 
+		\end{equation}
+		\ \\
+		\ \\
+		\ \\
+    \end{itemize}
+    \ \\
+    \ \\
+    \ \\
+    \begin{columns}
+    \begin{column}{.30\textwidth}
+        \ \\
+    \end{column}
+    \begin{column}{.40\textwidth}
+        \ \ \ \ \textbf{Numerical problems}
+        \begin{itemize}
+	    \item Not Cartesian separable
+	    \item Singularity at short-range
+	    \item Slow decay at long-range
+	\end{itemize}
+    \end{column}
+    \begin{column}{.30\textwidth}
+	\ \\
+    \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Separation of variables using Gaussians}
+    \centering
+    The Poisson equation is solved in integral form using the Poisson kernel
+    \begin{equation}
+	\nonumber
+	V(\boldsymbol{r}) = \int P(\boldsymbol{r}-\boldsymbol{r'})
+        \rho(\boldsymbol{r'}) d\boldsymbol{r'} =
+	\int\frac{\rho(\boldsymbol{r'})}
+        {4\pi|\boldsymbol{r} - \boldsymbol{r'}|} d\boldsymbol{r'} 
+    \end{equation}
+
+    \vspace{3mm}
+
+    \begin{columns}
+    \begin{column}{.50\textwidth}
+    \begin{itemize}
+	\item The Poisson kernel can be approximated as
+	    \begin{equation}
+		\nonumber
+		\frac{1}{\boldsymbol{r}} \approx 
+                \sum_{i=1}^M a_i e^{-\alpha_i \boldsymbol{r}^2} 
+	    \end{equation}
+	\item Any accuracy can in principle be obtained
+	\item Full operator is decomposed into $M$ terms
+	\item Each operator term is applied separately
+    \end{itemize}
+
+    \vspace{6mm}
+
+    \hspace{3mm} \textbf{Solves numerical problems}
+
+    \begin{itemize}
+	\item	Separates coordinates
+	\item	Removes singularity
+	\item	Separates length scales
+    \end{itemize}
+
+    \end{column}
+    \begin{column}{.50\textwidth}
+	\only<1>{\hspace{2mm}
+        \includegraphics[scale=0.4, clip, viewport = 110 450 490 800]
+            {figures/kernel_1.pdf}}
+	\only<2>{\hspace{2mm}
+        \includegraphics[scale=0.4, clip, viewport = 110 450 490 800]
+            {figures/kernel_2.pdf}}
+	\only<3>{\hspace{2mm}
+        \includegraphics[scale=0.4, clip, viewport = 110 450 490 800]
+            {figures/kernel_3.pdf}}
+	\only<4>{\hspace{2mm}
+        \includegraphics[scale=0.4, clip, viewport = 110 450 490 800]
+            {figures/kernel_4.pdf}}
+	\only<5>{\hspace{2mm}
+        \includegraphics[scale=0.4, clip, viewport = 110 450 490 800]
+            {figures/kernel_5.pdf}}
+	\only<6>{\hspace{2mm}
+        \includegraphics[scale=0.4, clip, viewport = 110 450 490 800]
+            {figures/kernel_6.pdf}}
+	\only<7>{\hspace{2mm}
+        \includegraphics[scale=0.4, clip, viewport = 110 450 490 800]
+            {figures/kernel_7.pdf}}
+	\only<8>{\hspace{0mm}
+        \includegraphics[scale=0.4, clip, viewport = 110 450 490 800]
+            {figures/kernel_7.pdf}}
+    \end{column}
+    \end{columns}    
+
+    \vspace{5mm}
+
+    \centering
+    \only<7>{\vspace{2mm}}
+    \only<1,2,3,4,5,6,7>{\vspace{6mm}
+    \tiny
+    G. Beylkin, M.J. Mohlenkamp,
+    {\it Proc. Nat. Acad. Sci.}
+    \textbf{99(16)}
+    (2002)
+    }
+    \only<8>{
+    \vspace{3mm}
+    \normalsize{Combined with the sparse wavelet representation of 
+    operators we get\\ \textbf{linear scaling algorithms}}
+    }
+\end{frame}
 
 \begin{frame}
     \frametitle{Vanishing moments}
